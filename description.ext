@@ -1,0 +1,22 @@
+onLoadName = "BW Seeding V3";
+
+// BWMF Gear
+//Credits:headswe, Pabst, Zerith
+#include "CfgLoadouts.hpp"
+
+// Extended Event Handlers:
+#include "cfg\CfgEventHandlers.hpp"
+
+// Parameters
+#include "cfg\Params.hpp"
+
+respawnDelay = 5; // wait 5 seconds to go to spec
+
+bwmfDate = "2024/8/22"; //Framework date
+
+class CfgDebriefingSections {
+  class acex_killTracker {
+    title = "ACEX Killed Events";
+    variable = "acex_killTracker_outputText";
+  };
+};
