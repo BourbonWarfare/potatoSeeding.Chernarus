@@ -1,5 +1,4 @@
 # Potato Seeding
-### it's funny because potatoes don't have seeds
 **Created by Zohli**
 
 A game mode for seeding the BW server pre-session. The map features zones for both individual practice and areas for cooperative gameplay with or without a Zeus. Currently on Chernarus (Autumn), but portable to other maps.
@@ -26,3 +25,5 @@ Contributions are accepted via Pull Requests (PRs). Please make sure:
 
 ### Contributors
 - Zohli
+
+<sub>it's funny because potatoes don't have seeds</sub>
