@@ -59,7 +59,6 @@ if (_allowMovementOnShot && random 1 < (5*(_chanceToMove max 0.1))) then {
         if (side _firer != side player || {_firer distance2D _unit > 8 + random 15}) exitWith {};
         _unit enableAI "PATH";
         _unit removeEventHandler [_thisEvent, _thisEventHandler];
-        systemChat "can move";
     }];
 };
 
