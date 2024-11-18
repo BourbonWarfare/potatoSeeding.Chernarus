@@ -1,4 +1,14 @@
 //Extended Event Handlers:
+class Extended_PreInit_EventHandlers {
+    class MISSION_GVAR_PREFIX {
+        init = QUOTE(call compileScript [QQUOTE(XEH_preInit.sqf)]);
+    };
+};
+class Extended_PostInit_EventHandlers {
+    class MISSION_GVAR_PREFIX {
+        init = QUOTE(call compileScript [QQUOTE(XEH_postInit.sqf)]);
+    };
+};
 class Extended_InitPost_EventHandlers {
   class Car {
     class BWMF_NoBitchZone { init = "(_this select 0) allowCrewInImmobile true;"; };

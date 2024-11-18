@@ -1,3 +1,5 @@
+#include "script_component.hpp"
+
 onLoadName = "BW Seeding V3";
 
 // BWMF Gear
@@ -6,6 +8,12 @@ onLoadName = "BW Seeding V3";
 
 // Extended Event Handlers:
 #include "cfg\CfgEventHandlers.hpp"
+// Menus:
+#include "cfg\CfgUI.hpp"
+// Notifications:
+#include "cfg\CfgNotifs.hpp"
+// Sounds:
+#include "cfg\CfgSounds.hpp"
 
 // Parameters
 #include "cfg\Params.hpp"

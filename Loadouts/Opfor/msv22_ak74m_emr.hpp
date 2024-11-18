@@ -62,12 +62,12 @@ description = "Russian Federation c. 2020";
 #define HMG_MAG "ace_csw_50Rnd_127x108_mag:5"
 // HAT
 #define HAT "ace_compat_rhs_afrf3_kornet_carry"
-#define HAT_TRI_HI 
-#define HAT_TRI_LO 
+#define HAT_TRI_HI
+#define HAT_TRI_LO
 #define HAT_MAG "ace_compat_rhs_afrf3_mag_9m133f:2","ace_compat_rhs_afrf3_mag_9m133m2:1"
 // SAM
 #define SAM "CUP_launch_Igla"
-#define SAM_MAG 
+#define SAM_MAG
 // Sniper
 #define SNIPER "rhs_weap_svdp"
 #define SNIPER_MAG "10Rnd_762x54_Mag:15"
@@ -82,7 +82,7 @@ description = "Russian Federation c. 2020";
 // Pistol
 #define PISTOL "hgun_Rook40_F"
 #define PISTOL_MAG "16Rnd_9x21_Mag:3"
-#define PISTOL_OPTIC 
+#define PISTOL_OPTIC
 // Grenades
 #define LEADER_GRENADES SIDE_FRAG,LEADER_SMOKES,SIDE_CHEM_LIGHT
 #define SIDE_FRAG "rhs_mag_rgd5:2"
@@ -112,6 +112,36 @@ description = "Russian Federation c. 2020";
 #define CAMO_BACKPACK_MEDIC "rhs_medic_bag_XL"
 #define MMG_ATTACHMENTS "CUP_optic_PechenegScope"
 #define CAMO_UNIFORM_SNIPER CAMO_UNIFORM
+// ------------- Vehicle Pool -------------
+transportVehiclePool[] = {
+  "CUP_O_Kamaz_6396_transport_RUS_M",
+  "CUP_O_Kamaz_6396_covered_RUS_M",
+  "CUP_O_Tigr_233011_RU",
+  "CUP_O_Tigr_233014_RU",
+  "CUP_O_Tigr_233014_RU"
+};
+armedSoftVehiclePool[] = {
+  "CUP_O_Tigr_233014_PK_RU",
+  "CUP_O_Tigr_M_233114_PK_RU",
+  "CUP_O_Tigr_M_233114_PK_RU",
+  "CUP_O_Tigr_M_233114_KORD_RU",
+  "CUP_O_UAZ_MG_RU"
+};
+armoredVehiclePool[] = {
+  "CUP_O_BRDM2_RUS",
+  "CUP_O_BTR80_CAMO_RU",
+  "CUP_O_BTR80_CAMO_RU",
+  "CUP_O_BTR80A_CAMO_RU"
+};
+tankVehiclePool[] = {
+  "CUP_O_BMP2_RU",
+  "CUP_O_BMP3_RU",
+  "CUP_O_T72_RU",
+  "CUP_O_T90_RU"
+};
+reinforcementTruck = "CUP_O_Kamaz_6396_transport_RUS_M";
+reinforcementArmed = "CUP_O_BTR80_CAMO_RU";
+// ------------- End Vehicle Pool -------------
 
 class Car {
   TransportWeapons[] = {AT};
@@ -430,7 +460,7 @@ class fallback: rifleman {}; // This means any faction member who doesn't match 
 
 #define SF_AR "CUP_lmg_Pecheneg_B50_vfg"
 #define SF_AR_MAG "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Green_M:5"
-#define SF_AR_ATTACHMENTS 
+#define SF_AR_ATTACHMENTS
 
 #define SF_SNIPER "rhs_weap_svds"
 #define SF_SNIPER_MAG "10Rnd_762x54_Mag:15"
@@ -438,11 +468,11 @@ class fallback: rifleman {}; // This means any faction member who doesn't match 
 
 #define SF_AT "rhs_weap_rpg26"
 #define SF_AT_MAG "rhs_rpg26_mag"
-#define SF_AT_ATTACHMENTS 
+#define SF_AT_ATTACHMENTS
 
 #define SF_PISTOL PISTOL
 #define SF_PISTOL_MAG PISTOL_MAG
-#define SF_PISTOL_ATTACHMENTS 
+#define SF_PISTOL_ATTACHMENTS
 
 class sf_rifleman {// sf rifleman
   uniform[] = {SF_UNIFORM};
