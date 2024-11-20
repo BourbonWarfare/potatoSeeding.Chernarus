@@ -9,6 +9,10 @@ class CfgNotifications {
         sound = "vanillaDefaultNotification";
         soundClose = "vanillaDefaultNotificationClose";
     };
+    class Info: Notif {
+        iconPicture = "\a3\ui_f\data\GUI\Cfg\CommunicationMenu\instructor_ca.paa";
+        duration = 20;
+    };
     class MapTeleport: Notif {
         title = "Forward Deploy";
         description = "Left-click near a flag to teleport the player.";

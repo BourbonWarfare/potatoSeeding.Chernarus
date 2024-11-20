@@ -94,10 +94,15 @@ if (_squadSize > 0) then { // recurse
     _wp setWaypointCompletionRadius _wpRadius;
     _group setVariable ["lambs_danger_disableGroupAI", true];
     [{
-        params ["_vic", "_lastPos"];
+        params ["_vic", "_lastPos", "_group", "_goalPos"];
         if (_vic distance2D _lastPos < 50) exitWith {
             deleteVehicleCrew _vic;
             deleteVehicle _vic;
-        }
-    }, [_vic, _movePos], 120] call CBA_fnc_waitAndExecute;
+        };
+        if (isNull objectParent leader _group &&
+            _goalPos distance leader _group > 1500) then {
+            {deleteVehicle _x} forEach units _group;
+            deleteVehicle _vic;
+        };
+    }, [_vic, _movePos, _group, _markerPos], 120] call CBA_fnc_waitAndExecute;
 };

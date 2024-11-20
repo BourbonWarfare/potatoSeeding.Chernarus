@@ -12,7 +12,7 @@ GVAR(menuOptions) = createHashMapFromArray [
     ["AIskillMax", 0.5],
     ["option0", 0.2],
     ["option1", 0.5],
-    ["option2", 0.4],
+    ["option2", 0],
     ["option3", 0],
     ["option4", 0],
     ["option5", 0],

@@ -11,6 +11,7 @@
 * Example
 * _display call bw_fnc_updateMenuOptions;
 *//***************************************************************************/
+#define DESELECTED_ZONE_ALPHA 0.4
 params ["_display"];
 
 // Common elements first
@@ -40,7 +41,7 @@ _control = _display displayCtrl IDC_MISSION_OPTION6;
 _control sliderSetPosition GET_MENU_OPTION(option6);
 
 _control = _display displayCtrl IDC_MISSION_MAP;
-private _markerAlpha = [0, 0.5] select (BW_TRAINING_OPERATION_ZONE == GET_MENU_OPTION(operationType));
+private _markerAlpha = [0, DESELECTED_ZONE_ALPHA] select (BW_TRAINING_OPERATION_ZONE == GET_MENU_OPTION(operationType));
 private _maxZoneMarker = 0;
 for "_i" from 0 to BW_ZONE_MAX_CHECK do {
     private _mark = BW_ZONE_BASE_STRING + (str _i);
@@ -63,6 +64,9 @@ switch (GET_MENU_OPTION(operationType)) do {
         BW_FADE_CONTROL(_display, _control, IDC_MISSION_OPTION4_TEXT);
         BW_FADE_CONTROL(_display, _control, IDC_MISSION_OPTION5_TEXT);
         BW_FADE_CONTROL(_display, _control, IDC_MISSION_OPTION6_TEXT);
+        _control = _display displayCtrl IDC_MISSION_OPTION2;
+        SET_MENU_OPTION(option2, 0);
+        _control sliderSetPosition GET_MENU_OPTION(option2);
     };
     case BW_TRAINING_OPERATION_ZONE: {
         GVAR(selectedZone) = "";
@@ -72,13 +76,15 @@ switch (GET_MENU_OPTION(operationType)) do {
                 private _mark = BW_ZONE_BASE_STRING + (str _i);
                 if (getMarkerPos _mark isEqualTo [0, 0, 0]) exitWith {};
                 if (_pos inArea _mark) exitWith {
-                    GVAR(selectedZone) setMarkerAlphaLocal 0.5;
+                    GVAR(selectedZone) setMarkerAlphaLocal DESELECTED_ZONE_ALPHA;
                     GVAR(selectedZone) = _mark;
-                    _mark setMarkerAlphaLocal 1;
+                    _mark setMarkerAlphaLocal 0.8;
                 };
             };
         }];
-        _control ctrlMapAnimAdd [0, 0.4, getMarkerPos (BW_ZONE_BASE_STRING + str (floor random _maxZoneMarker))];
+        GVAR(selectedZone) = BW_ZONE_BASE_STRING + str (floor random _maxZoneMarker);
+        _control ctrlMapAnimAdd [0, 0.4, getMarkerPos GVAR(selectedZone)];
+        GVAR(selectedZone) setMarkerAlphaLocal 0.8;
         ctrlMapAnimCommit _control;
         BW_DEFADE_CONTROL(_display, _control, IDC_MISSION_DROPDOWN);
         BW_DEFADE_CONTROL(_display, _control, IDC_MISSION_OPTION3);

@@ -43,11 +43,13 @@ private _minBuildingGarrison = _settingHash getOrDefault ["option0", 0.2];
 private _maxBuildingGarrison = _settingHash getOrDefault ["option1", 0.8];
 private _chanceMove = _settingHash getOrDefault ["option2", 0.3];
 private _initArray = [0, 0];
-switch (_settingHash getOrDefault ["operationType", BW_TRAINING_OPERATION_MOUT]) do {
+private _markerPos = getMarkerPos _marker;
+private _operationType = _settingHash getOrDefault ["operationType", BW_TRAINING_OPERATION_MOUT];
+switch (_operationType) do {
     case BW_TRAINING_OPERATION_MOUT: {
         _minBuildingGarrison = _minBuildingGarrison * 10;
         _maxBuildingGarrison = _maxBuildingGarrison * 12;
-        _chanceMove = linearConversion [0, 1, _chanceMove, 0, 0.4];
+        _chanceMove = linearConversion [0, 1, _chanceMove, 0, 0.25];
         _initArray = [
             getMarkerPos _marker,
             vectorMagnitude markerSize _marker,
@@ -64,7 +66,6 @@ switch (_settingHash getOrDefault ["operationType", BW_TRAINING_OPERATION_MOUT])
         _minBuildingGarrison = _minBuildingGarrison * 10;
         _maxBuildingGarrison = _maxBuildingGarrison * 7.5;
         _chanceMove = linearConversion [0, 1, _chanceMove, 0, 0.6];
-        private _markerPos = getMarkerPos _marker;
         private _markerSize = vectorMagnitude markerSize _marker;
         private _densityMode = _settingHash getOrDefault ["density", BW_TRAINING_DENSITY_UNIFORM];
         if (_densityMode == BW_TRAINING_DENSITY_RANDOM) then {
@@ -200,8 +201,18 @@ private _seconds = floor (_timeToWait mod 60);
 if (_seconds < 10) then {
     _seconds = "0" + str _seconds;
 };
-["Notif", ["Zone Init", format ["The next zone will be ready in %1:%2", floor (_timeToWait/60), _seconds]]] remoteExecCall ["BIS_fnc_showNotification"];
+
+private _zoneName = switch (_operationType) do {
+    case BW_TRAINING_OPERATION_MOUT: {"MOUT"};
+    case BW_TRAINING_OPERATION_ZONE: {text nearestLocation [_markerPos, ["NameCity","NameCityCapital","NameVillage"]]};
+    default {"Unknown"};
+};
+
+if (_zoneName == "") then {
+    _zoneName = str _zoneName;
+};
+["Info", ["Zone Init", format ["The next zone (%3) will be ready in %1:%2", floor (_timeToWait/60), _seconds, _zoneName]]] remoteExecCall ["BIS_fnc_showNotification"];
 
 [{
-    ["Notif", ["Zone Init", "Zone initialization completed!"]] remoteExecCall ["BIS_fnc_showNotification"];
-}, [], _timeToWait] call CBA_fnc_waitAndExecute;
+    ["Info", ["Zone Init", format ["Zone (%1) initialization completed!", _this]]] remoteExecCall ["BIS_fnc_showNotification"];
+}, _zoneName, _timeToWait] call CBA_fnc_waitAndExecute;
