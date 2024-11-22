@@ -9,7 +9,7 @@ import RscText;
 
 
 class RscMissionSelectMenu {
-    idd = IDD_ARTILLERY_MENU;
+    idd = IDD_MISSION_MENU;
     x = 0.425;
     y = 0.1;
     w = 0.75;
@@ -70,6 +70,10 @@ class RscMissionSelectMenu {
                 class zoneClear {
                     text = "Zone Assault (select zone on map)";
                     value = BW_TRAINING_OPERATION_ZONE;
+                };
+                class zoneClearDrawn {
+                    text = "Zone Assault (draw on map)";
+                    value = BW_TRAINING_OPERATION_ZONE_DRAW;
                 };
                 /*class tankFight { // TO BE IMPLEMENTED
                     text = "Mechanized Combat";
@@ -165,7 +169,7 @@ class RscMissionSelectMenu {
                 };
                 class singleFocusMarked {
                     text = "Single Center (Marked)";
-                    value = BW_TRAINING_DENSITY_MULTIMARKED;
+                    value = BW_TRAINING_DENSITY_SINGLEMARKED;
                 };
                 class multiFocii {
                     text = "Multiple Centers - Best for larger zones";

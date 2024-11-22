@@ -19,8 +19,10 @@ GVAR(menuOptions) = createHashMapFromArray [
     ["option6", 0]
 ];
 GVAR(mainMenuMapClickEH) = -1;
-GVAR(selectedZone) = "";
-GVAR(activeZones) = createHashMap;
+GVAR(missionFirstPositionMarker) = "";
+GVAR(missionSelectedZone) = "";
+GVAR(missionActiveZones) = createHashMap;
+GVAR(nextMapClickTime) = -1;
 GVAR(reinforceHashMap) = createHashMap;
 
 MISSION_GVAR_PREFIX = true;

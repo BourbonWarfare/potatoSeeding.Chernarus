@@ -1,5 +1,6 @@
 #include "script_macros.hpp"
 
+#define BW_MAP_CLICK_HOLD_OFF 0.25
 #define BW_TP_FLAG_TYPE "Flag_US_F"
 #define BW_UNIT_SPAWN_POS [14193, 14388, 0]
 #define BW_IGNORE_GARRISON_BUILDINGS ["Land_Wall_CBrk_5_D", "Land_Wall_CGry_5_D", "Land_Stanek_1", "Land_Stanek_1B", "Misc_Cargo1Bo_civil", "Misc_Cargo1Bo_military"]
@@ -10,6 +11,20 @@ var1 ctrlCommit 0.4
 #define BW_DEFADE_CONTROL(display,var1,idc) var1 = display displayCtrl idc;\
 var1 ctrlSetFade 0;\
 var1 ctrlCommit 0.4
+#define BW_MISSION_SET_DROPDOWN_DENSITY(display,control) control = display displayCtrl IDC_MISSION_DROPDOWN;\
+control lbSetText [BW_TRAINING_DENSITY_RANDOM, "Random"];\
+control lbSetText [BW_TRAINING_DENSITY_UNIFORM, "Uniform"];\
+control lbSetText [BW_TRAINING_DENSITY_SINGLE, "Single Center"];\
+control lbSetText [BW_TRAINING_DENSITY_SINGLEMARKED, "Single Center (Marked)"];\
+control lbSetText [BW_TRAINING_DENSITY_MULTI, "Multiple Centers - Best for larger zones"];\
+control lbSetText [BW_TRAINING_DENSITY_MULTIMARKED, "Multiple Centers (Marked) - Best for larger zones"]
+#define BW_MISSION_SET_DROPDOWN_DRAWTYPE(display,control) control = display displayCtrl IDC_MISSION_DROPDOWN;\
+control lbSetText [BW_TRAINING_DENSITY_RANDOM, "Circle - Center-Radius"];\
+control lbSetText [BW_TRAINING_DENSITY_UNIFORM, "Circle - Corner-Corner"];\
+control lbSetText [BW_TRAINING_DENSITY_SINGLE, "Circle - Center-Corner"];\
+control lbSetText [BW_TRAINING_DENSITY_SINGLEMARKED, "Rectangle - Center-Corner"];\
+control lbSetText [BW_TRAINING_DENSITY_MULTI, "Rectangle - Corner-Corner"];\
+control lbSetText [BW_TRAINING_DENSITY_MULTIMARKED, "-"]
 
 /// Menu defines
 // IDD Define
@@ -46,7 +61,8 @@ var1 ctrlCommit 0.4
 // Operation Types
 #define BW_TRAINING_OPERATION_MOUT 0
 #define BW_TRAINING_OPERATION_ZONE 1
-#define BW_TRAINING_OPERATION_MECH 2
+#define BW_TRAINING_OPERATION_ZONE_DRAW 2
+#define BW_TRAINING_OPERATION_MECH 3
 
 // Enemy Types
 #define BW_TRAINING_ENEMY_OPFOR 0

@@ -26,8 +26,8 @@ if !(isServer) exitWith {
 };
 
 // make sure we have a valid zone and it's not in use
-if (_marker == "" || GVAR(activeZones) getOrDefault [_marker, false]) exitWith {};
-GVAR(activeZones) set [_marker, true];
+if (_marker == "" || GVAR(missionActiveZones) getOrDefault [_marker, false]) exitWith {};
+GVAR(missionActiveZones) set [_marker, true];
 
 // Choosing enemy faction, maybe make it select from multiple factions per side in the future
 private _enemySide = switch (_settingHash getOrDefault ["enemyType", BW_TRAINING_ENEMY_OPFOR]) do {
@@ -62,6 +62,7 @@ switch (_operationType) do {
             false
         ] call FUNC(garrisonBuildings);
     };
+    case BW_TRAINING_OPERATION_ZONE_DRAW;
     case BW_TRAINING_OPERATION_ZONE: {
         _minBuildingGarrison = _minBuildingGarrison * 10;
         _maxBuildingGarrison = _maxBuildingGarrison * 7.5;
@@ -168,7 +169,7 @@ switch (_operationType) do {
             ] call FUNC(spawnPatrols);
             _unitSum = _unitSum + ([
                 _marker,
-                round (3 * _patrolCount),
+                round linearConversion [0, 0.5, _patrolSize, 0, 3],
                 2 + round (1 * _patrolSize),
                 _enemySide,
                 true
@@ -205,6 +206,13 @@ if (_seconds < 10) then {
 private _zoneName = switch (_operationType) do {
     case BW_TRAINING_OPERATION_MOUT: {"MOUT"};
     case BW_TRAINING_OPERATION_ZONE: {text nearestLocation [_markerPos, ["NameCity","NameCityCapital","NameVillage"]]};
+    case BW_TRAINING_OPERATION_ZONE_DRAW: {
+        private _text = text nearestLocation [_markerPos, ["NameCity","NameCityCapital","NameVillage"], 300];
+        if (_text == "") then {
+            _text = "Custom";
+        };
+        _text
+    };
     default {"Unknown"};
 };
 

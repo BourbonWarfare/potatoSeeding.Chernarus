@@ -32,5 +32,5 @@ private _entriesToRemove = [];
 } forEach _entriesToRemove;
 
 if (GVAR(reinforceHashMap) isNotEqualTo createHashMap) then {
-    [{[] call FUNC(handleSectorReinforce)}, 0, 30 + random 30] call CBA_fnc_waitAndExecute;
+    [{[] call FUNC(handleSectorReinforce)}, 0, 30 + random 15] call CBA_fnc_waitAndExecute;
 };

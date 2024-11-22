@@ -24,14 +24,22 @@ if (_isClosing) then {
         if ((getMarkerPos _mark) isEqualTo [0, 0, 0]) exitWith {};
         _mark setMarkerAlphaLocal 0;
     };
-    if (_exitCode != 1) exitWith {};
-    if (GVAR(selectedZone) != "" ||
+    if (_exitCode != 1) exitWith {
+        deleteMarkerLocal GVAR(missionFirstPositionMarker);
+    };
+    GVAR(missionSelectedZone) setMarkerPos (markerPos GVAR(missionSelectedZone));
+    if (GVAR(missionSelectedZone) != "" ||
         GET_MENU_OPTION(operationType) == BW_TRAINING_OPERATION_MOUT) then {
-        [GVAR(selectedZone), GVAR(menuOptions)] remoteExecCall [QFUNC(handleMissionInit), 2];
+        if (GET_MENU_OPTION(operationType) == BW_TRAINING_OPERATION_ZONE_DRAW) then {
+            SET_MENU_OPTION(density,BW_TRAINING_DENSITY_UNIFORM);
+        };
+        [GVAR(missionSelectedZone), GVAR(menuOptions)] remoteExecCall [QFUNC(handleMissionInit), 2];
     } else {
         systemChat "Failed to initialize mission";
+
     };
-    GVAR(selectedZone) = "";
+    GVAR(missionSelectedZone) = "";
+    GVAR(missionFirstPositionMarker) = "";
 } else {
     _eventArgs params ["_display"];
     [_display] call FUNC(updateMenuOptions);
