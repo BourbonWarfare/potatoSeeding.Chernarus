@@ -21,14 +21,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=67;
+		nextID=70;
 	};
 	class Camera
 	{
-		pos[]={12108.117,79.813004,8981.5059};
-		dir[]={0.2914826,-0.13547122,0.94693595};
-		up[]={0.039855003,0.99078041,0.1294767};
-		aside[]={0.95574677,3.3061951e-08,-0.29419422};
+		pos[]={9499.5234,395.84296,12145.989};
+		dir[]={0.91962767,-0.37527943,0.11640749};
+		up[]={0.37231231,0.9269076,0.047127906};
+		aside[]={0.12558591,-8.0151949e-08,-0.99213266};
 	};
 };
 binarizationWanted=0;
@@ -942,19 +942,6 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="RespawnButton";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					singleType="SCALAR";
-					value=1;
-				};
-			};
-		};
-		class Attribute1
-		{
 			property="RespawnTemplates";
 			expression="true";
 			class Value
@@ -974,6 +961,19 @@ class CustomAttributes
 							};
 						};
 					};
+				};
+			};
+		};
+		class Attribute1
+		{
+			property="RespawnButton";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					singleType="SCALAR";
+					value=1;
 				};
 			};
 		};
@@ -24842,6 +24842,7 @@ class Mission
 			};
 			id=41887;
 			type="CUP_B_MTVR_USMC";
+			atlOffset=-0.0004119873;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -24876,6 +24877,7 @@ class Mission
 			};
 			id=41888;
 			type="CUP_B_MTVR_USMC";
+			atlOffset=-3.0517578e-05;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -24910,6 +24912,7 @@ class Mission
 			};
 			id=41889;
 			type="CUP_B_MTVR_USMC";
+			atlOffset=-1.5258789e-05;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -24944,6 +24947,7 @@ class Mission
 			};
 			id=41890;
 			type="CUP_B_MTVR_USMC";
+			atlOffset=-7.6293945e-05;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -25382,7 +25386,7 @@ class Mission
 			fillName="SolidFull";
 			a=5;
 			b=5;
-			angle=107.19768;
+			angle=107.19767;
 			id=41930;
 			atlOffset=0.042678833;
 		};
@@ -27113,6 +27117,7 @@ class Mission
 			};
 			id=42179;
 			type="CUP_B_MTVR_USMC";
+			atlOffset=-0.0001950264;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -27147,7 +27152,7 @@ class Mission
 			};
 			id=42180;
 			type="CUP_B_MTVR_USMC";
-			atlOffset=0.0030312538;
+			atlOffset=0.0030274391;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -27308,7 +27313,7 @@ class Mission
 			};
 			id=42187;
 			type="CUP_B_MTVR_USMC";
-			atlOffset=1.5258789e-05;
+			atlOffset=-0.00038146973;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -27343,6 +27348,7 @@ class Mission
 			};
 			id=42188;
 			type="CUP_B_MTVR_USMC";
+			atlOffset=-0.00042724609;
 			class CustomAttributes
 			{
 				class Attribute0

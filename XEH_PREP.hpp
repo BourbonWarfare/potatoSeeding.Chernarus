@@ -4,14 +4,8 @@
 #define SERVER(var1) 	DOUBLES(functions\serverSystems\fn,var1)
 
 
-#define DISABLE_COMPILE_CACHE
-
-#ifdef DISABLE_COMPILE_CACHE
-    #define PREP_COMPLEX(var1,var2) TRIPLES(PREFIX,fnc,var1) = compileScript [QUOTE(GLUE(var2,.sqf))]
-    #define PREP(var1) TRIPLES(PREFIX,fnc,var1) = compileScript [QUOTE(functions\ui\DOUBLES(fn,var1).sqf))]
-#else
-    #define PREP(var1,var2) [QUOTE(GLUE(var2,.sqf)), 'TRIPLES(PREFIX,fnc,var1)'] call SLX_XEH_COMPILE_NEW
-#endif
+#define PREP_COMPLEX(var1,var2) TRIPLES(PREFIX,fnc,var1) = compileScript [QUOTE(GLUE(var2,.sqf))]
+#define PREP(var1) TRIPLES(PREFIX,fnc,var1) = compileScript [QUOTE(functions\DOUBLES(fn,var1).sqf))]
 
 // helper funcs
 PREP_COMPLEX(occupyBuilding,HELPER(occupyBuilding));
