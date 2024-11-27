@@ -94,16 +94,13 @@ if (_squadSize > 0) then { // recurse
     _wp setWaypointCompletionRadius _wpRadius;
     _group setVariable ["lambs_danger_disableGroupAI", true];
     [{
-        systemChat "DELETE O CLOCK";
         params ["_vic", "_lastPos", "_group", "_goalPos"];
         if (isNull objectParent leader _group &&
             _goalPos distance leader _group > 1500) exitWith {
-            systemChat "vehicle and group O CLOCK";
             {deleteVehicle _x} forEach units _group;
             deleteVehicle _vic;
         };
         if (_vic distance2D _lastPos < 50) exitWith {
-            systemChat "vehicle Only O CLOCK";
             {deleteVehicle _x} forEach units _group;
             deleteVehicleCrew _vic;
             deleteVehicle _vic;

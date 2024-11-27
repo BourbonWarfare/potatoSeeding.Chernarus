@@ -15,11 +15,9 @@
 params ["_display"];
 
 if (GVAR(mainMenuMapClickEH) >= 0) then {
-    systemChat "delete marker";
     removeMissionEventHandler ["MapSingleClick", GVAR(mainMenuMapClickEH)];
     GVAR(mainMenuMapClickEH) = -1;
 };
-systemChat format ["map click EH: %1", GVAR(mainMenuMapClickEH)];
 
 // Common elements first
 private _control = _display displayCtrl IDC_MISSION_OPERATIONTYPE;
