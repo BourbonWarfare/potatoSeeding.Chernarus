@@ -26,7 +26,9 @@ if !(isServer) exitWith {
 };
 
 // make sure we have a valid zone and it's not in use
-if (_marker == "" || GVAR(missionActiveZones) getOrDefault [_marker, false]) exitWith {};
+if (_marker == "" || GVAR(missionActiveZones) getOrDefault [_marker, false]) exitWith {
+    diag_log formatText ["Invalid or used zone (%1)", _marker];
+};
 GVAR(missionActiveZones) set [_marker, true];
 
 // Choosing enemy faction, maybe make it select from multiple factions per side in the future
@@ -64,6 +66,9 @@ switch (_operationType) do {
     };
     case BW_TRAINING_OPERATION_ZONE_DRAW;
     case BW_TRAINING_OPERATION_ZONE: {
+        _marker setMarkerColorLocal "ColorBlue";
+        _marker setMarkerAlphaLocal 1;
+        _marker setMarkerBrush "Border";
         _minBuildingGarrison = _minBuildingGarrison * 10;
         _maxBuildingGarrison = _maxBuildingGarrison * 7.5;
         _chanceMove = linearConversion [0, 1, _chanceMove, 0, 0.6];
@@ -104,7 +109,7 @@ switch (_operationType) do {
                     private _termRadius = 0.233511 * _markerSize; // calculating when the radius exponential will be 1
                     private _mk = createMarker [format ["%1Helper_%2", _marker, _tempPos#0], _tempPos];
                     _mk setMarkerShapeLocal "ELLIPSE";
-                    _mk setMarkerBrush "Border";
+                    _mk setMarkerBrushLocal "Border";
                     _mk setMarkerColorLocal "ColorBlue";
                     _mk setMarkerSize [_termRadius, _termRadius];
                 };
@@ -138,7 +143,7 @@ switch (_operationType) do {
                         private _termRadius = 0.389185 * _radius; // calculating when the radius exponential will be 1
                         private _mk = createMarker [format ["%1Helper_%2%3", _marker, _i, _tempPos#0], _tempPos];
                         _mk setMarkerShapeLocal "ELLIPSE";
-                        _mk setMarkerBrush "Border";
+                        _mk setMarkerBrushLocal "Border";
                         _mk setMarkerColorLocal "ColorBlue";
                         _mk setMarkerSize [_termRadius, _termRadius];
                     };
@@ -202,6 +207,7 @@ private _seconds = floor (_timeToWait mod 60);
 if (_seconds < 10) then {
     _seconds = "0" + str _seconds;
 };
+
 
 private _zoneName = switch (_operationType) do {
     case BW_TRAINING_OPERATION_MOUT: {"MOUT"};

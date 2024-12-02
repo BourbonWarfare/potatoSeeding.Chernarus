@@ -8,8 +8,7 @@ class EditorData
 	toggles=513;
 	mods[]=
 	{
-		"WBK_Zombies_AdvancedEditorSettings",
-		"3denEnhanced"
+		"WBK_Zombies_AdvancedEditorSettings"
 	};
 	class ItemIDProvider
 	{
@@ -21,14 +20,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=73;
+		nextID=76;
 	};
 	class Camera
 	{
-		pos[]={11851.311,183.94687,12676.483};
-		dir[]={-0.40140164,-0.37435207,0.83591354};
-		up[]={-0.16204998,0.92728388,0.33746737};
-		aside[]={0.90146101,-1.3504177e-08,0.43287587};
+		pos[]={11972.771,194.85783,12644.038};
+		dir[]={0.81800264,-0.355023,-0.45272076};
+		up[]={0.31066695,0.9348399,-0.17193826};
+		aside[]={-0.48426342,-1.0523945e-07,-0.87499267};
 	};
 };
 binarizationWanted=0;
@@ -768,6 +767,19 @@ class CustomAttributes
 		name="potato_missiontesting_missionTestingInfo";
 		class Attribute0
 		{
+			property="potato_missiontesting_missionTag1";
+			expression="_this setVariable ['potato_missiontesting_missionTag1', _value];";
+			class Value
+			{
+				class data
+				{
+					singleType="SCALAR";
+					value=0;
+				};
+			};
+		};
+		class Attribute1
+		{
 			property="potato_missiontesting_missionFlagCustomLoadout";
 			expression="_this setVariable ['potato_missiontesting_missionFlagCustomLoadout',_value];";
 			class Value
@@ -779,7 +791,7 @@ class CustomAttributes
 				};
 			};
 		};
-		class Attribute1
+		class Attribute2
 		{
 			property="potato_missiontesting_missionTag3";
 			expression="_this setVariable ['potato_missiontesting_missionTag3', _value];";
@@ -792,7 +804,7 @@ class CustomAttributes
 				};
 			};
 		};
-		class Attribute2
+		class Attribute3
 		{
 			property="potato_missiontesting_missionTimeLength";
 			expression="false";
@@ -805,7 +817,7 @@ class CustomAttributes
 				};
 			};
 		};
-		class Attribute3
+		class Attribute4
 		{
 			property="potato_missiontesting_missionTag2";
 			expression="_this setVariable ['potato_missiontesting_missionTag2', _value];";
@@ -818,7 +830,7 @@ class CustomAttributes
 				};
 			};
 		};
-		class Attribute4
+		class Attribute5
 		{
 			property="potato_missiontesting_SSTimeGiven";
 			expression="false";
@@ -831,7 +843,7 @@ class CustomAttributes
 				};
 			};
 		};
-		class Attribute5
+		class Attribute6
 		{
 			property="potato_missiontesting_playerCountMaximum";
 			expression="false";
@@ -844,7 +856,7 @@ class CustomAttributes
 				};
 			};
 		};
-		class Attribute6
+		class Attribute7
 		{
 			property="potato_missiontesting_missionFlagCustomScripting";
 			expression="_this setVariable ['potato_missiontesting_missionFlagCustomScripting',_value];";
@@ -857,7 +869,7 @@ class CustomAttributes
 				};
 			};
 		};
-		class Attribute7
+		class Attribute8
 		{
 			property="potato_missiontesting_playerCountMinimum";
 			expression="false";
@@ -866,11 +878,11 @@ class CustomAttributes
 				class data
 				{
 					singleType="STRING";
-					value="20";
+					value="4";
 				};
 			};
 		};
-		class Attribute8
+		class Attribute9
 		{
 			property="potato_missiontesting_missionType";
 			expression="false";
@@ -883,7 +895,7 @@ class CustomAttributes
 				};
 			};
 		};
-		class Attribute9
+		class Attribute10
 		{
 			property="potato_missiontesting_playerCountRecommended";
 			expression="false";
@@ -896,7 +908,7 @@ class CustomAttributes
 				};
 			};
 		};
-		class Attribute10
+		class Attribute11
 		{
 			property="potato_missiontesting_missionVersion";
 			expression="false";
@@ -905,11 +917,11 @@ class CustomAttributes
 				class data
 				{
 					singleType="STRING";
-					value="3.3";
+					value="3.4";
 				};
 			};
 		};
-		class Attribute11
+		class Attribute12
 		{
 			property="potato_missiontesting_SSForceEnd";
 			expression="false";
@@ -922,7 +934,7 @@ class CustomAttributes
 				};
 			};
 		};
-		class Attribute12
+		class Attribute13
 		{
 			property="potato_missiontesting_missionFlagCustomVicLoadout";
 			expression="_this setVariable ['potato_missiontesting_missionFlagCustomVicLoadout',_value];";
@@ -935,25 +947,12 @@ class CustomAttributes
 				};
 			};
 		};
-		nAttributes=13;
+		nAttributes=14;
 	};
 	class Category3
 	{
 		name="Multiplayer";
 		class Attribute0
-		{
-			property="RespawnButton";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					singleType="SCALAR";
-					value=1;
-				};
-			};
-		};
-		class Attribute1
 		{
 			property="RespawnTemplates";
 			expression="true";
@@ -974,6 +973,19 @@ class CustomAttributes
 							};
 						};
 					};
+				};
+			};
+		};
+		class Attribute1
+		{
+			property="RespawnButton";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					singleType="SCALAR";
+					value=1;
 				};
 			};
 		};
@@ -1849,7 +1861,7 @@ class CustomAttributes
 													class data
 													{
 														singleType="STRING";
-														value="[1, 14, 14]";
+														value="[1, 7, 7]";
 													};
 												};
 												class Item1
@@ -1957,7 +1969,7 @@ class CustomAttributes
 													class data
 													{
 														singleType="STRING";
-														value="[1, 14, 14]";
+														value="[1, 7, 7]";
 													};
 												};
 												class Item1
@@ -25386,7 +25398,7 @@ class Mission
 			fillName="SolidFull";
 			a=5;
 			b=5;
-			angle=107.19766;
+			angle=107.19765;
 			id=41930;
 			atlOffset=0.042678833;
 		};
@@ -26198,7 +26210,7 @@ class Mission
 							b=158.25859;
 							angle=116.49697;
 							id=42126;
-							atlOffset=15.813263;
+							atlOffset=18.29184;
 						};
 						class Item10
 						{

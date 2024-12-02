@@ -33,10 +33,10 @@ if (_isClosing) then {
         if (GET_MENU_OPTION(operationType) == BW_TRAINING_OPERATION_ZONE_DRAW) then {
             SET_MENU_OPTION(density,BW_TRAINING_DENSITY_UNIFORM);
         };
+        systemChat "Sent mission init params";
         [GVAR(missionSelectedZone), GVAR(menuOptions)] remoteExecCall [QFUNC(handleMissionInit), 2];
     } else {
         systemChat "Failed to initialize mission";
-
     };
     GVAR(missionSelectedZone) = "";
     GVAR(missionFirstPositionMarker) = "";
