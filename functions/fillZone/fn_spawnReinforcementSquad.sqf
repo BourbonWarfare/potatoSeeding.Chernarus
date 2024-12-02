@@ -19,7 +19,6 @@
 * Example:
 * ["zone_0", 3, 10, east] call bw_fnc_spawnReinforementSquad;
 *//***************************************************************************/
-diag_log text str _this;
 params [
     ["_marker", "", [""]],
     ["_squadSize", 10, [10]],

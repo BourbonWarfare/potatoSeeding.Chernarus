@@ -130,7 +130,7 @@ switch (_operationType) do {
                         [_minBuildingGarrison, _maxBuildingGarrison],
                         _chanceMove,
                         true,
-                        east,
+                        _enemySide,
                         true
                     ] call FUNC(garrisonBuildingsCentered);
                     _initArray = [_params#0 max _initArray#0, _params#1 + _initArray#1];
