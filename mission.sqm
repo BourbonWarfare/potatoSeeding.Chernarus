@@ -20,7 +20,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=76;
+		nextID=85;
 	};
 	class Camera
 	{
@@ -917,7 +917,7 @@ class CustomAttributes
 				class data
 				{
 					singleType="STRING";
-					value="3.4";
+					value="3.5";
 				};
 			};
 		};
@@ -954,6 +954,19 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
+			property="RespawnButton";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					singleType="SCALAR";
+					value=1;
+				};
+			};
+		};
+		class Attribute1
+		{
 			property="RespawnTemplates";
 			expression="true";
 			class Value
@@ -973,19 +986,6 @@ class CustomAttributes
 							};
 						};
 					};
-				};
-			};
-		};
-		class Attribute1
-		{
-			property="RespawnButton";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					singleType="SCALAR";
-					value=1;
 				};
 			};
 		};
@@ -25398,7 +25398,7 @@ class Mission
 			fillName="SolidFull";
 			a=5;
 			b=5;
-			angle=107.19765;
+			angle=107.19762;
 			id=41930;
 			atlOffset=0.042678833;
 		};

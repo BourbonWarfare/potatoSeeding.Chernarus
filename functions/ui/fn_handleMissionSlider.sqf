@@ -15,7 +15,7 @@ private _controlIDC = ctrlIDC _control;
 
 switch (_controlIDC) do {
     case IDC_MISSION_AISKILLMIN: {
-        private _aiSkillMax = GVAR(menuOptions) get ["AIskillMax", _newValue];
+        private _aiSkillMax = GVAR(menuOptions) getOrDefault ["AIskillMax", _newValue];
         _newValue = _newValue min _aiSkillMax;
         GVAR(menuOptions) set ["AIskillMin", _newValue];
     };
