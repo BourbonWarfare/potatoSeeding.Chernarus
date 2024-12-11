@@ -27,6 +27,6 @@ switch (_controlIDC) do {
         GVAR(menuOptions) set ["density", _lbCurSel];
     };
     default {
-        diag_log formatText ["COMBO ERROR: Invalid control IDC: %1", _controlIDC];
+        diag_log formatText ["[SEED][Mission] COMBO ERROR: Invalid control IDC: %1", _controlIDC];
     };
 };

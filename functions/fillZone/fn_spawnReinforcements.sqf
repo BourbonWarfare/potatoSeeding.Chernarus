@@ -63,7 +63,7 @@ private _vehicleType = if (_armedVehicles) then {
 };
 
 if (_nearZones isEqualTo [] || _vehicleType == "") exitWith {
-    diag_log formatText ["Could not find any suitable reinforcement zone or vehicle (%2) near %1", _marker, str _vehicleType];
+    diag_log formatText ["[SEED][REINFORCE] Could not find any suitable reinforcement zone or vehicle (%2) near %1", _marker, str _vehicleType];
 };
 private _reinforcementZone = selectRandom _nearZones;
 

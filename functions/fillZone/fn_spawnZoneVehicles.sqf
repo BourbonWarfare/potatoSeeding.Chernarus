@@ -54,7 +54,7 @@ if (_transportTypes isEqualTo [] &&
     _softArmedTypes isEqualTo [] &&
     _softArmedTypes isEqualTo [] &&
     _armoredTypes isEqualTo []) exitWith {
-    diag_log formatText ["Faction %1 not configured for vehicle spawns", _sideConfig];
+    diag_log formatText ["[SEED][VEHICLES] Faction %1 not configured for vehicle spawns", _sideConfig];
 };
 if (_transportTypes isNotEqualTo [] && _softArmedTypes isEqualTo []) then {
     _softArmedTypes = _transportTypes;

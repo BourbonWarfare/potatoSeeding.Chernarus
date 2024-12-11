@@ -27,7 +27,7 @@ if !(isServer) exitWith {
 
 // make sure we have a valid zone and it's not in use
 if (_marker == "" || GVAR(missionActiveZones) getOrDefault [_marker, false]) exitWith {
-    diag_log formatText ["Invalid or used zone (%1)", _marker];
+    diag_log formatText ["[SEED][Mission Event] Invalid or used zone (%1)", _marker];
 };
 GVAR(missionActiveZones) set [_marker, true];
 
@@ -185,6 +185,9 @@ switch (_operationType) do {
         if (_vehicleIntensity > 0) then {
             private _zoneSize = markerSize _marker;
             _zoneSize = round ((_zoneSize#0) * (_zoneSize#1) / 15000);
+            if (_zoneSize > 4) then {
+                _zoneSize = linearConversion [5, 20, _zoneSize, 5, 10];
+            };
             [
                 _markerPos,
                 _markerSize,
@@ -202,7 +205,7 @@ switch (_operationType) do {
 };
 
 _initArray params ["_timeToWait", "_unitsSpawned"];
-diag_log formatText ["[Mission Event] Spawning %1 units on side %2 over the next %3 seconds.", _unitsSpawned, _enemySide, _timeToWait];
+diag_log formatText ["[SEED][Mission Event] Spawning %1 units on side %2 over the next %3 seconds.", _unitsSpawned, _enemySide, _timeToWait];
 private _seconds = floor (_timeToWait mod 60);
 if (_seconds < 10) then {
     _seconds = "0" + str _seconds;

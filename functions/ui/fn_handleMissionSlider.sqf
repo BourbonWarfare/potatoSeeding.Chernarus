@@ -44,6 +44,6 @@ switch (_controlIDC) do {
         GVAR(menuOptions) set ["option6", _newValue];
     };
     default {
-        diag_log formatText ["SLIDER ERROR: Invalid control IDC: %1", _controlIDC];
+        diag_log formatText ["[SEED][Mission] SLIDER ERROR: Invalid control IDC: %1", _controlIDC];
     };
 };

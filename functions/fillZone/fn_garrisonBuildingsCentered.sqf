@@ -45,7 +45,7 @@ params [
 ];
 
 if (_posATL isEqualTo [0, 0, 0]) exitWith {
-    diag_log formatText ["[Garrison Buidlings] Bad position given: %1", _posATL];
+    diag_log formatText ["[SEED][Garrison Buidlings] Bad position given: %1", _posATL];
 };
 
 private _buildings = _posATL nearObjects ["building", _radius];
