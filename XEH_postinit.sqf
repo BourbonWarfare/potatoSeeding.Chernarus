@@ -2,22 +2,12 @@
 
 if (isServer) then {
     [] call FUNC(autoEndSession);
-};
-
-for "_i" from 0 to BW_MOUT_MAX_CHECK do {
-    private _mark = "moutPos_" + (str _i);
-    if ((getMarkerPos _mark) isEqualTo [0, 0, 0]) exitWith {};
-    _mark setMarkerAlphaLocal 0;
-};
-for "_i" from 0 to BW_ZONE_MAX_CHECK do {
-    private _mark = BW_ZONE_BASE_STRING + (str _i);
-    if ((getMarkerPos _mark) isEqualTo [0, 0, 0]) exitWith {};
-    _mark setMarkerAlphaLocal 0;
+    [missionNameSpace, flag_neaf] call BIS_fnc_addRespawnPosition;
 };
 
 addMissionEventHandler ["EntityCreated", {
 	params ["_object"];
-    if !(local _object || {!_object isKindOf BW_TP_FLAG_TYPE}) exitWith {};
+    if !(local _object && {(_object isKindOf BW_TP_FLAG_TYPE)}) exitWith {};
     private _pos = getPosATL _object;
     // create a user moveable marker that should delete itself when the flag goes away
     private _mk = createMarkerLocal ["_USER_DEFINED flag_" + (getPlayerID player) + str time, _pos];
@@ -29,9 +19,22 @@ addMissionEventHandler ["EntityCreated", {
 	    params ["_object"];
         deleteMarker (_object getVariable [QGVAR(attachedMarker), ""]);
     }];
+    // respawn position
+    [missionNameSpace, _pos] call BIS_fnc_addRespawnPosition;
 }];
 
 if !(hasInterface) exitWith {};
+
+for "_i" from 0 to BW_MOUT_MAX_CHECK do {
+    private _mark = "moutPos_" + (str _i);
+    if ((getMarkerPos _mark) isEqualTo [0, 0, 0]) exitWith {};
+    _mark setMarkerAlphaLocal 0;
+};
+for "_i" from 0 to BW_ZONE_MAX_CHECK do {
+    private _mark = BW_ZONE_BASE_STRING + (str _i);
+    if ((getMarkerPos _mark) isEqualTo [0, 0, 0]) exitWith {};
+    _mark setMarkerAlphaLocal 0;
+};
 
 [{
     ["Info", [

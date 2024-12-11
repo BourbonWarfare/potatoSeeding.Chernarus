@@ -12,13 +12,12 @@ onLoadName = "BW Seeding V3";
 #include "cfg\CfgUI.hpp"
 // Notifications:
 #include "cfg\CfgNotifs.hpp"
+// Respawns:
+#include "cfg\CfgRespawns.hpp"
 // Sounds:
 #include "cfg\CfgSounds.hpp"
-
 // Parameters
 #include "cfg\Params.hpp"
-
-respawnDelay = 5; // wait 5 seconds to go to spec
 
 bwmfDate = "2024/8/22"; //Framework date
 

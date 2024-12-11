@@ -5,7 +5,7 @@ class EditorData
 	angleGridStep=0.2617994;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=513;
+	toggles=1537;
 	mods[]=
 	{
 	};
@@ -19,14 +19,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=91;
+		nextID=94;
 	};
 	class Camera
 	{
-		pos[]={11826.17,183.89999,12726.432};
-		dir[]={0.82335168,-0.53579623,-0.18719533};
-		up[]={0.52247393,0.84433693,-0.11878867};
-		aside[]={-0.22170217,-2.7689384e-07,-0.97512442};
+		pos[]={11849.297,195.30916,12731.698};
+		dir[]={-0.79510212,-0.53569245,0.28440318};
+		up[]={-0.50440967,0.844405,0.18042444};
+		aside[]={0.33680236,-3.0809315e-07,0.94159496};
 	};
 };
 binarizationWanted=0;
@@ -534,7 +534,6 @@ class ScenarioData
 	onLoadMission="Made with the BW Mission Framework";
 	loadScreen="\z\potato\addons\missionModules\images\bwbanner01.jpg";
 	saving=0;
-	respawn=1;
 	respawnDelay=5.1038346;
 	respawnVehicleDelay=120.8045;
 	class Header
@@ -953,6 +952,18 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
+			property="RespawnTemplates";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					singleType="ARRAY";
+				};
+			};
+		};
+		class Attribute1
+		{
 			property="RespawnButton";
 			expression="true";
 			class Value
@@ -961,30 +972,6 @@ class CustomAttributes
 				{
 					singleType="SCALAR";
 					value=1;
-				};
-			};
-		};
-		class Attribute1
-		{
-			property="RespawnTemplates";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					singleType="ARRAY";
-					class value
-					{
-						items=1;
-						class Item0
-						{
-							class data
-							{
-								singleType="STRING";
-								value="potato_spectate";
-							};
-						};
-					};
 				};
 			};
 		};
@@ -13456,7 +13443,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={11806.692,162.79419,12733.2};
+				position[]={11806.692,162.79381,12733.2};
 			};
 			side="Empty";
 			flags=5;
@@ -13467,7 +13454,7 @@ class Mission
 			};
 			id=41139;
 			type="Flag_US_F";
-			atlOffset=-0.18261719;
+			atlOffset=-0.18299866;
 		};
 		class Item193
 		{
@@ -25397,7 +25384,7 @@ class Mission
 			fillName="SolidFull";
 			a=5;
 			b=5;
-			angle=107.19758;
+			angle=107.19755;
 			id=41930;
 			atlOffset=0.042678833;
 		};
