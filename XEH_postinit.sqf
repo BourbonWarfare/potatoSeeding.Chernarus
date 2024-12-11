@@ -15,6 +15,22 @@ for "_i" from 0 to BW_ZONE_MAX_CHECK do {
     _mark setMarkerAlphaLocal 0;
 };
 
+addMissionEventHandler ["EntityCreated", {
+	params ["_object"];
+    if !(local _object || {!_object isKindOf BW_TP_FLAG_TYPE}) exitWith {};
+    private _pos = getPosATL _object;
+    // create a user moveable marker that should delete itself when the flag goes away
+    private _mk = createMarkerLocal ["_USER_DEFINED flag_" + (getPlayerID player) + str time, _pos];
+    _mk setMarkerColorLocal "colorBLUFOR";
+    _mk setMarkerTextLocal "TP Flag";
+    _mk setMarkerType "mil_triangle";
+    _object setVariable [QGVAR(attachedMarker), _mk];
+    _object addEventHandler ["Deleted", {
+	    params ["_object"];
+        deleteMarker (_object getVariable [QGVAR(attachedMarker), ""]);
+    }];
+}];
+
 if !(hasInterface) exitWith {};
 
 [{
