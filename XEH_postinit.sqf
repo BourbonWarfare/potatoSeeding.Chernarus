@@ -2,7 +2,7 @@
 
 if (isServer) then {
     [] call FUNC(autoEndSession);
-    [missionNameSpace, flag_neaf] call BIS_fnc_addRespawnPosition;
+    [missionNameSpace, getPosATL flag_neaf] call BIS_fnc_addRespawnPosition;
 };
 
 addMissionEventHandler ["EntityCreated", {
@@ -14,13 +14,10 @@ addMissionEventHandler ["EntityCreated", {
     _mk setMarkerColorLocal "colorBLUFOR";
     _mk setMarkerTextLocal "TP Flag";
     _mk setMarkerType "mil_triangle";
-    _object setVariable [QGVAR(attachedMarker), _mk];
-    _object addEventHandler ["Deleted", {
-	    params ["_object"];
-        deleteMarker (_object getVariable [QGVAR(attachedMarker), ""]);
-    }];
+    _object setVariable [QGVAR(attachedMarker), _mk, true];
     // respawn position
-    [missionNameSpace, _pos] call BIS_fnc_addRespawnPosition;
+    private _respawnIndex = [missionNameSpace, _object] call BIS_fnc_addRespawnPosition;
+    _object setVariable [QGVAR(respawnIndex), _respawnIndex, true];
 }];
 
 if !(hasInterface) exitWith {};
@@ -124,4 +121,38 @@ private _action = [
     ["ACE_SelfActions", "PotatoSeedActions"],
     _action,
     true
+] call ace_interact_menu_fnc_addActionToClass;
+
+_action = [
+    "PotatoRally",
+    "Place Rally",
+    "\a3\ui_f\data\igui\cfg\actions\takeflag_ca.paa", {
+        private _pos = getPosATL _player;
+        createVehicle [BW_TP_FLAG_TYPE, _pos, [], 0, "NONE"];
+    },
+    {leader _player == _player}
+] call ace_interact_menu_fnc_createAction;
+[
+    "CAManBase",
+    1,
+    ["ACE_SelfActions"],
+    _action,
+    true
+] call ace_interact_menu_fnc_addActionToClass;
+
+_action = [
+    "PotatoDestroyRally",
+    "Remove Rally",
+    "\a3\ui_f\data\igui\cfg\actions\returnflag_ca.paa", {
+        deleteMarker (_target getVariable [QGVAR(attachedMarker), ""]);
+        [missionNameSpace, _target getVariable [QGVAR(respawnIndex), -1]] call BIS_fnc_removeRespawnPosition;
+        deleteVehicle _target;
+    },
+    {true}
+] call ace_interact_menu_fnc_createAction;
+[
+    BW_TP_FLAG_TYPE,
+    0,
+    ["ACE_Actions"],
+    _action
 ] call ace_interact_menu_fnc_addActionToClass;
