@@ -75,7 +75,12 @@ for "_i" from 1 to _numberOfSquads do {
     private _posATL = getPosATL _road;
     private _vic = createVehicle [_vehicleType, _posATL, [], 0, "NONE"];
     (getRoadInfo _road) params ["", "", "", "", "", "", "_begPos", "_endPos"];
-    _vic setDir (_endPos getDir _begPos);
+    private _distances = [_begPos distance _zonePos, _endPos distance _zonePos];
+    if (_distances#0 < _distances#1) then {
+        _vic setDir (_endPos getDir _begPos);
+    } else {
+        _vic setDir  (_begPos getDir _endPos);
+    };
     [[_marker, _squadSize, _vic, _sideReinforcement, _armedVehicles],
-    QFUNC(spawnReinforcementSquad)] call potato_zeusHC_fnc_hcPassthrough;
+    QFUNC(spawnReinforcementSquad)] call PFUNC(zeusHC,hcPassthrough);
 };

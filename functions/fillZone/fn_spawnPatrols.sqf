@@ -39,7 +39,7 @@ for "_i" from 1 to _patrolCount do { // spawn N patrols
     private _unitCount = round random _randomSize;
     _unitSum = _unitSum + _unitCount;
     [[_marker, _unitCount, _sidePatrols, _perimiterOffset, _patrolPerimeter],
-    QFUNC(spawnPatrol)] call potato_zeusHC_fnc_hcPassthrough;
+    QFUNC(spawnPatrol)] call PFUNC(zeusHC,hcPassthrough);
 };
 
 _unitSum

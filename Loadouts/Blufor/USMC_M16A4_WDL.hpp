@@ -41,7 +41,7 @@
 #define AT_MAG
 // MMG
 #define MMG "CUP_lmg_M240_B"
-#define MMG_MAG "potato_box_762x51_100rnd_reload_tracer_Red:5"
+#define MMG_MAG "CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M:5"
 // MAT
 #define MAT "CUP_launch_Mk153Mod0"
 #define MAT_MAG "CUP_SMAW_HEAA_M:2","CUP_SMAW_Spotting:4"

@@ -115,16 +115,16 @@ for "_i" from 1 to _fillCount do {
     if (_vehicleType in _softArmedTypes) then {
         [
             [_sideVehicles, _vic, _sideConfig + "_rifleman", true],
-            "potato_zeusHC_fnc_createCrew",
+            QPFUNC(zeusHC,createCrew),
             true
-        ] call potato_zeusHC_fnc_hcPassthrough;
+        ] call PFUNC(zeusHC,hcPassthrough);
     } else {
         if !(_vehicleType in _transportTypes) then {
             [
                 [_sideVehicles, _vic, _sideConfig + "_vicc", true],
-                "potato_zeusHC_fnc_createCrew",
+                QPFUNC(zeusHC,createCrew),
                 true
-            ] call potato_zeusHC_fnc_hcPassthrough;
+            ] call PFUNC(zeusHC,hcPassthrough);
         };
     };
 };

@@ -39,5 +39,5 @@ if (_isSessionDay && _hour < 19) then {
         [parseText format ["%1 minutes until session.<br/>Ending in %2 minutes", _extraMinutesBeforeSession + _deltaMinutes, _deltaMinutes]] remoteExecCall ["hint"];
         }, [_minutesBeforeSession, _secondsToEnd + CBA_missionTime], 0 max (_secondsToEnd - 300)] call CBA_fnc_waitAndExecute;
     [{remoteExecCall [QFUNC(endMission)]}, [], _secondsToEnd] call CBA_fnc_waitAndExecute;
-    diag_log formatText ["[SEED] End mission %1 minutes before session (in %2 seconds).", _minutesBeforeSession, _secondsToEnd];
+    diag_log formatText ["[SEED] End mission %1 minutes before session (in %2).", _minutesBeforeSession, [_secondsToEnd] call CBA_fnc_formatElapsedTime];
 };

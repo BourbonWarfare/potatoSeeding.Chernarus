@@ -47,6 +47,7 @@ private _chanceMove = _settingHash getOrDefault ["option2", 0.3];
 private _initArray = [0, 0];
 private _markerPos = getMarkerPos _marker;
 private _operationType = _settingHash getOrDefault ["operationType", BW_TRAINING_OPERATION_MOUT];
+private _zoneDims = markerSize _marker;
 switch (_operationType) do {
     case BW_TRAINING_OPERATION_MOUT: {
         _minBuildingGarrison = _minBuildingGarrison * 10;
@@ -54,7 +55,7 @@ switch (_operationType) do {
         _chanceMove = linearConversion [0, 1, _chanceMove, 0, 0.25];
         _initArray = [
             getMarkerPos _marker,
-            vectorMagnitude markerSize _marker,
+            vectorMagnitude _zoneDims,
             _marker,
             [0.05, 0.4],
             [_minBuildingGarrison, _maxBuildingGarrison],
@@ -72,7 +73,7 @@ switch (_operationType) do {
         _minBuildingGarrison = _minBuildingGarrison * 10;
         _maxBuildingGarrison = _maxBuildingGarrison * 7.5;
         _chanceMove = linearConversion [0, 1, _chanceMove, 0, 0.6];
-        private _markerSize = vectorMagnitude markerSize _marker;
+        private _markerSize = vectorMagnitude _zoneDims;
         private _densityMode = _settingHash getOrDefault ["density", BW_TRAINING_DENSITY_UNIFORM];
         if (_densityMode == BW_TRAINING_DENSITY_RANDOM) then {
             _densityMode = selectRandom [BW_TRAINING_DENSITY_UNIFORM, BW_TRAINING_DENSITY_SINGLE, BW_TRAINING_DENSITY_MULTI];
@@ -162,20 +163,28 @@ switch (_operationType) do {
                 ] call FUNC(garrisonBuildings);
             };
         };
+        private _zoneArea = 4 * (_zoneDims#0) * (_zoneDims#1);
+        private _zonePerimeter = 4 * _zoneDims#0 + 4 * _zoneDims#1;
         private _patrolCount = _settingHash getOrDefault ["option3", 0];
         if (_patrolCount > 0) then {
             private _patrolSize = _settingHash getOrDefault ["option4", 1];
             private _unitSum = [
                 _marker,
                 round (2 * _patrolCount),
-                round linearConversion [0, 1, _patrolSize, 2, 10],
+                round linearConversion [0, 1, _patrolSize, 2, 10, true],
                 _enemySide,
                 false
             ] call FUNC(spawnPatrols);
+            private _perimiterPatrolCount = if (_zonePerimeter > 2800) then {
+                round (_zonePerimeter / 800)
+            } else {
+                2 + round (1 * _patrolCount)
+            };
+            systemChat str _perimiterPatrolCount;
             _unitSum = _unitSum + ([
                 _marker,
-                round linearConversion [0, 0.5, _patrolSize, 0, 3],
-                2 + round (1 * _patrolSize),
+                _perimiterPatrolCount,
+                round linearConversion [0.5, 1, _patrolSize, 2, 4, true],
                 _enemySide,
                 true
             ] call FUNC(spawnPatrols));
@@ -183,8 +192,7 @@ switch (_operationType) do {
         };
         private _vehicleIntensity = _settingHash getOrDefault ["option5", 0];
         if (_vehicleIntensity > 0) then {
-            private _zoneSize = markerSize _marker;
-            _zoneSize = round ((_zoneSize#0) * (_zoneSize#1) / 15000);
+            private _zoneSize = round (_zoneArea / 60000);
             if (_zoneSize > 4) then {
                 _zoneSize = linearConversion [5, 20, _zoneSize, 5, 10];
             };
@@ -210,7 +218,6 @@ private _seconds = floor (_timeToWait mod 60);
 if (_seconds < 10) then {
     _seconds = "0" + str _seconds;
 };
-
 
 private _zoneName = switch (_operationType) do {
     case BW_TRAINING_OPERATION_MOUT: {"MOUT"};

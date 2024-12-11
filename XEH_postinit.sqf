@@ -111,7 +111,7 @@ private _action = [
     "resetGear",
     "Reset Gear",
     "\a3\ui_f\data\igui\cfg\simpletasks\types\rearm_ca.paa", {
-        ["potato_adminMenu_resetGear", [_player], [_player]] call CBA_fnc_localEvent;
+        [PGVAR(adminMenu,resetGear), [_player], [_player]] call CBA_fnc_localEvent;
     },
     {true}
 ] call ace_interact_menu_fnc_createAction;
@@ -125,8 +125,11 @@ private _action = [
 
 _action = [
     "PotatoRally",
-    "Place Rally",
+    "Place Rally Flag",
     "\a3\ui_f\data\igui\cfg\actions\takeflag_ca.paa", {
+        if ((_player nearObjects ["Flag_US_F", 100]) isNotEqualTo []) exitWith {
+            ["Notif", ["Failed to Plant Flag", "You are currently too close to another flag to place a new one."]] call BIS_fnc_showNotification;
+        };
         private _pos = getPosATL _player;
         createVehicle [BW_TP_FLAG_TYPE, _pos, [], 0, "NONE"];
     },
@@ -138,21 +141,4 @@ _action = [
     ["ACE_SelfActions"],
     _action,
     true
-] call ace_interact_menu_fnc_addActionToClass;
-
-_action = [
-    "PotatoDestroyRally",
-    "Remove Rally",
-    "\a3\ui_f\data\igui\cfg\actions\returnflag_ca.paa", {
-        deleteMarker (_target getVariable [QGVAR(attachedMarker), ""]);
-        [missionNameSpace, _target getVariable [QGVAR(respawnIndex), -1]] call BIS_fnc_removeRespawnPosition;
-        deleteVehicle _target;
-    },
-    {true}
-] call ace_interact_menu_fnc_createAction;
-[
-    BW_TP_FLAG_TYPE,
-    0,
-    ["ACE_Actions"],
-    _action
 ] call ace_interact_menu_fnc_addActionToClass;

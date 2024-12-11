@@ -10,6 +10,6 @@ respawnTemplates[] = {
 
 class CfgRespawnTemplates {
     class GVAR(resetLoadout) {
-        onPlayerRespawn = "potato_assignGear_fnc_requestPlayerGear";
+        onPlayerRespawn = QPFUNC(assignGear,requestPlayerGear);
     };
 };

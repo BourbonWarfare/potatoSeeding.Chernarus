@@ -78,7 +78,7 @@ private _skipCount = 0;
     };
     _maxTime = 2.05 * (_forEachIndex - _skipCount);
     [{
-        [_this, QFUNC(garrisonBuilding)] call potato_zeusHC_fnc_hcPassthrough;
+        [_this, QFUNC(garrisonBuilding)] call PFUNC(zeusHC,hcPassthrough);
     }, [
         _building,
         _countUnits,

@@ -42,7 +42,7 @@ if (_initHoldOff > 0) exitWith {
 
 // Count units as requested
 if (_startingUnits < 0) then {
-    _startingUnits = count (units _sideHolding select {_x inArea _marker});
+    _startingUnits = count (units _sideHolding select {_x inArea _marker && alive _x});
 };
 
 // Call the loop function as needed or add if not

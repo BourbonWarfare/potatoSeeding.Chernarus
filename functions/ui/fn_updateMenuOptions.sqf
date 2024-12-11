@@ -104,6 +104,7 @@ switch (GET_MENU_OPTION(operationType)) do {
         BW_DEFADE_CONTROL(_display, _control, IDC_MISSION_OPTION5_TEXT);
         BW_DEFADE_CONTROL(_display, _control, IDC_MISSION_OPTION6_TEXT);
         BW_MISSION_SET_DROPDOWN_DENSITY(_display, _control);
+        BW_MISSION_SET_DROPDOWN_DENSITY_TEXT(_display, _control);
     };
     case BW_TRAINING_OPERATION_ZONE_DRAW: {
         GVAR(missionSelectedZone) = "";
@@ -174,6 +175,7 @@ switch (GET_MENU_OPTION(operationType)) do {
         BW_DEFADE_CONTROL(_display, _control, IDC_MISSION_OPTION5_TEXT);
         BW_DEFADE_CONTROL(_display, _control, IDC_MISSION_OPTION6_TEXT);
         BW_MISSION_SET_DROPDOWN_DRAWTYPE(_display, _control);
+        BW_MISSION_SET_DROPDOWN_DRAWTYPE_TEXT(_display, _control);
 
     };
     case BW_TRAINING_OPERATION_MECH: { // To be completed

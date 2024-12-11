@@ -93,6 +93,9 @@ if (_patrolSize > 0) then { // Recurse
         } else { // easy scatter waypoints
             _group addWaypoint [[_marker] call FUNC(posInMarker), 20]
         };
+        if (surfaceIsWater waypointPosition _wp && _j != 6) then {
+            deleteWaypoint _wp;
+        };
         if (_j == 6) then {
             _wp setWaypointType "CYCLE";
         };

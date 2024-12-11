@@ -62,7 +62,7 @@ if (_squadSize == 0) then {
 if (_squadSize > 0) then { // recurse
     [{_this call FUNC(spawnReinforcementSquad)},
         [_marker, _squadSize, _vic, _sideReinforcement, _armedVehicles, _group],
-        potato_zeusHC_delayBetweenUnitCreation * (1 + random 1)] call CBA_fnc_waitAndExecute;
+        PGVAR(zeusHC,delayBetweenUnitCreation) * (1 + random 1)] call CBA_fnc_waitAndExecute;
 } else { // it's waypoint time
     private _movePos = getPosATL _vic;
     private _markerPos = getMarkerPos _marker;

@@ -19,3 +19,9 @@
 #define QDGVAR(var1) QUOTE(DOUBLES(MISSION_PREFIX,var1))
 #define FUNC(var1)   TRIPLES(PREFIX,fnc,var1)
 #define QFUNC(var1)  QUOTE(FUNC(var1))
+
+// Potato variables
+#define PGVAR(var1,var2) TRIPLES(potato,var1,var2)
+#define QPGVAR(var1,var2) QUOTE(PGVAR(var1,var2))
+#define PFUNC(var1,var2) TRIPLES(DOUBLES(potato,var1),fnc,var2)
+#define QPFUNC(var1,var2) QUOTE(PFUNC(var1,var2))

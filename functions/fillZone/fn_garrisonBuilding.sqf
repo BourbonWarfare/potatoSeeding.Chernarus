@@ -53,7 +53,7 @@ private _sideType = switch (_sideGarrison) do {
 };
 private _unit = _group createUnit ["potato_" + _sideType + _type, BW_UNIT_SPAWN_POS, [], 0, "NONE"];
 _forceSize = _forceSize - 1;
-if (_allowMovementOnShot && random 1 < (5*(_chanceToMove max 0.1))) then {
+if (_allowMovementOnShot && random 1 < 0.4) then {
     _unit addEventHandler ["FiredNear", {
         params ["_unit", "_firer"];
         if (side _firer != side player || {_firer distance2D _unit > 8 + random 15}) exitWith {};
@@ -70,5 +70,5 @@ if (_forceSize <= 0) then {
 } else {
     [{_this call FUNC(garrisonBuilding)},
         [_building, _forceSize, _chanceToMove, _sideGarrison, _allowMovementOnShot, _group],
-        potato_zeusHC_delayBetweenUnitCreation * (1 + random 1)] call CBA_fnc_waitAndExecute;
+        PGVAR(zeusHC,delayBetweenUnitCreation) * (1 + random 1)] call CBA_fnc_waitAndExecute;
 };
