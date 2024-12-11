@@ -1,5 +1,9 @@
 #include "script_component.hpp"
 
+if (isServer) then {
+    [] call FUNC(autoEndSession);
+};
+
 for "_i" from 0 to BW_MOUT_MAX_CHECK do {
     private _mark = "moutPos_" + (str _i);
     if ((getMarkerPos _mark) isEqualTo [0, 0, 0]) exitWith {};

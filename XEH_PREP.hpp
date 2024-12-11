@@ -1,22 +1,12 @@
-#define UI(var1) 	DOUBLES(functions\ui\fn,var1)
-#define HELPER(var1) 	DOUBLES(functions\helper\fn,var1)
-#define FILLZONE(var1) 	DOUBLES(functions\fillZone\fn,var1)
-#define SERVER(var1) 	DOUBLES(functions\serverSystems\fn,var1)
+#define UI(var1) DOUBLES(functions\ui\fn,var1)
+#define HELPER(var1) DOUBLES(functions\helper\fn,var1)
+#define FILLZONE(var1) DOUBLES(functions\fillZone\fn,var1)
+#define SERVER(var1) DOUBLES(functions\serverSystems\fn,var1)
+#define MFLOW(var1) DOUBLES(functions\missionFlow\fn,var1)
 
 
 #define PREP_COMPLEX(var1,var2) TRIPLES(PREFIX,fnc,var1) = compileScript [QUOTE(GLUE(var2,.sqf))]
 #define PREP(var1) TRIPLES(PREFIX,fnc,var1) = compileScript [QUOTE(functions\DOUBLES(fn,var1).sqf))]
-
-// helper funcs
-PREP_COMPLEX(occupyBuilding,HELPER(occupyBuilding));
-PREP_COMPLEX(posInMarker,HELPER(posInMarker));
-PREP_COMPLEX(teleportUnitHandle,HELPER(teleportUnitHandle));
-
-// UI
-PREP_COMPLEX(handleMissionMenu,UI(handleMissionMenu));
-PREP_COMPLEX(handleMissionSlider,UI(handleMissionSlider));
-PREP_COMPLEX(updateMenuOptions,UI(updateMenuOptions));
-PREP_COMPLEX(handleMissionDropDown,UI(handleMissionDropDown));
 
 // Zone fill
 PREP_COMPLEX(garrisonBuilding,FILLZONE(garrisonBuilding));
@@ -28,9 +18,24 @@ PREP_COMPLEX(spawnPatrol,FILLZONE(spawnPatrol));
 PREP_COMPLEX(spawnReinforcements,FILLZONE(spawnReinforcements));
 PREP_COMPLEX(spawnReinforcementSquad,FILLZONE(spawnReinforcementSquad));
 
+// helper funcs
+PREP_COMPLEX(occupyBuilding,HELPER(occupyBuilding));
+PREP_COMPLEX(posInMarker,HELPER(posInMarker));
+PREP_COMPLEX(teleportUnitHandle,HELPER(teleportUnitHandle));
+
+// Misison flow
+PREP_COMPLEX(autoEndSession,MFLOW(autoEndSession));
+PREP_COMPLEX(endMission,MFLOW(endMission));
+
 // Serverside systems
 PREP_COMPLEX(handleMissionInit,SERVER(handleMissionInit));
 PREP_COMPLEX(updateAISkill,SERVER(updateAISkill));
 PREP_COMPLEX(addSectorReinforce,SERVER(addSectorReinforce));
 PREP_COMPLEX(handleSectorReinforce,SERVER(handleSectorReinforce));
+
+// UI
+PREP_COMPLEX(handleMissionMenu,UI(handleMissionMenu));
+PREP_COMPLEX(handleMissionSlider,UI(handleMissionSlider));
+PREP_COMPLEX(updateMenuOptions,UI(updateMenuOptions));
+PREP_COMPLEX(handleMissionDropDown,UI(handleMissionDropDown));
 
