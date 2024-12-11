@@ -8,7 +8,6 @@ class EditorData
 	toggles=513;
 	mods[]=
 	{
-		"WBK_Zombies_AdvancedEditorSettings"
 	};
 	class ItemIDProvider
 	{
@@ -20,14 +19,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=85;
+		nextID=91;
 	};
 	class Camera
 	{
-		pos[]={11972.771,194.85783,12644.038};
-		dir[]={0.81800264,-0.355023,-0.45272076};
-		up[]={0.31066695,0.9348399,-0.17193826};
-		aside[]={-0.48426342,-1.0523945e-07,-0.87499267};
+		pos[]={11826.17,183.89999,12726.432};
+		dir[]={0.82335168,-0.53579623,-0.18719533};
+		up[]={0.52247393,0.84433693,-0.11878867};
+		aside[]={-0.22170217,-2.7689384e-07,-0.97512442};
 	};
 };
 binarizationWanted=0;
@@ -917,7 +916,7 @@ class CustomAttributes
 				class data
 				{
 					singleType="STRING";
-					value="3.5";
+					value="3.6";
 				};
 			};
 		};
@@ -25398,7 +25397,7 @@ class Mission
 			fillName="SolidFull";
 			a=5;
 			b=5;
-			angle=107.19762;
+			angle=107.19758;
 			id=41930;
 			atlOffset=0.042678833;
 		};
@@ -26210,7 +26209,7 @@ class Mission
 							b=158.25859;
 							angle=116.49697;
 							id=42126;
-							atlOffset=18.29184;
+							atlOffset=15.813263;
 						};
 						class Item10
 						{
