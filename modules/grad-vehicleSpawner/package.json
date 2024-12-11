@@ -1,0 +1,10 @@
+{
+    "name": "grad-vehiclespawner",
+    "contributors": [
+        {
+            "name": "McDiod"
+        }
+    ],
+    "description": "spawns vehicles",
+    "version": "0.8.1"
+}

@@ -20,3 +20,19 @@ class CfgDebriefingSections {
     variable = "acex_killTracker_outputText";
   };
 };
+
+#include "modules\grad-vehicleSpawner\grad_vehicleSpawner.hpp"
+
+class CfgFunctions {
+    #include "modules\grad-vehicleSpawner\cfgFunctions.hpp"
+};
+
+class cfgGradVehicleSpawner {
+    abandonedTime = 1800; // 30minutes
+    maxVehicles = 100;
+    maxVehiclesUser = 3;
+    eventParams[] = {};
+    onDisplayOpen = "systemChat 'hi!'";
+    onDisplayClose = "systemChat 'bye bye!'";
+    onSpawn = "";
+};
