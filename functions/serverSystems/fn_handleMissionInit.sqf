@@ -180,7 +180,6 @@ switch (_operationType) do {
             } else {
                 2 + round (1 * _patrolCount)
             };
-            systemChat str _perimiterPatrolCount;
             _unitSum = _unitSum + ([
                 _marker,
                 _perimiterPatrolCount,

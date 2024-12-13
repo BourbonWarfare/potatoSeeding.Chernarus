@@ -20,7 +20,7 @@ class CfgNotifications {
     };
     class MapTeleportFireteam: MapTeleport {
         title = "Forward Deploy";
-        description = "Left-click near a flag to teleport the Fire Team.";
+        description = "Left-click near a flag to teleport your group.";
     };
     class isrReport: Notif {
         title = "ISR Report";
