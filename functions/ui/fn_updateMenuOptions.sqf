@@ -158,7 +158,13 @@ switch (GET_MENU_OPTION(operationType)) do {
                     };
                     _marker setMarkerSizeLocal [_pos#0, _pos#1];
                     _marker setMarkerBrushLocal "Border";
-                    GVAR(missionSelectedZone) = _marker;
+                    private _size = markerSize _marker;
+                    if (4 * (_size#0 + _size#1) > 5800 ||
+                        sqrt (_size#0 * _size#1) > 725 ) then {
+                        ["Notif", ["Custom Zone", "Drawn Zone is too big"]] call BIS_fnc_showNotification;
+                    } else {
+                        GVAR(missionSelectedZone) = _marker;
+                    };
                 };
             }];
         };
