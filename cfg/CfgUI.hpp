@@ -50,7 +50,7 @@ class RscMissionSelectMenu {
             text = "Operation";
             x = -0.275;
             y = 0.1;
-            w = 0.2;
+            w = 0.25;
             h = 0.06;
         };
         class RscCombo_operationType: RscCombo {
@@ -97,7 +97,7 @@ class RscMissionSelectMenu {
                     default = 1;
                 };
                 class indy {
-                    text = "CDF Forces";
+                    text = "SLA Forces";
                     value = BW_TRAINING_ENEMY_INDY;
                 };
             };
@@ -121,9 +121,9 @@ class RscMissionSelectMenu {
         };
         class RscXSliderH_minAISkill: RscXSliderH {
             idc = IDC_MISSION_AISKILLMIN;
-            x = 0.65;
+            x = 0.7;
             y = 0.1;
-            w = 0.5;
+            w = 0.45;
             h = 0.06;
             sliderPosition = 0.6;
             sliderRange[] = {0, 1};
@@ -147,9 +147,9 @@ class RscMissionSelectMenu {
         };
         class RscCombo_densityType: RscCombo {
             idc = IDC_MISSION_DROPDOWN;
-            x = 0.65;
+            x = 0.7;
             y = 0.3;
-            w = 0.5;
+            w = 0.45;
             h = 0.06;
             onLBSelChanged = QUOTE(_this call FUNC(handleMissionDropDown));
             tooltip = "Select enemy dispersion type";
@@ -184,7 +184,7 @@ class RscMissionSelectMenu {
 
         class RscText_option0: RscText_minAISkill {
             idc = IDC_MISSION_OPTION0_TEXT;
-            text = "Min Building Garrison";
+            text = "Min Units Per Building (%)";
             y = 0.4;
         };
         class RscXSliderH_option0: RscXSliderH_minAISkill {
@@ -195,7 +195,7 @@ class RscMissionSelectMenu {
 
         class RscText_option1: RscText_minAISkill {
             idc = IDC_MISSION_OPTION1_TEXT;
-            text = "Max Building Garrison";
+            text = "Max Units Per Building (%)";
             y = 0.5;
         };
         class RscXSliderH_option1: RscXSliderH_minAISkill {

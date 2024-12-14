@@ -69,6 +69,7 @@ switch (GET_MENU_OPTION(operationType)) do {
         BW_FADE_CONTROL(_display, _control, IDC_MISSION_OPTION4_TEXT);
         BW_FADE_CONTROL(_display, _control, IDC_MISSION_OPTION5_TEXT);
         BW_FADE_CONTROL(_display, _control, IDC_MISSION_OPTION6_TEXT);
+        BW_MISSION_SET_MOUT_TEXT(_display, _control);
         _control = _display displayCtrl IDC_MISSION_OPTION2;
         SET_MENU_OPTION(option2, 0);
         _control sliderSetPosition GET_MENU_OPTION(option2);
@@ -105,6 +106,7 @@ switch (GET_MENU_OPTION(operationType)) do {
         BW_DEFADE_CONTROL(_display, _control, IDC_MISSION_OPTION6_TEXT);
         BW_MISSION_SET_DROPDOWN_DENSITY(_display, _control);
         BW_MISSION_SET_DROPDOWN_DENSITY_TEXT(_display, _control);
+        BW_MISSION_SET_ZONE_TEXT(_display, _control);
     };
     case BW_TRAINING_OPERATION_ZONE_DRAW: {
         GVAR(missionSelectedZone) = "";
@@ -182,6 +184,7 @@ switch (GET_MENU_OPTION(operationType)) do {
         BW_DEFADE_CONTROL(_display, _control, IDC_MISSION_OPTION6_TEXT);
         BW_MISSION_SET_DROPDOWN_DRAWTYPE(_display, _control);
         BW_MISSION_SET_DROPDOWN_DRAWTYPE_TEXT(_display, _control);
+        BW_MISSION_SET_ZONE_TEXT(_display, _control);
 
     };
     case BW_TRAINING_OPERATION_MECH: { // To be completed

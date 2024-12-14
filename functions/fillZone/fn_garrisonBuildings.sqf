@@ -17,7 +17,7 @@
 * _radius - radius of area to garrison (SCALAR, default 50 m).
 * _marker - Marker that sets bounds for buildings to be garrisoned (STRING, default "").
 * _fillRatio - Array of lower and upper bound of building positions to be filled (ARRAY, default [0.1, 0.6]).
-* _occupyBounds - Min and max count of units per building (ARRAY, default [2, 6]).
+* _occupyBounds - Min and max count of units per building, if < 1 then ratio of building (ARRAY, default [2, 6]).
 * _chanceToMove - Chance that any one garrisoned unit will leave their position and move (SCALAR, default 0.1).
 * _canSkipBuildings - Whether to skip buildings under the bar (BOOL, default true).
 * _sideGarrison - Side of the garrison units (SIDE, east).
@@ -54,8 +54,8 @@ if (_marker != "") then {
     _buildings = _buildings select {0 < count (_x buildingPos -1)};
 };
 
-_occupyBounds params ["_minUnits", "_maxUnits"];
 _fillRatio params ["_minFill", "_maxFill"];
+_occupyBounds params ["_minUnits", "_maxUnits"];
 private _maxTime = 0;
 private _unitSum = 0;
 private _skipCount = 0;
@@ -65,13 +65,23 @@ private _skipCount = 0;
     private _maxBound = _maxFill * _countPoses;
     private _minBound = _minFill * _countPoses;
     private _countUnits = _minBound + round (random (_maxBound - _minBound));
+    private _localMinUnits = if (_minUnits < 1) then {
+        2 max (_minUnits * _countPoses)
+    } else {
+        _minUnits
+    };
+    private _localMaxUnits = if (_maxUnits < 1) then {
+        16 min (_maxUnits * _countPoses)
+    } else {
+        _maxUnits
+    };
 
-    if ((_canSkipBuildings && _countUnits < _minUnits) ||
+    if ((_canSkipBuildings && _countUnits < _localMinUnits) ||
         (typeOf _building) in BW_IGNORE_GARRISON_BUILDINGS) then {
         _skipCount = _skipCount + 1;
         continue
     };
-    _countUnits = round ((_countUnits max _minUnits) min _maxUnits);
+    _countUnits = round ((_countUnits max _localMinUnits) min _localMaxUnits);
     if (_countUnits == 0) then {
         _skipCount = _skipCount + 1;
         continue

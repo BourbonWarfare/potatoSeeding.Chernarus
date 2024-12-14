@@ -151,11 +151,14 @@ switch (_operationType) do {
                 };
             };
             default { // uniform is default
+                _minBuildingGarrison = _minBuildingGarrison * 0.1;
+                _maxBuildingGarrison = _maxBuildingGarrison * 0.09;
+
                 _initArray = [
                     _markerPos,
                     _markerSize,
                     _marker,
-                    [0, 0.4],
+                    [0, _maxBuildingGarrison],
                     [_minBuildingGarrison, _maxBuildingGarrison],
                     _chanceMove,
                     true,

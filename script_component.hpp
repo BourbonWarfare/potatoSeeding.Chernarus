@@ -29,6 +29,10 @@ control lbSetText [BW_TRAINING_DENSITY_MULTI, "Rectangle - Corner-Corner"];\
 control lbSetText [BW_TRAINING_DENSITY_MULTIMARKED, "-"]
 #define BW_MISSION_SET_DROPDOWN_DRAWTYPE_TEXT(display,control) control = display displayCtrl IDC_MISSION_DROPDOWN_TEXT;\
 control ctrlSetText "Zone Draw Method"
+#define BW_MISSION_SET_MOUT_TEXT(display,control) control = display displayCtrl IDC_MISSION_OPTION0_TEXT;\
+control ctrlSetText "Min Units Per Building (%)"
+#define BW_MISSION_SET_ZONE_TEXT(display,control) control = display displayCtrl IDC_MISSION_OPTION0_TEXT;\
+control ctrlSetText "Chance to Skip Building (%)"
 
 /// Menu defines
 // IDD Define

@@ -73,6 +73,29 @@ description = "Saharani Liberation Army Presedential Guard (Woodland, 2000s)";
 #define LINKED BASE_LINKED
 #define LEADER_LINKED
 #define SIDE_MEDIC_GRENADES "rhs_mag_rdg2_white","gm_smokeshell_org_gc","gm_smokeshell_blk_gc"
+// ------------- Vehicle Pool -------------
+transportVehiclePool[] = {
+  "CUP_O_Ural_Open_SLA",
+  "CUP_O_Ural_SLA",
+  "CUP_O_Tigr_233011_SLA"
+};
+armedSoftVehiclePool[] = {
+  "CUP_O_UAZ_MG_SLA",
+  "CUP_O_Tigr_233014_PK_SLA"
+};
+armoredVehiclePool[] = {
+  "CUP_O_MTLB_pk_SLA",
+  "CUP_O_BTR60_SLA",
+  "CUP_O_BTR80_SLA",
+  "CUP_O_BRDM2_SLA"
+};
+tankVehiclePool[] = {
+  "CUP_O_T72_SLA",
+  "CUP_O_BMP2_SLA"
+};
+reinforcementTruck = "CUP_O_Ural_Open_SLA";
+reinforcementArmed = "CUP_O_BTR80_SLA";
+// ------------- End Vehicle Pool -------------
 
 class Car {};
 class Tank {};
