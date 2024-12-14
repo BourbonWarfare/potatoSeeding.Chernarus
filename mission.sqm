@@ -6,9 +6,6 @@ class EditorData
 	scaleGridStep=1;
 	autoGroupingDist=10;
 	toggles=1537;
-	mods[]=
-	{
-	};
 	class ItemIDProvider
 	{
 		nextID=42195;
@@ -1685,7 +1682,7 @@ class CustomAttributes
 													class data
 													{
 														singleType="STRING";
-														value="[1, 7, 0]";
+														value="[1, 14, 14]";
 													};
 												};
 												class Item1
@@ -1712,7 +1709,7 @@ class CustomAttributes
 													class data
 													{
 														singleType="STRING";
-														value="[1, 7, 0]";
+														value="[1, 14, 14]";
 													};
 												};
 												class Item1
