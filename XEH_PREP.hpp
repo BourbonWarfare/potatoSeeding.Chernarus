@@ -25,6 +25,7 @@ PREP_COMPLEX(teleportUnitHandle,HELPER(teleportUnitHandle));
 
 // Misison flow
 PREP_COMPLEX(autoEndSession,MFLOW(autoEndSession));
+PREP_COMPLEX(autoEndSessionAI,MFLOW(autoEndSessionAI));
 PREP_COMPLEX(endMission,MFLOW(endMission));
 
 // Serverside systems
