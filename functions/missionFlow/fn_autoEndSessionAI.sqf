@@ -20,7 +20,7 @@
         _x enableAI "ALL";
         if (_x == leader _x) then {
             private _grp = group _x;
-            private _wp = _grp addWaypoint [getPosASL _grp, 100];
+            private _wp = _grp addWaypoint [getPosASL _x, 100];
             _wp setWaypointSpeed "FULL";
             _wp setWaypointCompletionRadius 500;
             _wp setWaypointType "SCRIPTED";
