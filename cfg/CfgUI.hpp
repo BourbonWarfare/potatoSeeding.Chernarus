@@ -92,12 +92,12 @@ class RscMissionSelectMenu {
             tooltip = "Select faction of enemy units";
             class Items {
                 class east {
-                    text = "MSV Forces";
+                    text = "MSV Forces (AK-74M)";
                     value = BW_TRAINING_ENEMY_OPFOR;
                     default = 1;
                 };
                 class indy {
-                    text = "SLA Forces";
+                    text = "SLA Forces (G3A4)";
                     value = BW_TRAINING_ENEMY_INDY;
                 };
             };
