@@ -38,8 +38,11 @@ for "_i" from 1 to _patrolCount do { // spawn N patrols
     _perimiterOffset = _perimiterOffset + 8.7 + random 0.6;
     private _unitCount = round random _randomSize;
     _unitSum = _unitSum + _unitCount;
-    [[_marker, _unitCount, _sidePatrols, _perimiterOffset, _patrolPerimeter],
-    QFUNC(spawnPatrol)] call PFUNC(zeusHC,hcPassthrough);
+    [{
+        [_this, QFUNC(spawnPatrol)] call PFUNC(zeusHC,hcPassthrough);
+    }, [_marker, _unitCount, _sidePatrols, _perimiterOffset, _patrolPerimeter],
+        _i * PGVAR(zeusHC,delayBetweenUnitCreation)
+    ] call CBA_fnc_waitAndExecute;
 };
 
 _unitSum
