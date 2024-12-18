@@ -63,7 +63,7 @@ _patrolSize = _patrolSize - 1;
 if (_patrolSize > 0) then { // Recurse
     [{_this call FUNC(spawnPatrol)},
         [_marker, _patrolSize, _sidePatrol, _perimiterOffset, _patrolPerimeter, _group],
-        potato_zeusHC_delayBetweenUnitCreation * (1 + random 1)] call CBA_fnc_waitAndExecute;
+        PGVAR(zeusHC,delayBetweenUnitCreation) * (1 + random 1)] call CBA_fnc_waitAndExecute;
 } else { // add either a ring of waypoints or scattered waypoints
     private _posATL = getMarkerPos _marker;
     // We need a bit of info to find the perimeter
