@@ -36,7 +36,7 @@ for "_i" from 0 to BW_ZONE_MAX_CHECK do {
 [{
     ["Info", [
         "Mission Info",
-        text "<t color='#FFC000' ' font='PuristaSemibold'>ACE <t size='1' color='#FF3000'>SELF</t>-interact</t> at any US flag pole to access the mission menu."
+        text "<t color='#FFC000' ACE self-interact</t> at any US flag pole to access the mission menu."
     ]] call BIS_fnc_showNotification;
 }, [], 15] call CBA_fnc_waitAndExecute;
 
