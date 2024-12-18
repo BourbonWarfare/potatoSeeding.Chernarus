@@ -2,6 +2,7 @@
 
 #define BW_MAP_CLICK_HOLD_OFF 0.25
 #define BW_TP_FLAG_TYPE "Flag_US_F"
+#define BW_TP_FLAG_DIST 8.5
 #define BW_UNIT_SPAWN_POS [14193, 14388, 0]
 #define BW_IGNORE_GARRISON_BUILDINGS ["land_nav_pier_m_1","land_nav_pier_M_fuel","land_nav_pier_c_big","land_nav_pier_m_end","Land_Wall_CBrk_5_D", "Land_Wall_CGry_5_D", "Land_Stanek_1", "Land_Stanek_1B", "Misc_Cargo1Bo_civil", "Misc_Cargo1Bo_military"]
 

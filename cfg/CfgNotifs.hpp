@@ -9,6 +9,10 @@ class CfgNotifications {
         sound = "vanillaDefaultNotification";
         soundClose = "vanillaDefaultNotificationClose";
     };
+    class Notif_Picture: Notif {
+        iconPicture = "%3";
+        duration = 7.5;
+    };
     class Info: Notif {
         iconPicture = "\a3\ui_f\data\GUI\Cfg\CommunicationMenu\instructor_ca.paa";
         duration = 20;
