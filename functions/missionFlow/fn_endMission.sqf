@@ -18,7 +18,7 @@
 *//***************************************************************************/
 
 if (isServer) then {
-    [west, "Mission ended", "Seed"] call ocap_fnc_exportData;
+    [west, "Mission ended", "COOP"] call ocap_fnc_exportData;
     private _debugMsg = format ["Saving OCAP recording with winning side %1 and mission type %2", _winningSide, "Seed"];
     ["potato_adminMsg", [_debugMsg, profileName, "#ALL"]] call CBA_fnc_globalEvent;
 };
