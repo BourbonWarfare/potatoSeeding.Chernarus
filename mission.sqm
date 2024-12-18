@@ -6,11 +6,6 @@ class EditorData
 	scaleGridStep=1;
 	autoGroupingDist=10;
 	toggles=522;
-	mods[]=
-	{
-		"WBK_Zombies_AdvancedEditorSettings",
-		"3denEnhanced"
-	};
 	class ItemIDProvider
 	{
 		nextID=42197;
@@ -21,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=106;
+		nextID=109;
 	};
 	class Camera
 	{
 		pos[]={11834.291,190.60326,12708.849};
-		dir[]={0.82164133,-0.33782914,-0.45910949};
-		up[]={0.2949138,0.9412061,-0.16478939};
-		aside[]={-0.48778668,1.6763806e-08,-0.87296373};
+		dir[]={0.82163948,-0.33782831,-0.45910856};
+		up[]={0.29491159,0.94120777,-0.16478814};
+		aside[]={-0.48778665,0,-0.87296289};
 	};
 };
 binarizationWanted=0;
@@ -954,6 +949,18 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
+			property="RespawnTemplates";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					singleType="ARRAY";
+				};
+			};
+		};
+		class Attribute1
+		{
 			property="RespawnButton";
 			expression="true";
 			class Value
@@ -962,18 +969,6 @@ class CustomAttributes
 				{
 					singleType="SCALAR";
 					value=1;
-				};
-			};
-		};
-		class Attribute1
-		{
-			property="RespawnTemplates";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					singleType="ARRAY";
 				};
 			};
 		};
@@ -25421,7 +25416,7 @@ class Mission
 			fillName="SolidFull";
 			a=5;
 			b=5;
-			angle=107.19744;
+			angle=107.19743;
 			id=41930;
 			atlOffset=0.042678833;
 		};

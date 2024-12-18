@@ -52,7 +52,7 @@ class CfgLoadouts {
   // Indy factions
   #include "Loadouts\indy_gear.hpp"
   class potato_i { // Indy
-    #include "Loadouts\Indfor\gerpzgr_g36a3_flecktarn.hpp"
+    #include "Loadouts\Blufor\gerpzgr_g36a3_flecktarn.hpp"
   };
 
   // East Factions

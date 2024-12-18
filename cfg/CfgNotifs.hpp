@@ -17,6 +17,9 @@ class CfgNotifications {
         iconPicture = "\a3\ui_f\data\GUI\Cfg\CommunicationMenu\instructor_ca.paa";
         duration = 20;
     };
+    class Info_Picture: Info {
+        iconPicture = "%3";
+    };
     class MapTeleport: Notif {
         title = "Forward Deploy";
         description = "Left-click near a flag to teleport the player.";
