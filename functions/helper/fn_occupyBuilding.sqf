@@ -45,10 +45,10 @@ if (_stance == "UPPER") then {
 
 // find max number of idxs
 private _buildingPoses = _building buildingPos -1;
+_buildingPoses = _buildingPoses select {_x isNotEqualTo [0, 0, 0]};
 // if there aren't positions don't try anything else
 if (_buildingPoses isEqualTo []) exitWith {};
 private _nIdx = count _buildingPoses;
-
 //*** Shuffle or sort the building positions
 [_buildingPoses, true] call cba_fnc_shuffle;
 private _maxReactionTime =  time + 7200;

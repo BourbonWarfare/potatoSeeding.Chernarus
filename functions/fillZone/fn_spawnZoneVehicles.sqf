@@ -82,8 +82,8 @@ if (_tankTypes isEqualTo []) then {
 private _vehicleSplit = [
     round linearConversion [0, 0.75, _fillIntensity, _fillCount, 0, true],
     0,
-    round linearConversion [0.2, 0.75, _fillIntensity, 0, _fillCount * 2 / 3, true],
-    round linearConversion [0.4, 1, _fillIntensity, 0, _fillCount / 3, true]
+    round linearConversion [0.4, 0.75, _fillIntensity, 0, _fillCount * 2 / 3, true],
+    round linearConversion [0.6, 1, _fillIntensity, 0, _fillCount / 3, true]
 ];
 
 _vehicleSplit set [1, _fillCount - _vehicleSplit#0 - _vehicleSplit#2 - _vehicleSplit#3];
