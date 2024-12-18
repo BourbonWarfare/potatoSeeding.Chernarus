@@ -25,5 +25,6 @@ GVAR(missionActiveZones) = createHashMap;
 GVAR(nextMapClickTime) = -1;
 GVAR(reinforceHashMap) = createHashMap;
 GVAR(missionMenuLastUpdateFrame) = -1;
+GVAR(endOfMission) = false;
 
 MISSION_GVAR_PREFIX = true;

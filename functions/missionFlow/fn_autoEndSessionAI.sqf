@@ -15,17 +15,28 @@
 * Example:
 * [] call bw_fnc_autoEndSessionAI;
 *//***************************************************************************/
+// Useful for reinforcemetns
+GVAR(endOfMission) = true;
+
+// Free everyone from their prisons and set them to attack
+private _playerCentroid = [] call FUNC(findPlayerCentroid);
 {
     if (local _x && !isPlayer _x) then {
         _x enableAI "ALL";
         if (_x == leader _x) then {
             private _grp = group _x;
-            private _wp = _grp addWaypoint [getPosASL _x, 100];
-            _wp setWaypointSpeed "FULL";
-            _wp setWaypointCompletionRadius 500;
-            _wp setWaypointType "SCRIPTED";
-            _wp setWaypointScript "\z\lambs\addons\wp\scripts\fnc_wpRush.sqf";
+            for "_i" from (count waypoints _grp - 1) to 0 step -1 do {
+                deleteWaypoint [_grp, _i];
+            };
+            private _wp = _grp addWaypoint [getPosATL _x];
             _grp setCurrentWaypoint _wp;
+            _wp setWaypointBehaviour "AWARE";
+            _wp = _grp addWaypoint [_playerCentroid, 100];
+            _wp setWaypointCompletionRadius 500;
+            _wp setWaypointSpeed "FULL";
+            _wp = _grp addWaypoint [_playerCentroid, 100];
+            _wp setWaypointCompletionRadius 500;
+            _wp setWaypointType "SAD";
         };
     };
 } forEach allUnits;
