@@ -1,5 +1,7 @@
 #include "script_component.hpp"
 
+setViewDistance 2500;
+
 if (isServer) then {
     [] call FUNC(autoEndSession);
     [missionNameSpace, getPosATL flag_neaf] call BIS_fnc_addRespawnPosition;
