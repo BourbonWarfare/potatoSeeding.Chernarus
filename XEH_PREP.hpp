@@ -22,6 +22,7 @@ PREP_COMPLEX(spawnReinforcementSquad,FILLZONE(spawnReinforcementSquad));
 PREP_COMPLEX(occupyBuilding,HELPER(occupyBuilding));
 PREP_COMPLEX(posInMarker,HELPER(posInMarker));
 PREP_COMPLEX(teleportUnitHandle,HELPER(teleportUnitHandle));
+PREP_COMPLEX(findPlayerCentroid,HELPER(findPlayerCentroid));
 
 // Misison flow
 PREP_COMPLEX(autoEndSession,MFLOW(autoEndSession));
