@@ -21,7 +21,7 @@ private _entriesToRemove = [];
     private _zone = _x;
     _y params ["_squadCount", "_armedVehicles", "_side", "_startingUnits"];
     private _countZone = count (units _side select {alive _x && _x inArea _zone});
-    if (_countZone < (0.6 + random 0.3) * _startingUnits && _countZone > 0) then {
+    if (_countZone < (0.6 + random 0.2) * _startingUnits && _countZone > 0) then {
         _entriesToRemove pushBack _zone;
         [_zone, 10, _squadCount, _side, _armedVehicles] call FUNC(spawnReinforcements);
     };
