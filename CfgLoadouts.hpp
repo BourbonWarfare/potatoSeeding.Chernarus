@@ -46,13 +46,13 @@ class CfgLoadouts {
   // West factions
   #include "Loadouts\west_gear.hpp"
   class potato_w { // BluFor
-    #include "Loadouts\Blufor\USMC_M16A4_WDL.hpp"
+    #include "Loadouts\Blufor\askeland_gm90r_ormr.hpp"
   };
 
   // Indy factions
   #include "Loadouts\indy_gear.hpp"
   class potato_i { // Indy
-    #include "Loadouts\Indfor\sla_g3ka4_woodland_ai.hpp"
+    #include "Loadouts\Indfor\gerpzgr_g36a3_flecktarn.hpp"
   };
 
   // East Factions

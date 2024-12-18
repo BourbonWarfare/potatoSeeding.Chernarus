@@ -97,7 +97,7 @@ class RscMissionSelectMenu {
                     default = 1;
                 };
                 class indy {
-                    text = "SLA Forces (G3A4)";
+                    text = "Bundeswehr Forces (G36A3)";
                     value = BW_TRAINING_ENEMY_INDY;
                 };
             };
