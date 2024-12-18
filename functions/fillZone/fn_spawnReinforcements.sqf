@@ -35,6 +35,10 @@ if (_marker == "" ||
 // Find a list of zones that are close but not too close to anthing important
 private _nearZones = [];
 private _zonePos = getMarkerPos _marker;
+// End of mission
+if (GVAR(endOfMission)) then {
+    _zonePos = [] call FUNC(findPlayerCentroid);
+};
 private _allPlayers = [] call CBA_fnc_players;
 for "_i" from 0 to BW_ZONE_MAX_CHECK do {
     private _zone = BW_ZONE_BASE_STRING + str _i;

@@ -66,6 +66,10 @@ if (_squadSize > 0) then { // recurse
 } else { // it's waypoint time
     private _movePos = getPosATL _vic;
     private _markerPos = getMarkerPos _marker;
+    // End of mission - move to players
+    if (GVAR(endOfMission)) then {
+        _markerPos = [] call FUNC(findPlayerCentroid);
+    };
     private _wpRadius = (random 20) + vectorMagnitude getMarkerSize _marker;
     _vic setUnloadInCombat [false, false];
     private _wp = _group addWaypoint [_movePos, 0];
