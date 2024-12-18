@@ -21,7 +21,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=100;
+		nextID=106;
 	};
 	class Camera
 	{
@@ -917,7 +917,7 @@ class CustomAttributes
 				class data
 				{
 					singleType="STRING";
-					value="3.6";
+					value="3.9";
 				};
 			};
 		};
@@ -25421,7 +25421,7 @@ class Mission
 			fillName="SolidFull";
 			a=5;
 			b=5;
-			angle=107.19749;
+			angle=107.19744;
 			id=41930;
 			atlOffset=0.042678833;
 		};
@@ -26233,7 +26233,7 @@ class Mission
 							b=158.25859;
 							angle=116.49697;
 							id=42126;
-							atlOffset=15.813263;
+							atlOffset=18.29184;
 						};
 						class Item10
 						{
