@@ -8,36 +8,3 @@
 #define PREP_COMPLEX(var1,var2) TRIPLES(PREFIX,fnc,var1) = compileScript [QUOTE(GLUE(var2,.sqf))]
 #define PREP(var1) TRIPLES(PREFIX,fnc,var1) = compileScript [QUOTE(functions\DOUBLES(fn,var1).sqf))]
 
-// Zone fill
-PREP_COMPLEX(garrisonBuilding,FILLZONE(garrisonBuilding));
-PREP_COMPLEX(garrisonBuildings,FILLZONE(garrisonBuildings));
-PREP_COMPLEX(garrisonBuildingsCentered,FILLZONE(garrisonBuildingsCentered));
-PREP_COMPLEX(spawnZoneVehicles,FILLZONE(spawnZoneVehicles));
-PREP_COMPLEX(spawnPatrols,FILLZONE(spawnPatrols));
-PREP_COMPLEX(spawnPatrol,FILLZONE(spawnPatrol));
-PREP_COMPLEX(spawnReinforcements,FILLZONE(spawnReinforcements));
-PREP_COMPLEX(spawnReinforcementSquad,FILLZONE(spawnReinforcementSquad));
-
-// helper funcs
-PREP_COMPLEX(occupyBuilding,HELPER(occupyBuilding));
-PREP_COMPLEX(posInMarker,HELPER(posInMarker));
-PREP_COMPLEX(teleportUnitHandle,HELPER(teleportUnitHandle));
-PREP_COMPLEX(findPlayerCentroid,HELPER(findPlayerCentroid));
-
-// Misison flow
-PREP_COMPLEX(autoEndSession,MFLOW(autoEndSession));
-PREP_COMPLEX(autoEndSessionAI,MFLOW(autoEndSessionAI));
-PREP_COMPLEX(endMission,MFLOW(endMission));
-
-// Serverside systems
-PREP_COMPLEX(handleMissionInit,SERVER(handleMissionInit));
-PREP_COMPLEX(updateAISkill,SERVER(updateAISkill));
-PREP_COMPLEX(addSectorReinforce,SERVER(addSectorReinforce));
-PREP_COMPLEX(handleSectorReinforce,SERVER(handleSectorReinforce));
-
-// UI
-PREP_COMPLEX(handleMissionMenu,UI(handleMissionMenu));
-PREP_COMPLEX(handleMissionSlider,UI(handleMissionSlider));
-PREP_COMPLEX(updateMenuOptions,UI(updateMenuOptions));
-PREP_COMPLEX(handleMissionDropDown,UI(handleMissionDropDown));
-

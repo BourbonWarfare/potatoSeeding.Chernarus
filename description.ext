@@ -8,6 +8,8 @@ onLoadName = "BW Seeding V3";
 
 // Extended Event Handlers:
 #include "cfg\CfgEventHandlers.hpp"
+// Functions
+#include "cfg\CfgFunctions.hpp"
 // Menus:
 #include "cfg\CfgUI.hpp"
 // Notifications:
@@ -22,8 +24,8 @@ onLoadName = "BW Seeding V3";
 bwmfDate = "2024/8/22"; //Framework date
 
 class CfgDebriefingSections {
-  class acex_killTracker {
-    title = "ACEX Killed Events";
-    variable = "acex_killTracker_outputText";
-  };
+    class acex_killTracker {
+        title = "ACEX Killed Events";
+        variable = "acex_killTracker_outputText";
+    };
 };
