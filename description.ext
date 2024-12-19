@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-onLoadName = "BW Seeding V3";
+onLoadName = "BW Seeding V4";
 
 // BWMF Gear
 //Credits:headswe, Pabst, Zerith

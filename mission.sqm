@@ -912,7 +912,7 @@ class CustomAttributes
 				class data
 				{
 					singleType="STRING";
-					value="3.9";
+					value="4";
 				};
 			};
 		};
