@@ -113,6 +113,32 @@ description = "German Panzergrenadier Infantry c. 2024";
 
 #define DEMO "DemoCharge_Remote_Mag:2"
 #define DEMO_TOOL "ACE_Clacker"
+// ------------- Vehicle Pool -------------
+transportVehiclePool[] = {
+  "B_T_Truck_01_transport_F",
+  "B_T_Truck_01_covered_F",
+  "gm_ge_army_iltis_cargo",
+  "gm_ge_army_typ247_cargo",
+  "gm_ge_army_typ253_cargo"
+};
+armedSoftVehiclePool[] = {
+  "gm_ge_army_iltis_mg3",
+  "gm_ge_army_u1300l_container",
+  "gm_ge_army_fuchsa0_engineer"
+};
+armoredVehiclePool[] = {
+  "gm_ge_army_m113a1g_apc",
+  "gm_ge_army_marder1a2",
+  "gm_ge_army_luchsa2"
+};
+tankVehiclePool[] = {
+  "gm_ge_army_Leopard1a5",
+  "gm_ge_army_Leopard1a5",
+  "CUP_B_Leopard2A6_GER"
+};
+reinforcementTruck = "gm_ge_army_u1300l_cargo";
+reinforcementArmed = "gm_ge_army_m113a1g_apc";
+// ------------- End Vehicle Pool -------------
 
 //  init = "this addGoggles selectRandom ['','','','','','','',''];"
 
