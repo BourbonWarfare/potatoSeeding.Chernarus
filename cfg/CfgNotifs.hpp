@@ -17,6 +17,12 @@ class CfgNotifications {
         iconPicture = "\a3\ui_f\data\GUI\Cfg\CommunicationMenu\instructor_ca.paa";
         duration = 20;
     };
+    class SelfInteract: Notif {
+        iconPicture = "\z\ace\addons\interaction\ui\Icon_Module_Interaction_ca.paa";
+        duration = 20;
+        title = "Mission Info";
+        description = "<t color='#FFC000'>ACE self-interact</t> at any US flag pole to access the mission menu."
+    };
     class Info_Picture: Info {
         iconPicture = "%3";
     };

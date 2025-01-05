@@ -114,7 +114,7 @@ _action = [
     "resetGear",
     "Reset Gear",
     "\a3\ui_f\data\igui\cfg\simpletasks\types\rearm_ca.paa", {
-        [PGVAR(adminMenu,resetGear), [_player], [_player]] call CBA_fnc_localEvent;
+        [_player] call PFUNC(assignGear,assignGearMan);
     },
     {true}
 ] call ace_interact_menu_fnc_createAction;
