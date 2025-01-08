@@ -23,6 +23,7 @@ class CfgFunctions {
         };
         class UI {
             file = "functions\ui";
+            class handleMissionDraw;
             class handleMissionDropDown;
             class handleMissionMenu;
             class handleMissionSlider;

@@ -104,6 +104,7 @@ class RscMissionSelectMenu {
         };
         class RscMap_UIInterface: RscMapControl {
             idc = IDC_MISSION_MAP;
+            onDraw = QUOTE(_this call FUNC(handleMissionDraw));
             x = -0.275;
             y = 0.3;
             w = 0.6875;

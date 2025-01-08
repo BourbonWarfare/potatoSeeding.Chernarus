@@ -37,7 +37,7 @@ control ctrlSetText "Chance to Skip Building (%)"
 
 /// Menu defines
 // IDD Define
-#define IDD_MISSION_MENU 2024110719
+#define IDD_MISSION_MENU 241107
 
 // IDCs numbers
 #define IDC_MISSION_OPERATIONTYPE 900

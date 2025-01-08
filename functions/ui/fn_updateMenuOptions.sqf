@@ -129,6 +129,7 @@ switch (GET_MENU_OPTION(operationType)) do {
                     GVAR(missionFirstPositionMarker) = _newMarker;
                 } else {
                     private _marker = GVAR(missionFirstPositionMarker);
+                    GVAR(missionFirstPositionMarker) = "";
                     switch (GET_MENU_OPTION(density)) do {
                         case BW_TRAINING_DENSITY_UNIFORM: { // circle: corner - corner
                             _pos = (_pos vectorAdd _markerPos) apply {_x / 2};
@@ -170,6 +171,7 @@ switch (GET_MENU_OPTION(operationType)) do {
                 };
             }];
         };
+        _display displayCtrl IDC_MISSION_MAP ctrlMapCursor ["Arrow", "Track"];
         _control ctrlMapAnimAdd [0, 0.4, getMarkerPos (BW_ZONE_BASE_STRING + str (floor random _maxZoneMarker))];
         ctrlMapAnimCommit _control;
         BW_DEFADE_CONTROL(_display, _control, IDC_MISSION_DROPDOWN);
