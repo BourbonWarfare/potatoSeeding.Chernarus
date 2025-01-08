@@ -8,9 +8,9 @@ A game mode for seeding the BW server pre-session. The map features zones for bo
 - Grenade range
 - QCB Practice
 - A MOUT Zone
-- Teleports to some towns
+- Town/Zone clear
 - Armored Combat Zone
-- Arsenal
+- Spawn system for zone clears
 
 ## Contributions
 Contributions are accepted via Pull Requests (PRs). Please make sure:
@@ -25,5 +25,8 @@ Contributions are accepted via Pull Requests (PRs). Please make sure:
 
 ### Contributors
 - Zohli
+- Lambda.Tiger
+- Kilo
+- AChesheireCat
 
 <sub>it's funny because potatoes don't have seeds</sub>

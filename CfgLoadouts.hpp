@@ -38,21 +38,21 @@ class CfgLoadouts {
 
   // cleanup.bat will delete any loadouts not in active use (so make sure to include before running)
 
-  // Blufor/Indfor/Opfor folders are just for organization, they can be used with any faction 
+  // Blufor/Indfor/Opfor folders are just for organization, they can be used with any faction
   // e.g. Blufor\us_mx_mtp.hpp for potato_e is fine
-  
+
   // Loadouts can be either kept in the Loadouts\Blufor\ folders or moved up to Loadouts\
 
   // West factions
   #include "Loadouts\west_gear.hpp"
   class potato_w { // BluFor
-    #include "Loadouts\Blufor\USMC_M16A4_WDL.hpp"
+    #include "Loadouts\Blufor\askeland_gm90r_ormr.hpp"
   };
 
   // Indy factions
   #include "Loadouts\indy_gear.hpp"
   class potato_i { // Indy
-    #include "Loadouts\Indfor\cdf_ak74n_mtp.hpp"
+    #include "Loadouts\Blufor\gerpzgr_g36a3_flecktarn.hpp"
   };
 
   // East Factions
