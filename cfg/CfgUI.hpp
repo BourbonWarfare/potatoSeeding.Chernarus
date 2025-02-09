@@ -132,7 +132,7 @@ class RscMissionSelectMenu {
         };
         class RscText_maxAISkill: RscText_minAISkill {
             text = "Maximum AI skill";
-            y = 0.2
+            y = 0.2;
         };
         class RscXSliderH_maxAISkill: RscXSliderH_minAISkill {
             idc = IDC_MISSION_AISKILLMAX;

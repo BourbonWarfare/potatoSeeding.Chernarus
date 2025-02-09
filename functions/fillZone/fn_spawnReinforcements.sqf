@@ -73,6 +73,17 @@ private _reinforcementZone = selectRandom _nearZones;
 
 private _roads = (getMarkerPos _reinforcementZone) nearRoads 75;
 _roads = _roads select {_x inArea _reinforcementZone};
+private _timeOut = 10;
+while {_roads isEqualTo [] && _timeOut > 0} do {
+    _timeOut = _timeOut - 1;
+    _reinforcementZone = selectRandom _nearZones;
+    _roads = (getMarkerPos _reinforcementZone) nearRoads 75;
+    _roads = _roads select {_x inArea _reinforcementZone};
+};
+
+if (_roads isEqualTo []) exitWith {
+    diag_log formatText ["[SEED][REINFORCE] Could not find a road inside any of the zones (%2) for %1", _marker, _nearZones];
+};
 
 for "_i" from 1 to _numberOfSquads do {
     private _road = selectRandom _roads;
