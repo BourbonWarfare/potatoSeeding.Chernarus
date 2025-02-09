@@ -20,4 +20,6 @@
 #ifdef SIDE_LEADER_GRENADES
   #undef SIDE_LEADER_GRENADES
 #endif
-
+#ifdef SIDE_RANGE_FINDER
+  #undef SIDE_RANGE_FINDER
+#endif
