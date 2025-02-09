@@ -64,6 +64,7 @@ control ctrlSetText "Chance to Skip Building (%)"
 
 // Spawn Zones
 #define BW_MOUT_MAX_CHECK 15
+#define BW_MOUT_BASE_STRING "moutPos_"
 #define BW_ZONE_MAX_CHECK 255
 #define BW_ZONE_BASE_STRING "clearableZone_"
 

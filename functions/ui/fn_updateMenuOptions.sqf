@@ -54,10 +54,32 @@ for "_i" from 0 to BW_ZONE_MAX_CHECK do {
     _mark setMarkerAlphaLocal _markerAlpha;
 };
 
+private _maxMoutMarker = 0;
+_markerAlpha = [0, DESELECTED_ZONE_ALPHA] select (BW_TRAINING_OPERATION_MOUT == GET_MENU_OPTION(operationType));
+for "_i" from 0 to BW_MOUT_MAX_CHECK do {
+    private _mark = BW_MOUT_BASE_STRING + (str _i);
+    if (getMarkerPos _mark isEqualTo [0, 0, 0]) exitWith {_maxZoneMarker = _i};
+    _mark setMarkerAlphaLocal _markerAlpha;
+};
+
 switch (GET_MENU_OPTION(operationType)) do {
     case BW_TRAINING_OPERATION_MOUT: {
-        GVAR(missionSelectedZone) = "moutPos_0"; // hard coded for now
-        _control ctrlMapAnimAdd [0, 0.1, getMarkerPos "moutPos_0"];
+        GVAR(missionSelectedZone) = BW_MOUT_BASE_STRING + str (floor random _maxMoutMarker);
+        if (GVAR(mainMenuMapClickEH) < 0) then {
+            GVAR(mainMenuMapClickEH) = addMissionEventHandler ["MapSingleClick", {
+                params ["", "_pos"];
+                for "_i" from 0 to BW_MOUT_MAX_CHECK do {
+                    private _mark = BW_MOUT_BASE_STRING + (str _i);
+                    if (getMarkerPos _mark isEqualTo [0, 0, 0]) exitWith {};
+                    if (_pos inArea _mark) exitWith {
+                        GVAR(missionSelectedZone) setMarkerAlphaLocal DESELECTED_ZONE_ALPHA;
+                        GVAR(missionSelectedZone) = _mark;
+                        _mark setMarkerAlphaLocal 0.8;
+                    };
+                };
+            }];
+        };
+        _control ctrlMapAnimAdd [0, 0.1, getMarkerPos GVAR(missionSelectedZone)];
         ctrlMapAnimCommit _control;
         BW_FADE_CONTROL(_display, _control, IDC_MISSION_DROPDOWN);
         BW_FADE_CONTROL(_display, _control, IDC_MISSION_OPTION3);
