@@ -10,6 +10,9 @@
 #ifdef CAMO_VEST
   #undef CAMO_VEST
 #endif
+#ifdef CAMO_VEST_RAT
+  #undef CAMO_VEST_RAT
+#endif
 #ifdef CAMO_VEST_PILOT
   #undef CAMO_VEST_PILOT
 #endif
