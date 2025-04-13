@@ -92,7 +92,7 @@ class RscMissionSelectMenu {
             tooltip = "Select faction of enemy units";
             class Items {
                 class east {
-                    text = "MSV Forces (AK-74M)";
+                    text = "British Armed Forces (L85A2)";
                     value = BW_TRAINING_ENEMY_OPFOR;
                     default = 1;
                 };
@@ -305,3 +305,5 @@ class RscMissionSelectMenu {
         };
     };
 };
+
+#include "..\modules\grad-vehicleSpawner\grad_vehicleSpawnerUI.hpp"

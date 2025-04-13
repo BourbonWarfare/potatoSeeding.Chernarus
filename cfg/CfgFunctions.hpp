@@ -4,6 +4,8 @@ class CfgFunctions {
         class Helper {
             file = "functions\helper";
             class findPlayerCentroid;
+            class findRoadPos;
+            class gradVicHandle;
             class occupyBuilding;
             class posInMarker;
             class teleportUnitHandle;
@@ -41,4 +43,5 @@ class CfgFunctions {
             class spawnZoneVehicles;
         };
     };
+    #include "..\modules\grad-vehicleSpawner\CfgFunctions.hpp"
 };

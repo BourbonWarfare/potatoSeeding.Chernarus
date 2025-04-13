@@ -50,8 +50,8 @@ private _operationType = _settingHash getOrDefault ["operationType", BW_TRAINING
 private _zoneDims = markerSize _marker;
 switch (_operationType) do {
     case BW_TRAINING_OPERATION_MOUT: {
-        _minBuildingGarrison = _minBuildingGarrison * 10;
-        _maxBuildingGarrison = _maxBuildingGarrison * 12;
+        _minBuildingGarrison = _minBuildingGarrison * 8;
+        _maxBuildingGarrison = _maxBuildingGarrison * 8;
         _chanceMove = linearConversion [0, 1, _chanceMove, 0, 0.25];
         _initArray = [
             getMarkerPos _marker,
@@ -62,7 +62,7 @@ switch (_operationType) do {
             _chanceMove,
             false,
             _enemySide,
-            false
+            true
         ] call FUNC(garrisonBuildings);
     };
     case BW_TRAINING_OPERATION_ZONE_DRAW;
@@ -71,7 +71,7 @@ switch (_operationType) do {
         _marker setMarkerAlphaLocal 1;
         _marker setMarkerBrush "Border";
         _minBuildingGarrison = _minBuildingGarrison * 10;
-        _maxBuildingGarrison = _maxBuildingGarrison * 7.5;
+        _maxBuildingGarrison = _maxBuildingGarrison * 7;
         _chanceMove = linearConversion [0, 1, _chanceMove, 0, 0.6];
         private _markerSize = vectorMagnitude _zoneDims;
         private _densityMode = _settingHash getOrDefault ["density", BW_TRAINING_DENSITY_UNIFORM];

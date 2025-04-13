@@ -41,7 +41,7 @@ if !(local _group) exitWith {
 };
 
 private _type = switch (_patrolSize mod 6) do {
-    case 2: {selectRandom ["_msamg", "_lat"]};
+    case 2: {selectRandom ["_rifleman", "_rifleman", "_lat"]};
     case 3: {selectRandom ["_ar", "_ar", "_ar",  "_ar", "_mmgg"]};
     case 4: {selectRandom ["_sm", "_rifleman_02"]};
     case 5: {selectRandom ["_ftl", "_ftl", "_sl"]};

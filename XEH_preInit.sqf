@@ -27,5 +27,6 @@ GVAR(reinforceHashMap) = createHashMap;
 GVAR(missionMenuLastUpdateFrame) = -1;
 GVAR(missionMenuLastCursorPos) = [0, 0];
 GVAR(endOfMission) = false;
+GVAR(enableGRADMode) = getMissionConfigValue [QGVAR(gradMode), 1];
 
 MISSION_GVAR_PREFIX = true;

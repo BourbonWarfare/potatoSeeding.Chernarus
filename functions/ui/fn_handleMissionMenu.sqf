@@ -22,6 +22,13 @@ if (_isClosing) then {
     for "_i" from 0 to BW_ZONE_MAX_CHECK do {
         private _mark = BW_ZONE_BASE_STRING + (str _i);
         if ((getMarkerPos _mark) isEqualTo [0, 0, 0]) exitWith {};
+        if (markerColor _mark != "ColorBlue") then {
+            _mark setMarkerAlphaLocal 0;
+        };
+    };
+    for "_i" from 0 to BW_MOUT_MAX_CHECK do {
+        private _mark = BW_MOUT_BASE_STRING + (str _i);
+        if (getMarkerPos _mark isEqualTo [0, 0, 0]) exitWith {_maxZoneMarker = _i};
         _mark setMarkerAlphaLocal 0;
     };
     if (_exitCode != 1) exitWith {

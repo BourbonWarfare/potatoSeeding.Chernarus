@@ -33,6 +33,14 @@ if (isNull _building || _forceSize <= 0) exitWith {};
 
 if (isNull _group) then {
     _group = createGroup [_sideGarrison, true];
+    private _type = typeOf _building;
+    if (_type in ["land_gm_euro_barracks_01", "land_gm_euro_barracks_02","Land_Tenement_01"]) then {
+        _forceSize = 2.25 * _forceSize;
+    };
+    if (_type in ["land_gm_euro_pub_02","gm_bunker_command_01_plain"]) then {
+        _forceSize = 1.5 * _forceSize;
+    };
+    _forceSize = round _forceSize;
 };
 if !(local _group) exitWith {
     [_this] remoteExecCall [QFUNC(garrisonBuilding), _group];
@@ -53,10 +61,10 @@ private _sideType = switch (_sideGarrison) do {
 };
 private _unit = _group createUnit ["potato_" + _sideType + _type, BW_UNIT_SPAWN_POS, [], 0, "NONE"];
 _forceSize = _forceSize - 1;
-if (_allowMovementOnShot && random 1 < 0.2) then {
+if (_allowMovementOnShot && random 1 < 0.15) then {
     _unit addEventHandler ["FiredNear", {
         params ["_unit", "_firer"];
-        if (side _firer != side player || {_firer distance2D _unit > 8 + random 15}) exitWith {};
+        if (side _firer != side player || {_firer distance2D _unit > 8 + random 10}) exitWith {};
         _unit enableAI "PATH";
         _unit removeEventHandler [_thisEvent, _thisEventHandler];
     }];

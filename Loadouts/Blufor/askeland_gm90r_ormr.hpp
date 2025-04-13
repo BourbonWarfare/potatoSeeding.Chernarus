@@ -131,6 +131,43 @@ description = "Askeland Defense Force (ADF) c. 2014 - this loadout uses the mod 
 
 //  init = "this addGoggles selectRandom ['ptv_balaclava_ct3_g','ptv_balaclava_ess_ct3_g','ptv_comtac3_g','ptv_ess_ct3_b','ptv_shemagh_ct3_g','None'];"
 
+// ------------- Vehicle Pool -------------
+transportVehiclePool[] = {
+  "B_T_Truck_01_transport_F",
+  "B_T_Truck_01_covered_F",
+  "gm_ge_army_iltis_cargo",
+  "gm_ge_army_typ247_cargo",
+  "gm_ge_army_typ253_cargo"
+};
+armedSoftVehiclePool[] = {
+  "gm_ge_army_iltis_mg3",
+  "gm_ge_army_u1300l_container",
+  "gm_ge_army_fuchsa0_engineer"
+};
+armoredVehiclePool[] = {
+  "gm_ge_army_m113a1g_apc",
+  "gm_ge_army_marder1a2",
+  "gm_ge_army_luchsa2"
+};
+tankVehiclePool[] = {
+  "gm_ge_army_Leopard1a5",
+  "gm_ge_army_Leopard1a5",
+  "CUP_B_Leopard2A6_GER"
+};
+heliVehiclePool[] = {
+  "gm_ge_army_ch53g",
+  "gm_ge_army_bo105p_pah1",
+  "gm_ge_army_bo105p_pah1a1",
+  "gm_ge_army_bo105p1m_vbh_swooper"
+};
+planeVehiclePool[] = {
+  "CUP_B_GR9_DYN_GB",
+  "gm_ge_airforce_do28d2"
+};
+reinforcementTruck = "gm_ge_army_u1300l_cargo";
+reinforcementArmed = "gm_ge_army_m113a1g_apc";
+// ------------- End Vehicle Pool -------------
+
 class Car {
   TransportWeapons[] = {AT};
   TransportMagazines[] = {RIFLE_MAG,RIFLE_MAG,CARBINE_MAG,AR_MAG,AR_MAG,GLRIFLE_MAG_HE};

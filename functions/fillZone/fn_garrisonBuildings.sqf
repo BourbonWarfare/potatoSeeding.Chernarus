@@ -97,6 +97,7 @@ private _skipCount = 0;
         _allowMovementOnShot
     ], _maxTime] call CBA_fnc_waitAndExecute;
     _unitSum = _unitSum + _countUnits;
+    if (_unitSum > 250) exitWith {};
 } forEach _buildings;
 
 [_maxTime + 10, _unitSum]

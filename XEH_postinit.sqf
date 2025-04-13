@@ -23,6 +23,7 @@ addMissionEventHandler ["EntityCreated", {
 }];
 
 if !(hasInterface) exitWith {};
+"uelzenMOUTMarker" setMarkerDrawPriority 1;
 
 for "_i" from 0 to BW_MOUT_MAX_CHECK do {
     private _mark = "moutPos_" + (str _i);
@@ -47,15 +48,22 @@ private _action = [
     "PotatoSeedActions",
     "Mission Actions",
     "\A3\ui_f\data\map\markers\military\flag_CA.paa", {},
-    {(_player nearObjects [BW_TP_FLAG_TYPE, BW_TP_FLAG_DIST]) isNotEqualTo []}
-] call ace_interact_menu_fnc_createAction;
+    {
+        params ["_player"];
+        if ((_player nearObjects [BW_TP_FLAG_TYPE, BW_TP_FLAG_DIST]) isNotEqualTo []) then {
+            _player setVariable [QPGVAR(assignGear,changeOpticsTimeLimit), CBA_missionTime + 10];
+            true
+        } else {
+            false
+        }
+    }
+] call ACEFUNC(interact_menu,createAction);
 [
-    "potato_w_rifleman",
-    1,
+    "CAManBase", 1,
     ["ACE_SelfActions"],
     _action,
     true
-] call ace_interact_menu_fnc_addActionToClass;
+] call ACEFUNC(interact_menu,addActionToClass);
 
 _action = [
     "tpUnit",
@@ -69,14 +77,13 @@ _action = [
         }];
     },
     {true}
-] call ace_interact_menu_fnc_createAction;
+] call ACEFUNC(interact_menu,createAction);
 [
-    "potato_w_rifleman",
-    1,
+    "CAManBase", 1,
     ["ACE_SelfActions", "PotatoSeedActions"],
     _action,
     true
-] call ace_interact_menu_fnc_addActionToClass;
+] call ACEFUNC(interact_menu,addActionToClass);
 
 _action = [
     "InitTasks",
@@ -85,14 +92,13 @@ _action = [
         createDialog "RscMissionSelectMenu";
     },
     {true}
-] call ace_interact_menu_fnc_createAction;
+] call ACEFUNC(interact_menu,createAction);
 [
-    "potato_w_rifleman",
-    1,
+    "CAManBase", 1,
     ["ACE_SelfActions", "PotatoSeedActions"],
     _action,
     true
-] call ace_interact_menu_fnc_addActionToClass;
+] call ACEFUNC(interact_menu,addActionToClass);
 
 _action = [
     "fullHeal",
@@ -101,14 +107,13 @@ _action = [
         [_player, _player] call ace_medical_treatment_fnc_fullHeal;
     },
     {true}
-] call ace_interact_menu_fnc_createAction;
+] call ACEFUNC(interact_menu,createAction);
 [
-    "potato_w_rifleman",
-    1,
+    "CAManBase", 1,
     ["ACE_SelfActions", "PotatoSeedActions"],
     _action,
     true
-] call ace_interact_menu_fnc_addActionToClass;
+] call ACEFUNC(interact_menu,addActionToClass);
 
 _action = [
     "resetGear",
@@ -117,15 +122,77 @@ _action = [
         [_player] call PFUNC(assignGear,assignGearMan);
     },
     {true}
-] call ace_interact_menu_fnc_createAction;
+] call ACEFUNC(interact_menu,createAction);
 [
-    "potato_w_rifleman",
-    1,
+    "CAManBase", 1,
     ["ACE_SelfActions", "PotatoSeedActions"],
     _action,
     true
-] call ace_interact_menu_fnc_addActionToClass;
+] call ACEFUNC(interact_menu,addActionToClass);
+_action = [
+    "openArsenal",
+    "Open Arsenal",
+    "\a3\ui_f\data\gui\rsc\rscdisplayarsenal\cargomagall_ca.paa", {
+        [mainSupplyBox, _player] call ace_arsenal_fnc_openBox
+    },
+    {true}
+] call ACEFUNC(interact_menu,createAction);
+[
+    "CAManBase", 1,
+    ["ACE_SelfActions", "PotatoSeedActions"],
+    _action,
+    true
+] call ACEFUNC(interact_menu,addActionToClass);
 
+_action = [
+    "PotatoAddRally",
+    "Place Rally Flag",
+    "\a3\ui_f\data\igui\cfg\actions\takeflag_ca.paa", {
+        if ((_player nearObjects [BW_TP_FLAG_TYPE, 100]) isNotEqualTo []) exitWith {
+            ["Notif_Picture", [
+                "Failed to Plant Flag",
+                "You are currently too close to another flag to place a new one.",
+                "\a3\ui_f\data\igui\cfg\actions\returnflag_ca.paa"
+            ]] call BIS_fnc_showNotification;
+        };
+        if (((_player nearEntities ["CAManBase", 200]) select {
+                alive _x &&
+                 (side _x == east ||
+                 side _x == resistance)
+                 }) isNotEqualTo []) exitWith {
+            ["Notif_Picture", [
+                "Failed to Plant Flag",
+                "Enemy within 200 meters, you may not place a flag.",
+                "\a3\ui_f\data\igui\cfg\actions\returnflag_ca.paa"
+            ]] call BIS_fnc_showNotification;
+        };
+        private _pos = getPosATL _player;
+        createVehicle [BW_TP_FLAG_TYPE, _pos, [], 0, "NONE"];
+    },
+    {leader _player == _player}
+] call ACEFUNC(interact_menu,createAction);
+[
+    "CAManBase", 1,
+    ["ACE_SelfActions"],
+    _action,
+    true
+] call ACEFUNC(interact_menu,addActionToClass);
+
+if (GVAR(enableGRADMode) > 0 && getMissionConfigValue ["allowGRADFromFlag", 1] == 1) then {
+    _action = [
+        "PotatoGRADVehicle",
+        "Vehicle Spawner",
+        "\a3\ui_f\data\gui\rsc\rscdisplayarsenal\spacegarage_ca.paa", {
+            call FUNC(gradVicHandle)
+        }, {true}
+    ] call ACEFUNC(interact_menu,createAction);
+    [
+        "CAManBase", 1,
+        ["ACE_SelfActions", "PotatoSeedActions"],
+        _action,
+        true
+    ] call ACEFUNC(interact_menu,addActionToClass);
+};
 _action = [
     "PotatoDeleteRally",
     "Delete Rally Flag",
@@ -149,36 +216,10 @@ _action = [
         deleteVehicle _flag;
     },
     {leader _player == _player}
-] call ace_interact_menu_fnc_createAction;
+] call ACEFUNC(interact_menu,createAction);
 [
-    "potato_w_rifleman",
-    1,
+    "CAManBase", 1,
     ["ACE_SelfActions", "PotatoSeedActions"],
     _action,
     true
-] call ace_interact_menu_fnc_addActionToClass;
-
-_action = [
-    "PotatoRally",
-    "Place Rally Flag",
-    "\a3\ui_f\data\igui\cfg\actions\takeflag_ca.paa", {
-        if ((_player nearObjects [BW_TP_FLAG_TYPE, 100]) isNotEqualTo []) exitWith {
-            ["Notif_Picture", [
-                "Failed to Plant Flag",
-                "You are currently too close to another flag to place a new one.",
-                "\a3\ui_f\data\igui\cfg\actions\returnflag_ca.paa"
-            ]] call BIS_fnc_showNotification;
-        };
-        private _pos = getPosATL _player;
-        createVehicle [BW_TP_FLAG_TYPE, _pos, [], 0, "NONE"];
-    },
-    {leader _player == _player}
-] call ace_interact_menu_fnc_createAction;
-[
-    "CAManBase",
-    1,
-    ["ACE_SelfActions"],
-    _action,
-    true
-] call ace_interact_menu_fnc_addActionToClass;
-
+] call ACEFUNC(interact_menu,addActionToClass);

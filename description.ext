@@ -2,6 +2,9 @@
 
 onLoadName = "BW Seeding V4";
 
+// Disable (0) or enable (1) the automatic GRAD vehicle flag actions
+allowGRADFromFlag = 1;
+
 // BWMF Gear
 //Credits:headswe, Pabst, Zerith
 #include "CfgLoadouts.hpp"
@@ -10,6 +13,8 @@ onLoadName = "BW Seeding V4";
 #include "cfg\CfgEventHandlers.hpp"
 // Functions
 #include "cfg\CfgFunctions.hpp"
+// GRAD
+#include "cfg\CfgGrad.hpp"
 // Menus:
 #include "cfg\CfgUI.hpp"
 // Notifications:

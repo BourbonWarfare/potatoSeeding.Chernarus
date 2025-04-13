@@ -64,6 +64,7 @@ control ctrlSetText "Chance to Skip Building (%)"
 
 // Spawn Zones
 #define BW_MOUT_MAX_CHECK 15
+#define BW_MOUT_BASE_STRING "moutPos_"
 #define BW_ZONE_MAX_CHECK 255
 #define BW_ZONE_BASE_STRING "clearableZone_"
 
@@ -88,3 +89,12 @@ control ctrlSetText "Chance to Skip Building (%)"
 // Menu Hash accessors
 #define GET_MENU_OPTION(var1) (GVAR(menuOptions) get QUOTE(var1))
 #define SET_MENU_OPTION(var1,var2) (GVAR(menuOptions) set [ARR_2(QUOTE(var1),var2)])
+
+/// Vehicle Spawner Vehicles
+#define SPAWN_HELI_OBJ "Land_HelipadCircle_F"
+#define SPAWN_PLANE_OBJ "Land_HelipadEmpty_F"
+#define SPAWN_LAND_VEHICLE_ARRAY ((getArray (missionConfigFile >> "CfgLoadouts" >> "potato_w" >> "wheeledtransportVehiclePool")) + (getArray (missionConfigFile >> "CfgLoadouts" >> "potato_w" >> "armedSoftVehiclePool")))
+#define SPAWN_APCIFV_VEHICLE_ARRAY (getArray (missionConfigFile >> "CfgLoadouts" >> "potato_w" >> "armoredVehiclePool"))
+#define SPAWN_TANK_VEHICLE_ARRAY (getArray (missionConfigFile >> "CfgLoadouts" >> "potato_w" >> "tankVehiclePool"))
+#define SPAWN_HELI_VEHICLE_ARRAY (getArray (missionConfigFile >> "CfgLoadouts" >> "potato_w" >> "heliVehiclePool"))
+#define SPAWN_PLANE_VEHICLE_ARRAY (getArray (missionConfigFile >> "CfgLoadouts" >> "potato_w" >> "planeVehiclePool"))
