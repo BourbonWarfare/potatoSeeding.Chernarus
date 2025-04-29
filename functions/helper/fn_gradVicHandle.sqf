@@ -39,28 +39,32 @@ if (_spawnPositions isEqualTo [0, 0, 0, 0] &&
         "\a3\ui_f\data\igui\cfg\actions\returnflag_ca.paa"
     ]] call BIS_fnc_showNotification;
 };
+private _cfgPath = missionConfigFile >> "CfgLoadouts" >> "potato_w";
 private _vehicles = [];
 _spawnPositions = [_spawnPositions, _spawnPositions];
 if (_spawnPositions isNotEqualTo [0, 0, 0, 0]) then {
-    _vehicles = SPAWN_LAND_VEHICLE_ARRAY;
+    _vehicles = (getArray (_cfgPath >> "transportVehiclePool")) + getArray (_cfgPath >> "armedSoftVehiclePool");
 };
 if (_spawnPositions isNotEqualTo [0, 0, 0, 0]) then {
-    _vehicles = _vehicles + SPAWN_APCIFV_VEHICLE_ARRAY;
+    _vehicles = _vehicles + getArray (_cfgPath >> "armoredVehiclePwdool");
 };
 if (_spawnPositions isNotEqualTo [0, 0, 0, 0]) then {
-    _vehicles = _vehicles + SPAWN_TANK_VEHICLE_ARRAY;
+    _vehicles = _vehicles + getArray (_cfgPath >> "tankVehiclePool");
 };
 if (_heliSpawns isNotEqualTo []) then {
     private _finalHeli = selectRandom _heliSpawns;
     _spawnPositions pushBack ((getPosATL  _finalHeli) + [getDir _finalHeli]);
-    _vehicles = _vehicles + SPAWN_HELI_VEHICLE_ARRAY;
+    _vehicles = _vehicles + getArray (_cfgPath >> "heliVehiclePool");
+}  else {
+    _spawnPositions pushBack [0, 0, 0, 0];
 };
 if (_plansSpawns isNotEqualTo []) then {
     private _finalPlane = selectRandom _plansSpawns;
     _spawnPositions pushBack ((getPosATL _finalPlane) + [getDir _finalPlane]);
-    _vehicles = _vehicles + SPAWN_PLANE_VEHICLE_ARRAY;
+    _vehicles = _vehicles + getArray (_cfgPath >> "planeVehiclePool");
 };
-
-[{
-    _this spawn grad_vehicleSpawner_fnc_openDialog;
-}, [_vehicles,_spawnPositions]] call CBA_fnc_execNextFrame;
+if (_vehicles isNotEqualTo []) then {
+    [{
+        _this spawn grad_vehicleSpawner_fnc_openDialog;
+    }, [_vehicles,_spawnPositions]] call CBA_fnc_execNextFrame;
+};
