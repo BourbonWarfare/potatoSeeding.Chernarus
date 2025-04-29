@@ -133,39 +133,39 @@ description = "Askeland Defense Force (ADF) c. 2014 - this loadout uses the mod 
 
 // ------------- Vehicle Pool -------------
 transportVehiclePool[] = {
-  "B_T_Truck_01_transport_F",
-  "B_T_Truck_01_covered_F",
-  "gm_ge_army_iltis_cargo",
-  "gm_ge_army_typ247_cargo",
-  "gm_ge_army_typ253_cargo"
+  "I_E_Offroad_01_F",
+  "CUP_I_T810_Unarmed_LDF",
+  "B_Truck_01_transport_F",
+  "ptv_MATV"
 };
 armedSoftVehiclePool[] = {
-  "gm_ge_army_iltis_mg3",
-  "gm_ge_army_u1300l_container",
-  "gm_ge_army_fuchsa0_engineer"
+  "ptv_MATV_GMG",
+  "ptv_MATV_HMG"
 };
-armoredVehiclePool[] = {
-  "gm_ge_army_m113a1g_apc",
-  "gm_ge_army_marder1a2",
-  "gm_ge_army_luchsa2"
+armoredVehiclePwdool[] = {
+  "ptv_Warrior",
+  "ptv_Pnd",
+  "I_E_APC_tracked_03_cannon_F",
+  "CUP_B_Boxer_GMG_GER_WDL",
+  "CUP_B_Boxer_HMG_GER_WDL"
 };
 tankVehiclePool[] = {
-  "gm_ge_army_Leopard1a5",
-  "gm_ge_army_Leopard1a5",
-  "CUP_B_Leopard2A6_GER"
+  "I_MBT_03_cannon_F",
+  "gmx_aaf_leopard1a5_wdl"
 };
 heliVehiclePool[] = {
-  "gm_ge_army_ch53g",
-  "gm_ge_army_bo105p_pah1",
-  "gm_ge_army_bo105p_pah1a1",
-  "gm_ge_army_bo105p1m_vbh_swooper"
+  "ptv_Merlin",
+  "ptv_Merlin2",
+  "ptv_Merlin3",
+  "CUP_I_Wildcat_Green_AAF",
+  "NH90Armed_AAF"
 };
 planeVehiclePool[] = {
   "CUP_B_GR9_DYN_GB",
-  "gm_ge_airforce_do28d2"
+  "ptv_Gripen_F"
 };
-reinforcementTruck = "gm_ge_army_u1300l_cargo";
-reinforcementArmed = "gm_ge_army_m113a1g_apc";
+reinforcementTruck = "CUP_I_T810_Unarmed_LDF";
+reinforcementArmed = "ptv_Pnd";
 // ------------- End Vehicle Pool -------------
 
 class Car {

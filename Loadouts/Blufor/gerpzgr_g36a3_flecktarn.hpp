@@ -26,7 +26,7 @@ description = "German Panzergrenadier Infantry c. 2024";
 // Rifle
 #define RIFLE "CUP_arifle_G36A3","CUP_arifle_G36A3_grip","CUP_arifle_G36A3","CUP_arifle_G36KA3","CUP_arifle_G36KA3_grip"
 #define RIFLE_MAG "CUP_30Rnd_556x45_G36:7","CUP_30Rnd_TE1_Red_Tracer_556x45_G36:3"
-#define RIFLE_ATTACHMENTS "CUP_optic_ZeissZPoint","CUP_acc_LLM_black"
+#define RIFLE_ATTACHMENTS "CUP_optic_ZeissZPoint"
 #define AAR_ATTACHMENTS RIFLE_ATTACHMENTS
 #define ALT_OPTICS "ptv_eot552","CUP_optic_MicroT1_low","ptv_rmr","ptv_xps3"
 #define MAG_OPTICS "hlc_optic_HensoldtZO_lo_Docter","hlc_optic_HensoldtZO_Lo"
@@ -140,101 +140,18 @@ reinforcementTruck = "gm_ge_army_u1300l_cargo";
 reinforcementArmed = "gm_ge_army_m113a1g_apc";
 // ------------- End Vehicle Pool -------------
 
-//  init = "this addGoggles selectRandom ['','','','','','','',''];"
-
-class Box_NATO_Wps_F {
-  boxCustomName = "FT Resupply Crate";
-  TransportMagazines[] = {RIFLE_MAG,RIFLE_MAG,RIFLE_MAG,RIFLE_MAG,AR_MAG,AR_MAG,GLRIFLE_MAG_HE,GLRIFLE_MAG_HE,GLRIFLE_MAG_SMOKE,BASE_GRENADES,BASE_GRENADES,BASE_GRENADES,BASE_GRENADES,DEMO,DEMO_TOOL};
-};
-class Box_NATO_WpsLaunch_F {
-  boxCustomName = "AT Launcher Crate";
-  TransportWeapons[] = {AT,AT};
-  TransportMagazines[] = {AT_MAG,AT_MAG,HAT_MAG};
-};
-class CUP_WeaponCase_Black_CUP {
-  boxCustomName = "HAT Resupply Crate";
-  TransportMagazines[] = {HAT_MAG};
-};
-class ACE_medicalSupplyCrate_advanced {
-  boxCustomName = "Medical Crate";
-  TransportItems[] = {MEDIC_MEDICAL};
-};
-
-class Car {
-  TransportWeapons[] = {AT};
-  TransportMagazines[] = {RIFLE_MAG,RIFLE_MAG,CARBINE_MAG,AR_MAG,AR_MAG,GLRIFLE_MAG_HE};
-  TransportItems[] = {BASE_MEDICAL,BASE_MEDICAL,BASE_MEDICAL,BASE_MEDICAL};
-};
-class Tank {
-  TransportWeapons[] = {AT};
-  TransportMagazines[] = {RIFLE_MAG,RIFLE_MAG,CARBINE_MAG,AR_MAG,AR_MAG,GLRIFLE_MAG_HE};
-  TransportItems[] = {BASE_MEDICAL,BASE_MEDICAL,BASE_MEDICAL,BASE_MEDICAL};
-};
-class Helicopter {
-  TransportMagazines[] = {RIFLE_MAG,RIFLE_MAG,CARBINE_MAG,AR_MAG,AR_MAG,GLRIFLE_MAG_HE};
-  TransportItems[] = {BASE_MEDICAL,BASE_MEDICAL,BASE_MEDICAL,BASE_MEDICAL};
-};
+class Car {};
+class Tank {};
+class Helicopter {};
 class Plane {};
 class Ship_F {};
-
-class CUP_B_Boxer_HMG_GER_WDL {
-    minVehicleBoxSpace = 8;
-  class Box_NATO_Wps_F: Box_NATO_Wps_F {
-    boxCount = 2;
-  };
-  class Box_NATO_WpsLaunch_F: Box_NATO_WpsLaunch_F {
-    boxCount = 1;
-  };
-  class ACE_medicalSupplyCrate_advanced: ACE_medicalSupplyCrate_advanced {
-    boxCount = 1;
-  };
-  class Land_CanisterFuel_F {
-    boxCount = 2;
-  };
-  class CUP_WeaponCase_Black_CUP: CUP_WeaponCase_Black_CUP {
-    boxCount = 1;
-  };
-};
-class CUP_B_Boxer_GMG_GER_WDL {
-    minVehicleBoxSpace = 8;
-  class Box_NATO_Wps_F: Box_NATO_Wps_F {
-    boxCount = 2;
-  };
-  class Box_NATO_WpsLaunch_F: Box_NATO_WpsLaunch_F {
-    boxCount = 1;
-  };
-  class ACE_medicalSupplyCrate_advanced: ACE_medicalSupplyCrate_advanced {
-    boxCount = 1;
-  };
-  class Land_CanisterFuel_F {
-    boxCount = 2;
-  };
-  class CUP_WeaponCase_Black_CUP: CUP_WeaponCase_Black_CUP {
-    boxCount = 1;
-  };
-};
-class gm_ge_army_kat1_451_reammo {
-    minVehicleBoxSpace = 40;
-  class Box_NATO_Wps_F: Box_NATO_Wps_F {
-    boxCount = 10;
-  };
-  class Box_NATO_WpsLaunch_F: Box_NATO_WpsLaunch_F {
-    boxCount = 4;
-  };
-  class ACE_medicalSupplyCrate_advanced: ACE_medicalSupplyCrate_advanced {
-    boxCount = 4;
-  };
-  class CUP_WeaponCase_Black_CUP: CUP_WeaponCase_Black_CUP {
-    boxCount = 3;
-  };
-};
 
 class rifleman {// rifleman
   uniform[] = {CAMO_UNIFORM};
   vest[] = {CAMO_VEST};
   headgear[] = {CAMO_HEADGEAR};
   backpack[] = {CAMO_BACKPACK};
-  backpackItems[] = {BASE_MEDICAL};
+  backpackItems[] = {BASE_MEDICAL_AI};
   weapons[] = {RIFLE};
   magazines[] = {RIFLE_MAG,BASE_GRENADES};
   items[] = {TOOLS};
@@ -318,7 +235,7 @@ class matg: Fic_Soldier_Carbine {// MAT Gunner
   backpack[] = {CARRYALL};
   backpackItems[] = {};
   magazines[] += {MAT_MAG};
-  items[] += {BASE_MEDICAL};
+  items[] += {BASE_MEDICAL_AI};
   launchers[] = {MAT};
   secondaryAttachments[] = {MAT_OPTIC};
 };
@@ -326,7 +243,7 @@ class matag: Fic_Spotter {// MAT Spotter/Ammo Bearer
   backpack[] = {CARRYALL};
   backpackItems[] = {};
   magazines[] += {MAT_MAG};
-  items[] += {BASE_MEDICAL};
+  items[] += {BASE_MEDICAL_AI};
 };
 class msamg: Fic_Soldier_Carbine {// SAM Gunner
   SAM_GEAR(CARRYALL, SAM_MAG)
@@ -372,7 +289,7 @@ class pilot {// Pilot
   weapons[] = {SMG};
   magazines[] = {SMG_MAG,CREW_GRENADES};
   backpackItems[] = {SIDE_KEY,RADIO_LR};
-  items[] = {BASE_MEDICAL,TOOLS,LEADER_TOOLS,RADIO_MR};
+  items[] = {BASE_MEDICAL_AI,TOOLS,LEADER_TOOLS,RADIO_MR};
   linkedItems[] = {LINKED,LEADER_LINKED};
 };
 class vicc: Fic_Soldier_Carbine {// Crew
@@ -384,7 +301,7 @@ class vicc: Fic_Soldier_Carbine {// Crew
   magazines[] = {SMG_MAG,CREW_GRENADES};
   backpackItems[] = {SIDE_KEY,RADIO_LR};
   linkedItems[] = {LINKED,LEADER_LINKED,BINOS};
-  items[] += {BASE_MEDICAL};
+  items[] += {BASE_MEDICAL_AI};
 };
 class vicd: vicc {// Repair Specialist
   backpackItems[] = {"Toolkit",RADIO_MR,SIDE_KEY};
@@ -392,7 +309,7 @@ class vicd: vicc {// Repair Specialist
 };
 class Fic_eng: Fic_Soldier_Carbine {
   backpack[] = {CARRYALL};
-  items[] += {BASE_ENG,BASE_MEDICAL};
+  items[] += {BASE_ENG,BASE_MEDICAL_AI};
   backpackItems[] = {};
   linkedItems[] = {LINKED,LEADER_LINKED};
 };
@@ -476,7 +393,7 @@ class hatl: sl {// HAT Lead
   magazines[] = {RIFLE_MAG,LEADER_GRENADES,PISTOL_MAG,HAT_MAG};
   backpack[] = {CARRYALL};
   launchers[] = {HAT_TRI_LO};
-  items[] += {BASE_MEDICAL};
+  items[] += {BASE_MEDICAL_AI};
 };
 class hatg: rifleman {// HAT Gunner
   backpack[] = {CARRYALL};
@@ -559,7 +476,7 @@ class sf_rifleman {// sf rifleman
   vest[] = {SF_VEST};
   headgear[] = {SF_HEADGEAR};
   backpack[] = {SF_BACKPACK};
-  backpackItems[] = {BASE_MEDICAL};
+  backpackItems[] = {BASE_MEDICAL_AI};
   weapons[] = {SF_RIFLE};
   magazines[] = {SF_RIFLE_MAG,BASE_GRENADES};
   items[] = {TOOLS};

@@ -46,7 +46,7 @@ class CfgLoadouts {
   // West factions
   #include "Loadouts\west_gear.hpp"
   class potato_w { // BluFor
-    #include "Loadouts\Blufor\askeland_gm90r_ormr.hpp"
+    #include "Loadouts\Blufor\ACR_CZ805_WDL.hpp"
   };
 
   // Indy factions
@@ -58,7 +58,7 @@ class CfgLoadouts {
   // East Factions
   #include "Loadouts\east_gear.hpp"
   class potato_e { // OpFor
-    #include "Loadouts\Opfor\msv22_ak74m_emr.hpp"
+    #include "Loadouts\Opfor\cdf_ak107_cdfWoodland.hpp"
   };
 
   // Civilians (mainly for RP missions)

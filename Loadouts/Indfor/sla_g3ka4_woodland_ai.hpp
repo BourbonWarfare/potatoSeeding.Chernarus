@@ -7,7 +7,7 @@ description = "Saharani Liberation Army Presedential Guard (Woodland, 2000s)";
 #define SIDE_UAV_BACKPACK
 #define SIDE_UAV_TERMINAL
 #define SIDE_FAC_GRENADES "rhs_mag_rdg2_white:2","gm_handgrenade_frag_rgd5:2","1Rnd_SmokeBlue_Grenade_shell:4","1Rnd_SmokeYellow_Grenade_shell:3","1Rnd_SmokeOrange_Grenade_shell:3","1Rnd_SmokeGreen_Grenade_shell:5"
-#define SIDE_BASE_GRENADES "rhs_mag_rdg2_white:2","gm_handgrenade_frag_rgd5"
+#define SIDE_BASE_GRENADES "rhs_mag_rdg2_white","gm_handgrenade_frag_rgd5"
 #define SIDE_LEADER_GRENADES SIDE_BASE_GRENADES,"gm_smokeshell_org_gc:2","gm_smokeshell_blk_gc"
 #define SIDE_CREW_GRENADES "rhs_mag_rdg2_white","gm_smokeshell_blk_gc:2"
 #define SIDE_MEDICAL "ACE_elasticBandage:2","ACE_packingBandage:1"
@@ -68,8 +68,8 @@ description = "Saharani Liberation Army Presedential Guard (Woodland, 2000s)";
 #define PISTOL_MAG "CUP_8Rnd_9x18_Makarov_M:4"
 #define PISTOL_OPTIC ""
 #define LEADER_GRENADES SIDE_BASE_GRENADES,"gm_smokeshell_org_gc:2","gm_smokeshell_blk_gc"
-#define TOOLS
-#define LEADER_TOOLS
+#define TOOLS "rhs_mag_rdg2_white"
+#define LEADER_TOOLS TOOLS
 #define LINKED BASE_LINKED
 #define LEADER_LINKED
 #define SIDE_MEDIC_GRENADES "rhs_mag_rdg2_white","gm_smokeshell_org_gc","gm_smokeshell_blk_gc"

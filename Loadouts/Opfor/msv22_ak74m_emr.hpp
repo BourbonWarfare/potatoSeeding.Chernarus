@@ -143,20 +143,9 @@ reinforcementTruck = "CUP_O_Kamaz_6396_transport_RUS_M";
 reinforcementArmed = "CUP_O_BTR80_CAMO_RU";
 // ------------- End Vehicle Pool -------------
 
-class Car {
-  TransportWeapons[] = {AT};
-  TransportMagazines[] = {RIFLE_MAG,RIFLE_MAG,CARBINE_MAG,AR_MAG,AR_MAG,GLRIFLE_MAG_HE};
-  TransportItems[] = {BASE_MEDICAL,BASE_MEDICAL,BASE_MEDICAL,BASE_MEDICAL};
-};
-class Tank {
-  TransportWeapons[] = {AT};
-  TransportMagazines[] = {RIFLE_MAG,RIFLE_MAG,CARBINE_MAG,AR_MAG,AR_MAG,GLRIFLE_MAG_HE};
-  TransportItems[] = {BASE_MEDICAL,BASE_MEDICAL,BASE_MEDICAL,BASE_MEDICAL};
-};
-class Helicopter {
-  TransportMagazines[] = {RIFLE_MAG,RIFLE_MAG,CARBINE_MAG,AR_MAG,AR_MAG,GLRIFLE_MAG_HE};
-  TransportItems[] = {BASE_MEDICAL,BASE_MEDICAL,BASE_MEDICAL,BASE_MEDICAL};
-};
+class Car {};
+class Tank {};
+class Helicopter {};
 class Plane {};
 class Ship_F {};
 
@@ -165,7 +154,7 @@ class rifleman {// rifleman
   vest[] = {CAMO_VEST};
   headgear[] = {CAMO_HEADGEAR};
   backpack[] = {CAMO_BACKPACK};
-  backpackItems[] = {BASE_MEDICAL};
+  backpackItems[] = {BASE_MEDICAL_AI};
   weapons[] = {RIFLE};
   magazines[] = {RIFLE_MAG,BASE_GRENADES};
   items[] = {TOOLS};
@@ -245,7 +234,7 @@ class matg: Fic_Soldier_Carbine {// MAT Gunner
   backpack[] = {CARRYALL};
   backpackItems[] = {};
   magazines[] += {MAT_MAG};
-  items[] += {BASE_MEDICAL};
+  items[] += {BASE_MEDICAL_AI};
   launchers[] = {MAT};
   secondaryAttachments[] = {MAT_OPTIC};
 };
@@ -253,7 +242,7 @@ class matag: Fic_Spotter {// MAT Spotter/Ammo Bearer
   backpack[] = {CARRYALL};
   backpackItems[] = {};
   magazines[] += {MAT_MAG2};
-  items[] += {BASE_MEDICAL};
+  items[] += {BASE_MEDICAL_AI};
 };
 class msamg: Fic_Soldier_Carbine {// SAM Gunner
   SAM_GEAR(CARRYALL, SAM_MAG)
@@ -294,7 +283,7 @@ class pilot {// Pilot
   weapons[] = {SMG};
   magazines[] = {SMG_MAG,CREW_GRENADES};
   backpackItems[] = {SIDE_KEY,RADIO_LR};
-  items[] = {BASE_MEDICAL,TOOLS,LEADER_TOOLS,RADIO_MR};
+  items[] = {BASE_MEDICAL_AI,TOOLS,LEADER_TOOLS,RADIO_MR};
   linkedItems[] = {LINKED,LEADER_LINKED};
 };
 class vicc: Fic_Soldier_Carbine {// Crew
@@ -306,7 +295,7 @@ class vicc: Fic_Soldier_Carbine {// Crew
   magazines[] = {CARBINE_MAG,CREW_GRENADES};
   backpackItems[] = {SIDE_KEY,RADIO_LR};
   linkedItems[] = {LINKED,LEADER_LINKED,BINOS};
-  items[] += {BASE_MEDICAL};
+  items[] += {BASE_MEDICAL_AI};
 };
 class vicd: vicc {// Repair Specialist
   backpackItems[] = {"Toolkit",RADIO_MR,SIDE_KEY};
@@ -396,7 +385,7 @@ class hatl: sl {// HAT Lead
   magazines[] = {RIFLE_MAG,LEADER_GRENADES,PISTOL_MAG,HAT_MAG};
   backpack[] = {CARRYALL};
   launchers[] = {HAT_TRI_LO};
-  items[] += {BASE_MEDICAL};
+  items[] += {BASE_MEDICAL_AI};
 };
 class hatg: rifleman {// HAT Gunner
   backpack[] = {CARRYALL};
@@ -479,7 +468,7 @@ class sf_rifleman {// sf rifleman
   vest[] = {SF_VEST};
   headgear[] = {SF_HEADGEAR};
   backpack[] = {SF_BACKPACK};
-  backpackItems[] = {BASE_MEDICAL};
+  backpackItems[] = {BASE_MEDICAL_AI};
   weapons[] = {SF_RIFLE};
   magazines[] = {SF_RIFLE_MAG,BASE_GRENADES};
   items[] = {TOOLS};
