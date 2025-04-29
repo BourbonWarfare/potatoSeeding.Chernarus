@@ -15,7 +15,7 @@ class RscMissionSelectMenu {
     w = 0.75;
     h = 0.86;
     onUnload = QUOTE([ARR_2(true,_this)] call FUNC(handleMissionMenu));
-    onLoad = QUOTE([ARR_2(false,_this)] call FUNC(handleMissionMenu));
+    onLoad = QUOTE([_this#0] call FUNC(updateMenuOptions)); //QUOTE([ARR_2(false,_this)] call FUNC(handleMissionMenu));
     class ControlsBackground {
         class Background : RscText {
             idc = -1;
@@ -92,7 +92,7 @@ class RscMissionSelectMenu {
             tooltip = "Select faction of enemy units";
             class Items {
                 class east {
-                    text = "British Armed Forces (L85A2)";
+                    text = "Chernarus Defense Force (AK-107)";
                     value = BW_TRAINING_ENEMY_OPFOR;
                     default = 1;
                 };
@@ -185,25 +185,26 @@ class RscMissionSelectMenu {
 
         class RscText_option0: RscText_minAISkill {
             idc = IDC_MISSION_OPTION0_TEXT;
-            text = "Min Units Per Building (%)";
+            text = "Min Units Per Building: 2";
             y = 0.4;
         };
         class RscXSliderH_option0: RscXSliderH_minAISkill {
             idc = IDC_MISSION_OPTION0;
-            sliderPosition = 0;
+            sliderPosition = 0.5;
             y = 0.4;
+            sliderRange[] = {0.25, 1};
         };
 
         class RscText_option1: RscText_minAISkill {
             idc = IDC_MISSION_OPTION1_TEXT;
-            text = "Max Units Per Building (%)";
+            text = "Max Units: 100";
             y = 0.5;
         };
         class RscXSliderH_option1: RscXSliderH_minAISkill {
             idc = IDC_MISSION_OPTION1;
             y = 0.5;
             sliderPosition = 1;
-            sliderRange[] = {0, 1};
+            sliderRange[] = {0.25, 1};
         };
 
         class RscText_option2: RscText_minAISkill {

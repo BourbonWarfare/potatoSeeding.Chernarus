@@ -10,7 +10,7 @@ GVAR(menuOptions) = createHashMapFromArray [
     ["density", BW_TRAINING_DENSITY_UNIFORM],
     ["AIskillMin", 0.5],
     ["AIskillMax", 0.5],
-    ["option0", 0.2],
+    ["option0", 0.33],
     ["option1", 0.5],
     ["option2", 0],
     ["option3", 0],

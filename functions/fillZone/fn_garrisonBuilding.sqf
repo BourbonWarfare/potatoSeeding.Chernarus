@@ -34,7 +34,7 @@ if (isNull _building || _forceSize <= 0) exitWith {};
 if (isNull _group) then {
     _group = createGroup [_sideGarrison, true];
     private _type = typeOf _building;
-    if (_type in ["land_gm_euro_barracks_01", "land_gm_euro_barracks_02","Land_Tenement_01"]) then {
+    if (_type in ["land_gm_euro_barracks_01", "land_gm_euro_barracks_02","Land_Tenement_01","Land_A_Hospital"]) then {
         _forceSize = 2.25 * _forceSize;
     };
     if (_type in ["land_gm_euro_pub_02","gm_bunker_command_01_plain"]) then {
@@ -47,10 +47,10 @@ if !(local _group) exitWith {
 };
 
 private _type = switch (_forceSize mod 6) do {
-    case 0: {selectRandom ["_ftl", "_ftl", "_sl"]};
     case 2: {selectRandom ["_rifleman", "_rifleman", "_lat", "_ar"]};
     case 3: {selectRandom ["_ar", "_ar", "_ar",  "_ar", "_mmgg"]};
-    case 4: {selectRandom ["_sm", "_rifleman_02"]};
+    case 4: {selectRandom ["_ftl", "_ftl", "_sl"]};
+    case 5: {selectRandom ["_sm", "_rifleman_02"]};
     default {selectRandom ["_rifleman", "_rifleman_03", "_rifleman_04"]};
 };
 private _sideType = switch (_sideGarrison) do {
@@ -68,6 +68,10 @@ if (_allowMovementOnShot && random 1 < 0.15) then {
         _unit enableAI "PATH";
         _unit removeEventHandler [_thisEvent, _thisEventHandler];
     }];
+};
+
+if (_patrolSize == 4) then {
+    _group selectLeader _unit;
 };
 
 if (_forceSize <= 0) then {

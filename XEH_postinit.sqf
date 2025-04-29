@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-setViewDistance 2500;
+setViewDistance 4000;
 
 if (isServer) then {
     [] call FUNC(autoEndSession);
@@ -26,7 +26,7 @@ if !(hasInterface) exitWith {};
 "uelzenMOUTMarker" setMarkerDrawPriority 1;
 
 for "_i" from 0 to BW_MOUT_MAX_CHECK do {
-    private _mark = "moutPos_" + (str _i);
+    private _mark = BW_MOUT_BASE_STRING + (str _i);
     if ((getMarkerPos _mark) isEqualTo [0, 0, 0]) exitWith {};
     _mark setMarkerAlphaLocal 0;
 };
@@ -130,44 +130,30 @@ _action = [
     true
 ] call ACEFUNC(interact_menu,addActionToClass);
 _action = [
-    "openArsenal",
-    "Open Arsenal",
-    "\a3\ui_f\data\gui\rsc\rscdisplayarsenal\cargomagall_ca.paa", {
-        [mainSupplyBox, _player] call ace_arsenal_fnc_openBox
-    },
-    {true}
-] call ACEFUNC(interact_menu,createAction);
-[
-    "CAManBase", 1,
-    ["ACE_SelfActions", "PotatoSeedActions"],
-    _action,
-    true
-] call ACEFUNC(interact_menu,addActionToClass);
-
-_action = [
     "PotatoAddRally",
     "Place Rally Flag",
     "\a3\ui_f\data\igui\cfg\actions\takeflag_ca.paa", {
-        if ((_player nearObjects [BW_TP_FLAG_TYPE, 100]) isNotEqualTo []) exitWith {
+        if ((_player nearObjects [BW_TP_FLAG_TYPE, 300]) isNotEqualTo []) exitWith {
             ["Notif_Picture", [
                 "Failed to Plant Flag",
                 "You are currently too close to another flag to place a new one.",
                 "\a3\ui_f\data\igui\cfg\actions\returnflag_ca.paa"
             ]] call BIS_fnc_showNotification;
         };
-        if (((_player nearEntities ["CAManBase", 200]) select {
+        if (((_player nearEntities ["CAManBase", 300]) select {
                 alive _x &&
                  (side _x == east ||
                  side _x == resistance)
                  }) isNotEqualTo []) exitWith {
             ["Notif_Picture", [
                 "Failed to Plant Flag",
-                "Enemy within 200 meters, you may not place a flag.",
+                "Enemy within 300 meters, you may not place a flag.",
                 "\a3\ui_f\data\igui\cfg\actions\returnflag_ca.paa"
             ]] call BIS_fnc_showNotification;
         };
         private _pos = getPosATL _player;
-        createVehicle [BW_TP_FLAG_TYPE, _pos, [], 0, "NONE"];
+        private _flag = createVehicle [BW_TP_FLAG_TYPE, _pos, [], 0, "NONE"];
+        [_flag, true] remoteExecCall ["enableDynamicSimulation", 0, true];
     },
     {leader _player == _player}
 ] call ACEFUNC(interact_menu,createAction);
@@ -178,7 +164,7 @@ _action = [
     true
 ] call ACEFUNC(interact_menu,addActionToClass);
 
-if (GVAR(enableGRADMode) > 0 && getMissionConfigValue ["allowGRADFromFlag", 1] == 1) then {
+if (GVAR(enableGRADMode) > 0 && getMissionConfigValue ["allowGRADFromFlag", 0] == 1) then {
     _action = [
         "PotatoGRADVehicle",
         "Vehicle Spawner",

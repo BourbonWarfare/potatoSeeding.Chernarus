@@ -1,10 +1,11 @@
 #include "script_macros.hpp"
 
 #define BW_MAP_CLICK_HOLD_OFF 0.25
-#define BW_TP_FLAG_TYPE "Flag_US_F"
+#define BW_TP_FLAG_TYPE "FlagCarrierCzechRepublic_EP1"
 #define BW_TP_FLAG_DIST 8.5
+#define BW_AI_MAX_SPAWN 200
 #define BW_UNIT_SPAWN_POS [14193, 14388, 0]
-#define BW_IGNORE_GARRISON_BUILDINGS ["land_nav_pier_m_1","land_nav_pier_M_fuel","land_nav_pier_c_big","land_nav_pier_m_end","Land_Wall_CBrk_5_D", "Land_Wall_CGry_5_D", "Land_Stanek_1", "Land_Stanek_1B", "Misc_Cargo1Bo_civil", "Misc_Cargo1Bo_military"]
+#define BW_IGNORE_GARRISON_BUILDINGS ["land_nav_pier_m_1","Land_Brana02nodoor","land_nav_pier_c_t20","land_nav_pier_M_fuel","Land_A_statue02","land_nav_pier_c_big","land_nav_pier_m_end","land_nav_pier_c2_end","Land_nav_pier_m_2","Land_Wall_CBrk_5_D", "Land_Wall_CGry_5_D", "Land_Stanek_1", "Land_Stanek_1B", "Land_Misc_Cargo1Eo_EP1", "Misc_Cargo1Bo_civil", "Land_Misc_Cargo1A_EP1", "Misc_Cargo1Bo_military"]
 
 #define BW_FADE_CONTROL(display,var1,idc) var1 = display displayCtrl idc;\
 var1 ctrlSetFade 0.8;\
@@ -30,10 +31,6 @@ control lbSetText [BW_TRAINING_DENSITY_MULTI, "Rectangle - Corner-Corner"];\
 control lbSetText [BW_TRAINING_DENSITY_MULTIMARKED, "-"]
 #define BW_MISSION_SET_DROPDOWN_DRAWTYPE_TEXT(display,control) control = display displayCtrl IDC_MISSION_DROPDOWN_TEXT;\
 control ctrlSetText "Zone Draw Method"
-#define BW_MISSION_SET_MOUT_TEXT(display,control) control = display displayCtrl IDC_MISSION_OPTION0_TEXT;\
-control ctrlSetText "Min Units Per Building (%)"
-#define BW_MISSION_SET_ZONE_TEXT(display,control) control = display displayCtrl IDC_MISSION_OPTION0_TEXT;\
-control ctrlSetText "Chance to Skip Building (%)"
 
 /// Menu defines
 // IDD Define
@@ -93,8 +90,8 @@ control ctrlSetText "Chance to Skip Building (%)"
 /// Vehicle Spawner Vehicles
 #define SPAWN_HELI_OBJ "Land_HelipadCircle_F"
 #define SPAWN_PLANE_OBJ "Land_HelipadEmpty_F"
-#define SPAWN_LAND_VEHICLE_ARRAY ((getArray (missionConfigFile >> "CfgLoadouts" >> "potato_w" >> "wheeledtransportVehiclePool")) + (getArray (missionConfigFile >> "CfgLoadouts" >> "potato_w" >> "armedSoftVehiclePool")))
-#define SPAWN_APCIFV_VEHICLE_ARRAY (getArray (missionConfigFile >> "CfgLoadouts" >> "potato_w" >> "armoredVehiclePool"))
-#define SPAWN_TANK_VEHICLE_ARRAY (getArray (missionConfigFile >> "CfgLoadouts" >> "potato_w" >> "tankVehiclePool"))
-#define SPAWN_HELI_VEHICLE_ARRAY (getArray (missionConfigFile >> "CfgLoadouts" >> "potato_w" >> "heliVehiclePool"))
-#define SPAWN_PLANE_VEHICLE_ARRAY (getArray (missionConfigFile >> "CfgLoadouts" >> "potato_w" >> "planeVehiclePool"))
+
+// Menu update w/ accessor
+#define BW_MISSION_SET_MOUT_TEXT(display,control) control = display displayCtrl IDC_MISSION_OPTION0_TEXT;\
+control ctrlSetText format ["Min Units Per Building: %1", round (4 * GET_MENU_OPTION(option0))]
+#define BW_MISSION_SET_ZONE_TEXT(display,control) BW_MISSION_SET_MOUT_TEXT(display,control)
