@@ -46,7 +46,4 @@ if (_isClosing) then {
     };
     GVAR(missionSelectedZone) = "";
     GVAR(missionFirstPositionMarker) = "";
-} else {
-    _eventArgs params ["_display"];
-    [_display] call FUNC(updateMenuOptions);
 };

@@ -25,9 +25,13 @@ switch (_controlIDC) do {
         GVAR(menuOptions) set ["AIskillMax", _newValue];
     };
     case IDC_MISSION_OPTION0: {
+        private _control = (ctrlParent _control) displayCtrl IDC_MISSION_OPTION0_TEXT;
+        _control ctrlSetText format ["Min Units Per Building: %1", round (4 * _newValue)];
         GVAR(menuOptions) set ["option0", _newValue];
     };
     case IDC_MISSION_OPTION1: {
+        private _control = (ctrlParent _control) displayCtrl IDC_MISSION_OPTION1_TEXT;
+        _control ctrlSetText format ["Max Units: %1", round (BW_AI_MAX_SPAWN * _newValue)];
         GVAR(menuOptions) set ["option1", _newValue];
     };
     case IDC_MISSION_OPTION2: {

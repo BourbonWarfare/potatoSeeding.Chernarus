@@ -41,23 +41,23 @@ private _minAISkill = _settingHash getOrDefault ["AIskillMin", 0.2];
 private _maxAISkill = _settingHash getOrDefault ["AIskillMax", 0.8];
 [_minAISkill, _maxAISkill] call FUNC(updateAISkill);
 
-private _minBuildingGarrison = _settingHash getOrDefault ["option0", 0.2];
-private _maxBuildingGarrison = _settingHash getOrDefault ["option1", 0.8];
-private _chanceMove = _settingHash getOrDefault ["option2", 0.3];
+private _minBuildingGarrison = _settingHash getOrDefault ["option0", 0.33];
+private _maxBuildingGarrison = _settingHash getOrDefault ["option1", 0.75];
+private _chanceMove = _settingHash getOrDefault ["option2", 0.5];
 private _initArray = [0, 0];
 private _markerPos = getMarkerPos _marker;
 private _operationType = _settingHash getOrDefault ["operationType", BW_TRAINING_OPERATION_MOUT];
 private _zoneDims = markerSize _marker;
 switch (_operationType) do {
     case BW_TRAINING_OPERATION_MOUT: {
-        _minBuildingGarrison = _minBuildingGarrison * 8;
-        _maxBuildingGarrison = _maxBuildingGarrison * 8;
+        _minBuildingGarrison = round (_minBuildingGarrison * 8);
+        _maxBuildingGarrison = round (_maxBuildingGarrison * BW_AI_MAX_SPAWN);
         _chanceMove = linearConversion [0, 1, _chanceMove, 0, 0.25];
         _initArray = [
             getMarkerPos _marker,
             vectorMagnitude _zoneDims,
             _marker,
-            [0.05, 0.4],
+            2,
             [_minBuildingGarrison, _maxBuildingGarrison],
             _chanceMove,
             false,
@@ -132,7 +132,6 @@ switch (_operationType) do {
                         _tempPos,
                         _radius,
                         _marker,
-                        7,
                         [_minBuildingGarrison, _maxBuildingGarrison],
                         _chanceMove,
                         true,
@@ -151,14 +150,14 @@ switch (_operationType) do {
                 };
             };
             default { // uniform is default
-                _minBuildingGarrison = _minBuildingGarrison * 0.1;
-                _maxBuildingGarrison = _maxBuildingGarrison * 0.09;
+                _minBuildingGarrison = round (_minBuildingGarrison * 0.4);
+                _maxBuildingGarrison = round (_maxBuildingGarrison * BW_AI_MAX_SPAWN / 7);
 
                 _initArray = [
                     _markerPos,
                     _markerSize,
                     _marker,
-                    [0, _maxBuildingGarrison],
+                    _minBuildingGarrison,
                     [_minBuildingGarrison, _maxBuildingGarrison],
                     _chanceMove,
                     true,
