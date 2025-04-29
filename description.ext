@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-onLoadName = "BW Seeding V4";
+onLoadName = "BW Seeding V5";
 
 // Disable (0) or enable (1) the automatic GRAD vehicle flag actions
 allowGRADFromFlag = 1;
