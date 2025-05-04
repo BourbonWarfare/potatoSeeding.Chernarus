@@ -144,7 +144,8 @@ _action = [
                 alive _x &&
                  (side _x == east ||
                  side _x == resistance)
-                 }) isNotEqualTo []) exitWith {
+                 }) isNotEqualTo []  &&
+                {_player nearObjects [BW_TP_FLAG_TYPE, 1000] isNotEqualTo []}) exitWith {
             ["Notif_Picture", [
                 "Failed to Create Rally",
                 "Enemy within 200 meters, you may not place a Rally.",

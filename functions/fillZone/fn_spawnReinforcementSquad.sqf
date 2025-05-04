@@ -108,5 +108,6 @@ if (_squadSize > 0) then { // recurse
             deleteVehicleCrew _vic;
             deleteVehicle _vic;
         };
+        _vic setDamage 0;
     }, [_vic, _movePos, _group, _markerPos], 120] call CBA_fnc_waitAndExecute;
 };
