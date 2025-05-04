@@ -39,7 +39,7 @@ for "_i" from 0 to BW_ZONE_MAX_CHECK do {
 [{
     ["Info_Picture", [
         "Mission Info",
-        text "<t color='#FFC000'>ACE self-interact</t> at any US flag pole to access the mission menu.",
+        text "<t color='#FFC000'>ACE self-interact</t> at any Rally Point to access the mission menu.",
         "\z\ace\addons\interaction\ui\Icon_Module_Interaction_ca.paa"
     ]] call BIS_fnc_showNotification;
 }, [], 15] call CBA_fnc_waitAndExecute;
@@ -133,21 +133,21 @@ _action = [
     "PotatoAddRally",
     "Place Rally Flag",
     "\a3\ui_f\data\igui\cfg\actions\takeflag_ca.paa", {
-        if ((_player nearObjects [BW_TP_FLAG_TYPE, 300]) isNotEqualTo []) exitWith {
+        if ((_player nearObjects [BW_TP_FLAG_TYPE, 175]) isNotEqualTo []) exitWith {
             ["Notif_Picture", [
-                "Failed to Plant Flag",
-                "You are currently too close to another flag to place a new one.",
+                "Failed to Create Rally",
+                "You are currently too close to another rally to place a new one.",
                 "\a3\ui_f\data\igui\cfg\actions\returnflag_ca.paa"
             ]] call BIS_fnc_showNotification;
         };
-        if (((_player nearEntities ["CAManBase", 300]) select {
+        if (((_player nearEntities ["CAManBase", 200]) select {
                 alive _x &&
                  (side _x == east ||
                  side _x == resistance)
                  }) isNotEqualTo []) exitWith {
             ["Notif_Picture", [
-                "Failed to Plant Flag",
-                "Enemy within 300 meters, you may not place a flag.",
+                "Failed to Create Rally",
+                "Enemy within 200 meters, you may not place a Rally.",
                 "\a3\ui_f\data\igui\cfg\actions\returnflag_ca.paa"
             ]] call BIS_fnc_showNotification;
         };
