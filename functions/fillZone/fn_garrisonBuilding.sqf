@@ -82,5 +82,5 @@ if (_forceSize <= 0) then {
 } else {
     [{_this call FUNC(garrisonBuilding)},
         [_building, _forceSize, _chanceToMove, _sideGarrison, _allowMovementOnShot, _group],
-        PGVAR(zeusHC,delayBetweenUnitCreation) * (1 + random 1)] call CBA_fnc_waitAndExecute;
+        PGVAR(zeusHC,delayBetweenUnitCreation) * (1 + random 0.5)] call CBA_fnc_waitAndExecute;
 };
