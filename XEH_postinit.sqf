@@ -133,14 +133,14 @@ _action = [
     "PotatoAddRally",
     "Place Rally Flag",
     "\a3\ui_f\data\igui\cfg\actions\takeflag_ca.paa", {
-        if ((_player nearObjects [BW_TP_FLAG_TYPE, 175]) isNotEqualTo []) exitWith {
+        if ((_player nearObjects [BW_TP_FLAG_TYPE, 300]) isNotEqualTo []) exitWith {
             ["Notif_Picture", [
                 "Failed to Create Rally",
                 "You are currently too close to another rally to place a new one.",
                 "\a3\ui_f\data\igui\cfg\actions\returnflag_ca.paa"
             ]] call BIS_fnc_showNotification;
         };
-        if (((_player nearEntities ["CAManBase", 200]) select {
+        if (((_player nearEntities ["CAManBase", 250]) select {
                 alive _x &&
                  (side _x == east ||
                  side _x == resistance)
@@ -148,7 +148,7 @@ _action = [
                 {_player nearObjects [BW_TP_FLAG_TYPE, 1000] isNotEqualTo []}) exitWith {
             ["Notif_Picture", [
                 "Failed to Create Rally",
-                "Enemy within 200 meters, you may not place a Rally.",
+                "Enemy within 250 meters, you may not place a Rally.",
                 "\a3\ui_f\data\igui\cfg\actions\returnflag_ca.paa"
             ]] call BIS_fnc_showNotification;
         };
@@ -207,6 +207,59 @@ _action = [
 [
     "CAManBase", 1,
     ["ACE_SelfActions", "PotatoSeedActions"],
+    _action,
+    true
+] call ACEFUNC(interact_menu,addActionToClass);
+
+ _action = [
+    "switchToM79",
+    "Switch to M79",
+    "\a3\3den\data\cfgwrapperui\cursors\3denrotate_ca.paa", {
+        [2, [], {
+            private _primWeap = primaryWeapon _player;
+            private _weapItems = weaponsItems _player;
+            private _newPrimWeap = (_weapItems select {_x#0 == "CUP_glaunch_M79"})#0;
+            private _primWeap = (_weapItems select {_x#0 == _primWeap})#0;
+            _player removeItemFromBackpack "CUP_glaunch_M79";
+            private _loadout = getUnitLoadout _player;
+            _loadout set [0, _newPrimWeap];
+            _player setUnitLoadout _loadout;
+            (backpackContainer _player) addWeaponWithAttachmentsCargo [_primWeap, 1];
+        }, {}, "Switching to M79"] call ACEFUNC(common,progressBar);
+    },{
+        currentWeapon _player == primaryWeapon _player &&
+        {(weaponsItemsCargo (backpackContainer _player) select {_x#0 == "CUP_glaunch_m79"}) isNotEqualTo []}
+    }
+] call ACEFUNC(interact_menu,createAction);
+[
+    "CAManBase", 1,
+    ["ACE_SelfActions"],
+    _action,
+    true
+] call ACEFUNC(interact_menu,addActionToClass);
+
+_action = [
+    "switchToMain",
+    "Put Away M79",
+    "\a3\3den\data\cfgwrapperui\cursors\3denrotate_ca.paa", {
+        [2, [], {
+            private _newPrimWeap = (weaponsItemsCargo (backpackContainer _player))#0;
+            private _primWeap = ((weaponsItems _player) select {_x#0 == "CUP_glaunch_M79"})#0;
+            _player removeItemFromBackpack (_newPrimWeap#0);
+            private _loadout = getUnitLoadout _player;
+            _loadout set [0, _newPrimWeap];
+            _player setUnitLoadout _loadout;
+            (backpackContainer _player) addWeaponWithAttachmentsCargo [_primWeap, 1];
+        }, {}, "Putting away M79"] call ACEFUNC(common,progressBar);
+    },{
+        primaryWeapon _player == "CUP_glaunch_m79" &&
+        currentWeapon _player == primaryWeapon _player &&
+        {(weaponsItemsCargo (backpackContainer _player)#0) isNotEqualTo []}
+    }
+] call ACEFUNC(interact_menu,createAction);
+[
+    "CAManBase", 1,
+    ["ACE_SelfActions"],
     _action,
     true
 ] call ACEFUNC(interact_menu,addActionToClass);
