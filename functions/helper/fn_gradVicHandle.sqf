@@ -46,7 +46,7 @@ if (_spawnPositions isNotEqualTo [0, 0, 0, 0]) then {
     _vehicles = (getArray (_cfgPath >> "transportVehiclePool")) + getArray (_cfgPath >> "armedSoftVehiclePool");
 };
 if (_spawnPositions isNotEqualTo [0, 0, 0, 0]) then {
-    _vehicles = _vehicles + getArray (_cfgPath >> "armoredVehiclePwdool");
+    _vehicles = _vehicles + getArray (_cfgPath >> "armoredVehiclePool");
 };
 if (_spawnPositions isNotEqualTo [0, 0, 0, 0]) then {
     _vehicles = _vehicles + getArray (_cfgPath >> "tankVehiclePool");

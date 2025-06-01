@@ -112,7 +112,7 @@ armedSoftVehiclePool[] = {
   "CUP_B_LR_MG_GB_W",
   "CUP_B_LR_MG_GB_W"
 };
-armoredVehiclePwdool[] = {
+armoredVehiclePool[] = {
   "cwr3_b_uk_fv510",
   "cwr3_b_uk_fv101",
   "potato_cwr3_b_uk_fv107_unstab"
