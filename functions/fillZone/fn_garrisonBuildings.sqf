@@ -97,7 +97,7 @@ private _delayTime = 1.5 * PGVAR(zeusHC,delayBetweenUnitCreation);
         _building,
         _countUnits,
         0,
-        east,
+        _sideGarrison,
         true
     ], _maxTime] call CBA_fnc_waitAndExecute;
     _unitSum = _unitSum + _countUnits;

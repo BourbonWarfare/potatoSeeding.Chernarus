@@ -60,31 +60,33 @@ private _sideConfig = switch (_sideReinforcement) do {
     case civilian: {"CIV_F"};
     default {"potato_e"};
 };
-private _vehicleType = if (_armedVehicles) then {
-    getText (missionConfigFile >> "CfgLoadouts" >> _sideConfig >> "reinforcementArmed");
+private _vehicleInfo = if (_armedVehicles) then {
+    getArray (missionConfigFile >> "CfgLoadouts" >> _sideConfig >> "reinforcementArmed");
 } else {
-    getText (missionConfigFile >> "CfgLoadouts" >> _sideConfig >> "reinforcementTruck");
+    getArray (missionConfigFile >> "CfgLoadouts" >> _sideConfig >> "reinforcementTruck");
 };
-
+_vehicleInfo params ["_vehicleType", "_squadSizeMax"];
 if (_nearZones isEqualTo [] || _vehicleType == "") exitWith {
     diag_log formatText ["[SEED][REINFORCE] Could not find any suitable reinforcement zone or vehicle (%2) near %1", _marker, str _vehicleType];
 };
 private _reinforcementZone = selectRandom _nearZones;
 
-private _roads = (getMarkerPos _reinforcementZone) nearRoads 75;
+private _roads = (getMarkerPos _reinforcementZone) nearRoads 100;
 _roads = _roads select {_x inArea _reinforcementZone};
 
 for "_i" from 1 to _numberOfSquads do {
+    if (_roads isEqualTo []) exitWith {};
     private _road = selectRandom _roads;
-    private _posATL = getPosATL _road;
-    private _vic = createVehicle [_vehicleType, _posATL, [], 0, "NONE"];
+    _roads = _roads - [_road];
+    private _roadPosATL = getPosATL _road;
     (getRoadInfo _road) params ["", "", "", "", "", "", "_begPos", "_endPos"];
     private _distances = [_begPos distance _zonePos, _endPos distance _zonePos];
-    if (_distances#0 < _distances#1) then {
-        _vic setDir (_endPos getDir _begPos);
+    private _vicDir = if (_distances#0 < _distances#1) then {
+        _endPos getDir _begPos
     } else {
-        _vic setDir  (_begPos getDir _endPos);
+        _begPos getDir _endPos
     };
-    [[_marker, _squadSize, _vic, _sideReinforcement, _armedVehicles],
-    QFUNC(spawnReinforcementSquad)] call PFUNC(zeusHC,hcPassthrough);
+    [{[_this, QFUNC(spawnReinforcementSquad)] call PFUNC(zeusHC,hcPassthrough);},
+        [_marker, _squadSize min _squadSizeMax, [_vehicleType, _roadPosATL, _vicDir], _sideReinforcement, _armedVehicles],
+        (_i - 1) * 4] call CBA_fnc_waitAndExecute;
 };
