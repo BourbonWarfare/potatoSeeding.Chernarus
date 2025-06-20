@@ -54,7 +54,7 @@ private _sideType = switch (_sidePatrol) do {
     case resistance: {"i"};
     default {"e"};
 };
-private _unit = _group createUnit ["potato_" + _sideType + _type, BW_UNIT_SPAWN_POS, [], 0, "NONE"];
+private _unit = _group createUnit ["potato_nolambs_" + _sideType + _type, BW_UNIT_SPAWN_POS, [], 0, "NONE"];
 
 if (_patrolSize == 5) then {
     _group selectLeader _unit;

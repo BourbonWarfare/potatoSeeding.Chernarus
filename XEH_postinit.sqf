@@ -4,7 +4,12 @@ setViewDistance 4000;
 
 if (isServer) then {
     [] call FUNC(autoEndSession);
-    [missionNameSpace, getPosATL flag_neaf] call BIS_fnc_addRespawnPosition;
+    {
+        if (local _x && {_x isKindOf BW_TP_FLAG_TYPE}) then {
+            private _respawnIndex = [missionNameSpace, _x] call BIS_fnc_addRespawnPosition;
+            _x setVariable [QGVAR(respawnIndex), _respawnIndex, true];
+        };
+    } forEach allMissionObjects "all";
 };
 
 addMissionEventHandler ["EntityCreated", {
@@ -23,15 +28,16 @@ addMissionEventHandler ["EntityCreated", {
 }];
 
 if !(hasInterface) exitWith {};
-"uelzenMOUTMarker" setMarkerDrawPriority 1;
 
 for "_i" from 0 to BW_MOUT_MAX_CHECK do {
     private _mark = BW_MOUT_BASE_STRING + (str _i);
+    if (markerBrush _mark == "Border") then {continue};
     if ((getMarkerPos _mark) isEqualTo [0, 0, 0]) exitWith {};
     _mark setMarkerAlphaLocal 0;
 };
 for "_i" from 0 to BW_ZONE_MAX_CHECK do {
     private _mark = BW_ZONE_BASE_STRING + (str _i);
+    if (markerBrush _mark == "Border") then {continue};
     if ((getMarkerPos _mark) isEqualTo [0, 0, 0]) exitWith {};
     _mark setMarkerAlphaLocal 0;
 };
@@ -133,14 +139,14 @@ _action = [
     "PotatoAddRally",
     "Place Rally Flag",
     "\a3\ui_f\data\igui\cfg\actions\takeflag_ca.paa", {
-        if ((_player nearObjects [BW_TP_FLAG_TYPE, 175]) isNotEqualTo []) exitWith {
+        if ((_player nearObjects [BW_TP_FLAG_TYPE, 300]) isNotEqualTo []) exitWith {
             ["Notif_Picture", [
                 "Failed to Create Rally",
                 "You are currently too close to another rally to place a new one.",
                 "\a3\ui_f\data\igui\cfg\actions\returnflag_ca.paa"
             ]] call BIS_fnc_showNotification;
         };
-        if (((_player nearEntities ["CAManBase", 200]) select {
+        if (((_player nearEntities ["CAManBase", 250]) select {
                 alive _x &&
                  (side _x == east ||
                  side _x == resistance)
@@ -148,7 +154,7 @@ _action = [
                 {_player nearObjects [BW_TP_FLAG_TYPE, 1000] isNotEqualTo []}) exitWith {
             ["Notif_Picture", [
                 "Failed to Create Rally",
-                "Enemy within 200 meters, you may not place a Rally.",
+                "Enemy within 250 meters, you may not place a Rally.",
                 "\a3\ui_f\data\igui\cfg\actions\returnflag_ca.paa"
             ]] call BIS_fnc_showNotification;
         };

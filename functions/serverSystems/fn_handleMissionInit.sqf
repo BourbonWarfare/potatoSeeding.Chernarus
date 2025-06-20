@@ -50,6 +50,9 @@ private _operationType = _settingHash getOrDefault ["operationType", BW_TRAINING
 private _zoneDims = markerSize _marker;
 switch (_operationType) do {
     case BW_TRAINING_OPERATION_MOUT: {
+        _marker setMarkerColorLocal "ColorBlue";
+        _marker setMarkerAlphaLocal 1;
+        _marker setMarkerBrush "Border";
         _minBuildingGarrison = round (_minBuildingGarrison * 8);
         _maxBuildingGarrison = round (_maxBuildingGarrison * BW_AI_MAX_SPAWN);
         _chanceMove = linearConversion [0, 1, _chanceMove, 0, 0.25];

@@ -1,7 +1,7 @@
 #include "script_macros.hpp"
 
 #define BW_MAP_CLICK_HOLD_OFF 0.25
-#define BW_TP_FLAG_TYPE "FlagCarrierCzechRepublic_EP1"
+#define BW_TP_FLAG_TYPE GVAR(rallyObj)
 #define BW_TP_FLAG_DIST 8.5
 #define BW_AI_MAX_SPAWN 200
 #define BW_UNIT_SPAWN_POS [14193, 14388, 0]
