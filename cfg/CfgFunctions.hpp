@@ -9,6 +9,7 @@ class CfgFunctions {
             class occupyBuilding;
             class posInMarker;
             class teleportUnitHandle;
+            class unloadCargo;
         };
         class Mission_Flow {
             file = "functions\missionFlow";

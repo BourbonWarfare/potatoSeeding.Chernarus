@@ -79,6 +79,7 @@ private _ratio = 0.8 min (_maxUnits/_sumPoses);
 private _maxTime = 0;
 private _unitSum = 0;
 private _skipCount = 0;
+private _delayTime = 1.5 * PGVAR(zeusHC,delayBetweenUnitCreation);
 {
     _y params ["_countUnits", "_building"];
 
@@ -88,7 +89,7 @@ private _skipCount = 0;
         _skipCount = _skipCount + 1;
         continue
     };
-    _maxTime = 2.05 * (_forEachIndex - _skipCount);
+    _maxTime = _maxTime + _delayTime * _countUnits;
 
     [{
         [_this, "bw_fnc_garrisonBuilding"] call potato_zeusHC_fnc_hcPassthrough;
@@ -96,7 +97,7 @@ private _skipCount = 0;
         _building,
         _countUnits,
         0,
-        east,
+        _sideGarrison,
         true
     ], _maxTime] call CBA_fnc_waitAndExecute;
     _unitSum = _unitSum + _countUnits;

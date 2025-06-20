@@ -142,7 +142,7 @@ armedSoftVehiclePool[] = {
   "ptv_MATV_GMG",
   "ptv_MATV_HMG"
 };
-armoredVehiclePwdool[] = {
+armoredVehiclePool[] = {
   "ptv_Warrior",
   "ptv_Pnd",
   "I_E_APC_tracked_03_cannon_F",

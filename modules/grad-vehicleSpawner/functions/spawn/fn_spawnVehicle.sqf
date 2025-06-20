@@ -6,7 +6,7 @@ params ["_vehClass","_textures","_animations","_spawnPos",["_pylonMags",[]],["_s
 if (isNil QGVAR(armorTypes)) then { // init vehicles
     private _cfgPath = missionConfigFile >> "CfgLoadouts" >> "potato_w";
     GVAR(armedVehicle) = getArray (_cfgPath >> "armedSoftVehiclePool");
-    GVAR(armorTypes) = getArray (_cfgPath >> "armoredVehiclePwdool") +
+    GVAR(armorTypes) = getArray (_cfgPath >> "armoredVehiclePool") +
                         (getArray (_cfgPath >> "tankVehiclePool"));
     GVAR(heliTypes) = getArray (_cfgPath >> "heliVehiclePool");
     GVAR(planeTypes) = getArray (_cfgPath >> "planeVehiclePool");
