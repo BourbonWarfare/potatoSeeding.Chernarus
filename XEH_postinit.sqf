@@ -5,7 +5,7 @@ setViewDistance 4000;
 if (isServer) then {
     [] call FUNC(autoEndSession);
     {
-        if (local _x && {_x isKindOf BW_TP_FLAG_TYPE}) then {
+        if (local _x && {typeOf _x == BW_TP_FLAG_TYPE}) then {
             private _respawnIndex = [missionNameSpace, _x] call BIS_fnc_addRespawnPosition;
             _x setVariable [QGVAR(respawnIndex), _respawnIndex, true];
         };
