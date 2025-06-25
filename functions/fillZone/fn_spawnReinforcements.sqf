@@ -30,7 +30,9 @@ params [
 if (_marker == "" ||
     getMarkerPos _marker isEqualTo [0, 0, 0] ||
     _squadSize <= 0 ||
-    _numberOfSquads <= 0) exitWith {};
+    _numberOfSquads <= 0) exitWith {
+    diag_log formatText ["[SEED][REINFORCE] Bad sector called: %1", [_marker, getMarkerPos _marker, _squadSize, _numberOfSquads]];
+};
 
 // Find a list of zones that are close but not too close to anthing important
 private _nearZones = [];
@@ -60,19 +62,34 @@ private _sideConfig = switch (_sideReinforcement) do {
     case civilian: {"CIV_F"};
     default {"potato_e"};
 };
-private _vehicleInfo = if (_armedVehicles) then {
-    getArray (missionConfigFile >> "CfgLoadouts" >> _sideConfig >> "reinforcementArmed");
+private _path = if (_armedVehicles) then {
+    missionConfigFile >> "CfgLoadouts" >> _sideConfig >> "reinforcementArmed";
 } else {
-    getArray (missionConfigFile >> "CfgLoadouts" >> _sideConfig >> "reinforcementTruck");
+    missionConfigFile >> "CfgLoadouts" >> _sideConfig >> "reinforcementTruck";
 };
-_vehicleInfo params ["_vehicleType", "_squadSizeMax"];
+private _vehicleInfo = if (isArray _path) then {
+    getArray _path;
+} else {
+    [getText _path, 10]
+};
+_vehicleInfo params ["_vehicleType", ["_squadSizeMax", 10]];
 if (_nearZones isEqualTo [] || _vehicleType == "") exitWith {
     diag_log formatText ["[SEED][REINFORCE] Could not find any suitable reinforcement zone or vehicle (%2) near %1", _marker, str _vehicleType];
 };
 private _reinforcementZone = selectRandom _nearZones;
 
-private _roads = (getMarkerPos _reinforcementZone) nearRoads 100;
+private _roadSeachRad = 100;
+private _roads = (getMarkerPos _reinforcementZone) nearRoads _roadSeachRad;
 _roads = _roads select {_x inArea _reinforcementZone};
+while {count _roads < _numberOfSquads && _roadSeachRad < 1000} do {
+    _roads = (getMarkerPos _reinforcementZone) nearRoads _roadSeachRad;
+    _roads = _roads select {_x inArea _reinforcementZone};
+    _roadSeachRad = _roadSeachRad + 100;
+};
+
+if (count _roads < _numberOfSquads) exitWith {
+    diag_log formatText ["[SEED][REINFORCE] Could not find any suitable reinforcement spawn positions at %1 ", _marker];
+};
 
 for "_i" from 1 to _numberOfSquads do {
     if (_roads isEqualTo []) exitWith {};

@@ -69,8 +69,14 @@ if (isNull _group) exitWith {
 
         {
             [{
-                params ["_group", "_vic", "_turret"];
-                private _unit = _group createUnit ["potato_nolambs_e_vicc", BW_UNIT_SPAWN_POS, [], 0, "NONE"];
+                params ["_group", "_vic", "_turret", "_side"];
+                private _sideType = switch (_side) do {
+                    case east: {"e"};
+                    case west: {"w"};
+                    case resistance: {"i"};
+                    default {"e"};
+                };
+                private _unit = _group createUnit [format ["potato_nolambs_%_vicc", _sideType], BW_UNIT_SPAWN_POS, [], 0, "NONE"];
 
                 if (_turret isEqualTo [-1]) then {
                     _unit assignAsDriver _vic;
@@ -82,7 +88,7 @@ if (isNull _group) exitWith {
                 };
                 _group addVehicle _vic;
                 _group selectLeader (effectiveCommander _vic);
-            }, [_group, _vic, _x], PGVAR(zeusHC,delayBetweenUnitCreation) * (0.5 + _forEachIndex)] call CBA_fnc_waitAndExecute;
+            }, [_group, _vic, _x, _side], PGVAR(zeusHC,delayBetweenUnitCreation) * (0.5 + _forEachIndex)] call CBA_fnc_waitAndExecute;
         } forEach _crew;
         _group setVariable ["lambs_danger_disableGroupAI", true];
     };
