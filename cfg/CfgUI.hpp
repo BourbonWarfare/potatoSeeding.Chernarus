@@ -92,12 +92,12 @@ class RscMissionSelectMenu {
             tooltip = "Select faction of enemy units";
             class Items {
                 class east {
-                    text = "Chernarus Defense Force (AK-107)";
+                    text = "ION PMC (SSG551)";
                     value = BW_TRAINING_ENEMY_OPFOR;
                     default = 1;
                 };
                 class indy {
-                    text = "Bundeswehr Forces (G36A3)";
+                    text = "Russian PMC (AK-12)";
                     value = BW_TRAINING_ENEMY_INDY;
                 };
             };
@@ -263,6 +263,19 @@ class RscMissionSelectMenu {
             sliderPosition = 0;
         };
 
+        class RscText_random: RscText_minAISkill {
+            idc = IDC_MISSION_RANDOM_TEXT;
+            text = "Randomize settings";
+            x = 0.8;
+            y = 1.095;
+        };
+        class RscChecBox_random: RscCheckBox {
+            idc = IDC_MISSION_RANDOM;
+            x = 0.77;
+            y = 1.105;
+            w = 0.03;
+            h = 0.04;
+        };
 
         class RscButtonMenuOK_exit: RscButtonMenuOK {
             x = 1;

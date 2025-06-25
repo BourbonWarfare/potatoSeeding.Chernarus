@@ -40,7 +40,25 @@ if (_isClosing) then {
         if (GET_MENU_OPTION(operationType) == BW_TRAINING_OPERATION_ZONE_DRAW) then {
             SET_MENU_OPTION(density,BW_TRAINING_DENSITY_UNIFORM);
         };
-        [GVAR(missionSelectedZone), GVAR(menuOptions)] remoteExecCall [QFUNC(handleMissionInit), 2];
+        private _random = cbChecked (_display displayCtrl IDC_MISSION_RANDOM);
+        if (_random) then {
+            [GVAR(missionSelectedZone), createHashMapFromArray [
+                ["operationType", GET_MENU_OPTION(operationType)],
+                ["enemyType", GET_MENU_OPTION(enemyType)],
+                ["density", GET_MENU_OPTION(density)],
+                ["AIskillMin", 0.25 + random 0.25],
+                ["AIskillMax", 0.5 + random 0.1],
+                ["option0", 0.4 + random 0.6],
+                ["option1", 0.4 + random 0.6],
+                ["option2", random 0.3],
+                ["option3", 0.6 + random 0.4],
+                ["option4", random 1],
+                ["option5", random 1],
+                ["option6", 0.5 + random 0.5]
+            ]] remoteExecCall [QFUNC(handleMissionInit), 2];
+        } else {
+            [GVAR(missionSelectedZone), GVAR(menuOptions)] remoteExecCall [QFUNC(handleMissionInit), 2];
+        };
     } else {
         systemChat "Failed to initialize mission";
     };
