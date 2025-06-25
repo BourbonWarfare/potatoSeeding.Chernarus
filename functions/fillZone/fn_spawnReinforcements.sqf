@@ -65,7 +65,7 @@ private _vehicleInfo = if (_armedVehicles) then {
 } else {
     getArray (missionConfigFile >> "CfgLoadouts" >> _sideConfig >> "reinforcementTruck");
 };
-_vehicleInfo params ["_vehicleType", "_squadSizeMax"];
+_vehicleInfo params ["_vehicleType", ["_squadSizeMax", 10]];
 if (_nearZones isEqualTo [] || _vehicleType == "") exitWith {
     diag_log formatText ["[SEED][REINFORCE] Could not find any suitable reinforcement zone or vehicle (%2) near %1", _marker, str _vehicleType];
 };
