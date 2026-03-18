@@ -21,7 +21,7 @@ class CfgNotifications {
         iconPicture = "\z\ace\addons\interaction\ui\Icon_Module_Interaction_ca.paa";
         duration = 20;
         title = "Mission Info";
-        description = "<t color='#FFC000'>ACE self-interact</t> at any US flag pole to access the mission menu."
+        description = "<t color='#FFC000'>ACE self-interact</t> at any US flag pole to access the mission menu.";
     };
     class Info_Picture: Info {
         iconPicture = "%3";
@@ -40,10 +40,24 @@ class CfgNotifications {
         description = "%1";
         iconPicture = "a3\ui_f\data\gui\cfg\communicationmenu\call_ca.paa";
     };
+    class Notif_Overrun: Notif {
+        title = "Rally Overrun";
+        description = "Defenseive rally point has been overrun";
+        iconPicture = "a3\ui_f\data\gui\rsc\rscdisplayarcademap\icon_exit_cross_ca.paa";
+    };
     class commIntercept : isrReport {
         title = "Enemy comms intercepted!";
     };
     class isrReport_short : isrReport {
         duration = 5;
+    };
+    class artyNotif: Notif {
+        title = "Artillery Mission Update";
+        duration = 5;
+        iconPicture = "\a3\ui_f\data\gui\cfg\hints\icon_text\b_artillery_ca.paa";
+        description = "%1";
+    };
+    class artyNoGunsNotif: artyNotif {
+        description = "No guns available for requested mission";
     };
 };
