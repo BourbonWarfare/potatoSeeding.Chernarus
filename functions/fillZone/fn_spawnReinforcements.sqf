@@ -30,7 +30,9 @@ params [
 if (_marker == "" ||
     getMarkerPos _marker isEqualTo [0, 0, 0] ||
     _squadSize <= 0 ||
-    _numberOfSquads <= 0) exitWith {};
+    _numberOfSquads <= 0) exitWith {
+    diag_log formatText ["[SEED][REINFORCE] Bad sector called: %1", [_marker, getMarkerPos _marker, _squadSize, _numberOfSquads]];
+};
 
 // Find a list of zones that are close but not too close to anthing important
 private _nearZones = [];
@@ -60,42 +62,56 @@ private _sideConfig = switch (_sideReinforcement) do {
     case civilian: {"CIV_F"};
     default {"potato_e"};
 };
-private _vehicleType = if (_armedVehicles) then {
-    getText (missionConfigFile >> "CfgLoadouts" >> _sideConfig >> "reinforcementArmed");
+private _path = if (_armedVehicles) then {
+    missionConfigFile >> "CfgLoadouts" >> _sideConfig >> "reinforcementArmed";
 } else {
-    getText (missionConfigFile >> "CfgLoadouts" >> _sideConfig >> "reinforcementTruck");
+    missionConfigFile >> "CfgLoadouts" >> _sideConfig >> "reinforcementTruck";
 };
-
+private _vehicleInfo = if (isArray _path) then {
+    getArray _path;
+} else {
+    private _vic = getText _path;
+    [_vic, getNumber (configFile >> "CfgVehicles" >> _vic >> "transportSoldier")]
+};
+_vehicleInfo params ["_vehicleType", ["_squadSizeMax", 10]];
 if (_nearZones isEqualTo [] || _vehicleType == "") exitWith {
     diag_log formatText ["[SEED][REINFORCE] Could not find any suitable reinforcement zone or vehicle (%2) near %1", _marker, str _vehicleType];
 };
 private _reinforcementZone = selectRandom _nearZones;
 
-private _roads = (getMarkerPos _reinforcementZone) nearRoads 75;
+private _roadSeachRad = 100;
+private _roads = (getMarkerPos _reinforcementZone) nearRoads _roadSeachRad;
 _roads = _roads select {_x inArea _reinforcementZone};
-private _timeOut = 10;
-while {_roads isEqualTo [] && _timeOut > 0} do {
-    _timeOut = _timeOut - 1;
-    _reinforcementZone = selectRandom _nearZones;
-    _roads = (getMarkerPos _reinforcementZone) nearRoads 75;
+while {count _roads < _numberOfSquads && _roadSeachRad < 1000} do {
+    _roads = (getMarkerPos _reinforcementZone) nearRoads _roadSeachRad;
     _roads = _roads select {_x inArea _reinforcementZone};
+    _roadSeachRad = _roadSeachRad + 100;
 };
 
-if (_roads isEqualTo []) exitWith {
-    diag_log formatText ["[SEED][REINFORCE] Could not find a road inside any of the zones (%2) for %1", _marker, _nearZones];
+if (count _roads < _numberOfSquads) exitWith {
+    diag_log formatText ["[SEED][REINFORCE] Could not find any suitable reinforcement spawn positions at %1 ", _marker];
+};
+if (random 1 < 0.4) then {
+    private _pos = getMarkerPos _reinforcementZone;
+    private _aircraftType =  getArray (missionConfigFile >> "CfgLoadouts" >> _sideConfig >>"heliVehiclePool");
+    if (_aircraftType isEqualTo []) exitWith {};
+    _pos set [2, 100];
+    [[getMarkerPos _marker, selectRandom _aircraftType, _pos, _sideReinforcement, true], QFUNC(spawnAircraft)] call PFUNC(zeusHC,hcPassthrough);
 };
 
 for "_i" from 1 to _numberOfSquads do {
+    if (_roads isEqualTo []) exitWith {};
     private _road = selectRandom _roads;
-    private _posATL = getPosATL _road;
-    private _vic = createVehicle [_vehicleType, _posATL, [], 0, "NONE"];
+    _roads = _roads - [_road];
+    private _roadPosATL = getPosATL _road;
     (getRoadInfo _road) params ["", "", "", "", "", "", "_begPos", "_endPos"];
     private _distances = [_begPos distance _zonePos, _endPos distance _zonePos];
-    if (_distances#0 < _distances#1) then {
-        _vic setDir (_endPos getDir _begPos);
+    private _vicDir = if (_distances#0 < _distances#1) then {
+        _endPos getDir _begPos
     } else {
-        _vic setDir  (_begPos getDir _endPos);
+        _begPos getDir _endPos
     };
-    [[_marker, _squadSize, _vic, _sideReinforcement, _armedVehicles],
-    QFUNC(spawnReinforcementSquad)] call PFUNC(zeusHC,hcPassthrough);
+    [{[_this, QFUNC(spawnReinforcementSquad)] call PFUNC(zeusHC,hcPassthrough);},
+        [_marker, _squadSize min _squadSizeMax, [_vehicleType, _roadPosATL, _vicDir], _sideReinforcement, _armedVehicles],
+        (_i - 1) * 4] call CBA_fnc_waitAndExecute;
 };

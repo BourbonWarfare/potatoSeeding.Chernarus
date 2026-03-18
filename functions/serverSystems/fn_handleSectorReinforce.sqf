@@ -17,13 +17,34 @@
 if (GVAR(reinforceHashMap) isEqualTo createHashMap) exitWith {};
 
 private _entriesToRemove = [];
+
+private _aircraft = vehicles select {side _x == west && {alive driver _x && _x isKindOf "Air"}};
 {
     private _zone = _x;
-    _y params ["_squadCount", "_armedVehicles", "_side", "_startingUnits"];
+    _y params ["_squadCount", "_armedVehicles", "_side", "_startingUnits", ["_lastAirTime", -500]];
     private _countZone = count (units _side select {alive _x && _x inArea _zone});
     if (_countZone < (0.6 + random 0.2) * _startingUnits && _countZone > 0) then {
         _entriesToRemove pushBack _zone;
         [_zone, 10, _squadCount, _side, _armedVehicles] call FUNC(spawnReinforcements);
+    };
+    // once every 4-10 minutes create an aircraft to challenge air superiority
+    private _zonePos = getMarkerPos _zone;
+    if (_lastAirTime + 240 + random [0, 60, 360] < time &&
+        {[] isNotEqualTo (_aircraft select {_x distance2D _zonePos < 3000})} &&
+        {random 1 < 0.25}) then {
+        private _sideConfig = switch (_side) do {
+            case east: {"potato_e"};
+            case west: {"potato_w"};
+            case resistance: {"potato_i"};
+            case civilian: {"CIV_F"};
+            default {"potato_e"};
+        };
+        private _pos = _zonePos getPos [4500, random 360];
+        private _aircraftType =  getArray (missionConfigFile >> "CfgLoadouts" >> _sideConfig >> (selectRandomWeighted ["heliVehiclePool",0.8,"planeVehiclePool",0.2]));
+        if (_aircraftType isEqualTo []) exitWith {};
+        _pos set [2, 100];
+        [[_zonePos, selectRandom _aircraftType, _pos, _side, true], QFUNC(spawnAircraft)] call PFUNC(zeusHC,hcPassthrough);
+        _y set [4, time];
     };
 } forEach GVAR(reinforceHashMap);
 

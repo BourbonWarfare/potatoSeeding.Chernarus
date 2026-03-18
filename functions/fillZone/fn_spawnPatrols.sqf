@@ -41,7 +41,7 @@ for "_i" from 1 to _patrolCount do { // spawn N patrols
     [{
         [_this, QFUNC(spawnPatrol)] call PFUNC(zeusHC,hcPassthrough);
     }, [_marker, _unitCount, _sidePatrols, _perimiterOffset, _patrolPerimeter],
-        _i * PGVAR(zeusHC,delayBetweenUnitCreation)
+        _i * 5 *  PGVAR(zeusHC,delayBetweenUnitCreation)
     ] call CBA_fnc_waitAndExecute;
 };
 

@@ -15,7 +15,7 @@ class RscMissionSelectMenu {
     w = 0.75;
     h = 0.86;
     onUnload = QUOTE([ARR_2(true,_this)] call FUNC(handleMissionMenu));
-    onLoad = QUOTE([ARR_2(false,_this)] call FUNC(handleMissionMenu));
+    onLoad = QUOTE([_this#0] call FUNC(updateMenuOptions)); //QUOTE([ARR_2(false,_this)] call FUNC(handleMissionMenu));
     class ControlsBackground {
         class Background : RscText {
             idc = -1;
@@ -75,6 +75,10 @@ class RscMissionSelectMenu {
                     text = "Zone Assault (draw on map)";
                     value = BW_TRAINING_OPERATION_ZONE_DRAW;
                 };
+                class defendPosition {
+                    text = "Defend Position (map click)";
+                    value = BW_TRAINING_OPERATION_DEFEND;
+                };
                 /*class tankFight { // TO BE IMPLEMENTED
                     text = "Mechanized Combat";
                     value = BW_TRAINING_OPERATION_MECH;
@@ -92,12 +96,12 @@ class RscMissionSelectMenu {
             tooltip = "Select faction of enemy units";
             class Items {
                 class east {
-                    text = "MSV Forces (AK-74M)";
+                    text = "Armed Forces of the Russian Federation (AK-74M)";
                     value = BW_TRAINING_ENEMY_OPFOR;
                     default = 1;
                 };
                 class indy {
-                    text = "Bundeswehr Forces (G36A3)";
+                    text = "Chernarus Defense Forces (AK-74N)";
                     value = BW_TRAINING_ENEMY_INDY;
                 };
             };
@@ -185,25 +189,26 @@ class RscMissionSelectMenu {
 
         class RscText_option0: RscText_minAISkill {
             idc = IDC_MISSION_OPTION0_TEXT;
-            text = "Min Units Per Building (%)";
+            text = "Min Units Per Building: 3";
             y = 0.4;
         };
         class RscXSliderH_option0: RscXSliderH_minAISkill {
             idc = IDC_MISSION_OPTION0;
-            sliderPosition = 0;
+            sliderPosition = 0.5;
             y = 0.4;
+            sliderRange[] = {0.1, 1};
         };
 
         class RscText_option1: RscText_minAISkill {
             idc = IDC_MISSION_OPTION1_TEXT;
-            text = "Max Units Per Building (%)";
+            text = "Max Units: 100";
             y = 0.5;
         };
         class RscXSliderH_option1: RscXSliderH_minAISkill {
             idc = IDC_MISSION_OPTION1;
             y = 0.5;
             sliderPosition = 1;
-            sliderRange[] = {0, 1};
+            sliderRange[] = {0.25, 1};
         };
 
         class RscText_option2: RscText_minAISkill {
@@ -262,6 +267,19 @@ class RscMissionSelectMenu {
             sliderPosition = 0;
         };
 
+        class RscText_random: RscText_minAISkill {
+            idc = IDC_MISSION_RANDOM_TEXT;
+            text = "Randomize settings";
+            x = 0.8;
+            y = 1.095;
+        };
+        class RscChecBox_random: RscCheckBox {
+            idc = IDC_MISSION_RANDOM;
+            x = 0.77;
+            y = 1.105;
+            w = 0.03;
+            h = 0.04;
+        };
 
         class RscButtonMenuOK_exit: RscButtonMenuOK {
             x = 1;
@@ -305,3 +323,183 @@ class RscMissionSelectMenu {
         };
     };
 };
+
+class GVAR(circleWaveSpawner) {
+    idd = IDD_CIRCLESPAWN_MENU;
+    x = 0.425;
+    y = 0.1;
+    w = 0.75;
+    h = 0.6;
+    onUnload = QUOTE([_this] call FUNC(ui_handleCircleSpawnMenu));
+    class ControlsBackground {
+        class Background : RscText {
+            idc = -1;
+            x = -0.3;
+            y = -0.2;
+            w = 1.5;
+            h = 1.05;
+            colorBackground[] = {0, 0, 0, 0.8};
+        };
+    };
+    class Controls {
+        class RscText_title: RscText {
+            idc = -1;
+            align = "center";
+            style = 2;
+            text = "Circle Spawner Menu";
+            x = -0.3;
+            y = -0.15;
+            w = 1.5;
+            h = 0.1;
+            sizeEx = 3 * GUI_GRID_H;
+        };
+        // LHS
+        class RscText_spawnInfo: RscText {
+            idc = -1;
+            style = 2;
+            text = "Click on map to select spawner center.";
+            x = -0.275;
+            y = -0.05;
+            w = 0.6875;
+            h = 0.06;
+        };
+        class RscMap_UIInterface: RscMapControl {
+            idc = IDC_CIRCLESPAWN_MAP;
+            x = -0.275;
+            y = 0;
+            w = 0.6875;
+            h = 0.8;
+        };
+
+        // RHS
+        class RscText_parameters: RscText_title {
+            text = "Spawner Parameters";
+            w = 0.7;
+            h = 0.1;
+            x = 0.45;
+            y = -0.025;
+            sizeEx = 2 * GUI_GRID_H;
+        };
+        class RscText_spawnRad: RscText {
+            idc = IDC_CIRCLESPAWN_RAD_TEXT;
+            text = "Max Radius: 1200m";
+            x = 0.45;
+            y = 0.1;
+            w = 0.25;
+            h = 0.06;
+        };
+        class RscXSliderH_spawnRad: RscXSliderH {
+            idc = IDC_CIRCLESPAWN_RAD;
+            x = 0.7;
+            y = 0.1;
+            w = 0.45;
+            h = 0.06;
+            sliderPosition = 1200;
+            sliderRange[] = {200, 2500};
+            onSliderPosChanged = QUOTE([ARR_2(_this,CIRCLESPAWN_PARAM_LNGTH_PARAM_RAD)] call FUNC(ui_updateCircleSpawnMenu));
+        };
+        class RscText_length: RscText_spawnRad {
+            idc = IDC_CIRCLESPAWN_LENGTH_TEXT;
+            text = "Spawner Length: 900s";
+            y = 0.2;
+        };
+        class RscXSliderH_length: RscXSliderH_spawnRad {
+            idc = IDC_CIRCLESPAWN_LENGTH;
+            y = 0.2;
+            sliderPosition = 900;
+            sliderRange[] = {600, 6000};
+            onSliderPosChanged = QUOTE([ARR_2(_this,CIRCLESPAWN_PARAM_LNGTH_PARAM_LNGTH)] call FUNC(ui_updateCircleSpawnMenu));
+        };
+        class RscText_count: RscText_spawnRad {
+            idc = IDC_CIRCLESPAWN_CNT_TEXT;
+            text = "Goal Unit Count: 40";
+            y = 0.3;
+        };
+        class RscXSliderH_count: RscXSliderH_spawnRad {
+            idc = IDC_CIRCLESPAWN_CNT;
+            y = 0.3;
+            sliderPosition = 20;
+            sliderRange[] = {20, 60};
+            onSliderPosChanged = QUOTE([ARR_2(_this,CIRCLESPAWN_PARAM_UNIT_PARAM_CNT)] call FUNC(ui_updateCircleSpawnMenu));
+        };
+        class RscText_minCount: RscText_spawnRad {
+            idc = IDC_CIRCLESPAWN_MIN_TEXT;
+            text = "Min Unit Count: 20";
+            y = 0.4;
+        };
+        class RscXSliderH_minCount: RscXSliderH_spawnRad {
+            idc = IDC_CIRCLESPAWN_MIN;
+            y = 0.4;
+            sliderPosition = 10;
+            sliderRange[] = {10, 60};
+            onSliderPosChanged = QUOTE([ARR_2(_this,CIRCLESPAWN_PARAM_UNIT_PARAM_MIN)] call FUNC(ui_updateCircleSpawnMenu));
+        };
+        class RscText_maxCount: RscText_spawnRad {
+            idc = IDC_CIRCLESPAWN_MAX_TEXT;
+            text = "Max Unit Count: 50";
+            y = 0.5;
+        };
+        class RscXSliderH_maxCount: RscXSliderH_spawnRad {
+            idc = IDC_CIRCLESPAWN_MAX;
+            y = 0.5;
+            sliderPosition = 20;
+            sliderRange[] = {20, 80};
+            onSliderPosChanged = QUOTE([ARR_2(_this,CIRCLESPAWN_PARAM_UNIT_PARAM_MAX)] call FUNC(ui_updateCircleSpawnMenu));
+        };
+        class RscText_periodCount: RscText_spawnRad {
+            idc = IDC_CIRCLESPAWN_PRD_TEXT;
+            text = "Period: 450s";
+            y = 0.6;
+        };
+        class RscXSliderH_periodCount: RscXSliderH_spawnRad {
+            idc = IDC_CIRCLESPAWN_PRD;
+            y = 0.6;
+            sliderPosition = 450;
+            sliderRange[] = {10, 900};
+            onSliderPosChanged = QUOTE([ARR_2(_this,CIRCLESPAWN_PARAM_UNIT_PARAM_PRD)] call FUNC(ui_updateCircleSpawnMenu));
+        };
+
+        class RscButtonMenuOK_exit: RscButtonMenuOK {
+            x = 1;
+            y = 0.7;
+            w = 0.15;
+            h = 0.12;
+            text = "Create Spawner";
+            class Attributes {
+                font = "PuristaLight";
+                color = "#E5E5E5";
+                align = "center";
+                shadow = "false";
+            };
+            class TextPos {
+                bottom = 0;
+                left = "0.25 * (((safezoneW / safezoneH) min 1.2) / 40)";
+                right = 0.005;
+                top = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) - (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)) / 2";
+                forceMiddle = true;
+            };
+        };
+        class RscButtonMenuCancel_exit: RscButtonMenuCancel {
+            x = 0.45;
+            y = 0.7;
+            w = 0.15;
+            h = 0.12;
+            text = "Cancel";
+            class Attributes {
+                font = "PuristaLight";
+                color = "#E5E5E5";
+                align = "center";
+                shadow = "false";
+            };
+            class TextPos {
+                bottom = 0;
+                left = "0.25 * (((safezoneW / safezoneH) min 1.2) / 40)";
+                right = 0.005;
+                top = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) - (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)) / 2";
+                forceMiddle = true;
+            };
+        };
+    };
+};
+
+#include "..\modules\grad-vehicleSpawner\grad_vehicleSpawnerUI.hpp"

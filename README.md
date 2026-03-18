@@ -9,7 +9,7 @@ A game mode for seeding the BW server pre-session. The map features zones for bo
 - QCB Practice
 - A MOUT Zone
 - Town/Zone clear
-- Armored Combat Zone
+- Defense mission framework
 - Spawn system for zone clears
 
 ## Contributions
@@ -28,5 +28,8 @@ Contributions are accepted via Pull Requests (PRs). Please make sure:
 - Lambda.Tiger
 - Kilo
 - AChesheireCat
+
+### External Code usage
+- Version 0.8.1 of GRAD'd vehicle spawner is included in this repo, code sourced from https://github.com/gruppe-adler/grad-vehicleSpawner
 
 <sub>it's funny because potatoes don't have seeds</sub>

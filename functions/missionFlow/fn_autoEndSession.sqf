@@ -15,8 +15,8 @@
 * none
 *
 * Example:
-* [] call bw_fnc_autoEndSession; // end 20 minutes before session time
 * [15] call bw_fnc_autoEndSession; // end 15 minutes before session time
+* [] call bw_fnc_autoEndSession; // end 20 minutes before session time
 *//***************************************************************************/
 params [["_minutesBeforeSession", 20, [123]]];
 systemTime params ["_year", "_month", "_day", "_hour", "_minute", "_second"];

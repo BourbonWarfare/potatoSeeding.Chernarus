@@ -23,4 +23,10 @@ class Params {
     texts[] = {"Leave it the fuck alone", "Dawn", "Early Morning", "Morning", "Noon", "Afternoon", "Evening", "Dusk", "Night"};
     default = -1;
   };
+  class GVAR(gradMode) {
+    title = "GRAD - Enable Mode";
+    values[] = {0, 1, 2, 3, 4};
+    texts[] = {"Disable GRAD vehicle spawn", "Normal spawn limitations", "No limits per vehicle type", "Transport Only", "Light Vehicles Only"};
+    default = 4;
+  };
 };
