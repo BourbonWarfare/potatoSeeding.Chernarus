@@ -17,14 +17,16 @@ private _controlIDC = ctrlIDC _control;
 switch (_controlIDC) do {
     case IDC_MISSION_OPERATIONTYPE: {
         private _display = ctrlParent _control;
-        GVAR(menuOptions) set ["operationType", _lbCurSel];
-        [_display] call FUNC(updateMenuOptions);
+        if (_lbCurSel != GET_MENU_OPTION(operationType)) then {
+            SET_MENU_OPTION(operationType,_lbCurSel);
+            [_display] call FUNC(updateMenuOptions);
+        };
     };
     case IDC_MISSION_ENEMYTYPE: {
-        GVAR(menuOptions) set ["enemyType", _lbCurSel];
+        SET_MENU_OPTION(enemyType,_lbCurSel);
     };
     case IDC_MISSION_DROPDOWN: {
-        GVAR(menuOptions) set ["density", _lbCurSel];
+        SET_MENU_OPTION(density,_lbCurSel);
     };
     default {
         diag_log formatText ["[SEED][Mission] COMBO ERROR: Invalid control IDC: %1", _controlIDC];

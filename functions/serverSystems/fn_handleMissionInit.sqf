@@ -41,28 +41,31 @@ private _minAISkill = _settingHash getOrDefault ["AIskillMin", 0.2];
 private _maxAISkill = _settingHash getOrDefault ["AIskillMax", 0.8];
 [_minAISkill, _maxAISkill] call FUNC(updateAISkill);
 
-private _minBuildingGarrison = _settingHash getOrDefault ["option0", 0.2];
-private _maxBuildingGarrison = _settingHash getOrDefault ["option1", 0.8];
-private _chanceMove = _settingHash getOrDefault ["option2", 0.3];
+private _minBuildingGarrison = _settingHash getOrDefault ["option0", 0.33];
+private _maxBuildingGarrison = _settingHash getOrDefault ["option1", 0.75];
+private _chanceMove = _settingHash getOrDefault ["option2", 0.5];
 private _initArray = [0, 0];
 private _markerPos = getMarkerPos _marker;
 private _operationType = _settingHash getOrDefault ["operationType", BW_TRAINING_OPERATION_MOUT];
 private _zoneDims = markerSize _marker;
 switch (_operationType) do {
     case BW_TRAINING_OPERATION_MOUT: {
-        _minBuildingGarrison = _minBuildingGarrison * 10;
-        _maxBuildingGarrison = _maxBuildingGarrison * 12;
+        _marker setMarkerColorLocal "ColorBlue";
+        _marker setMarkerAlphaLocal 1;
+        _marker setMarkerBrush "Border";
+        _minBuildingGarrison = round (_minBuildingGarrison * 8);
+        _maxBuildingGarrison = round (_maxBuildingGarrison * BW_AI_MAX_SPAWN);
         _chanceMove = linearConversion [0, 1, _chanceMove, 0, 0.25];
         _initArray = [
             getMarkerPos _marker,
             vectorMagnitude _zoneDims,
             _marker,
-            [0.05, 0.4],
+            2,
             [_minBuildingGarrison, _maxBuildingGarrison],
             _chanceMove,
             false,
             _enemySide,
-            false
+            true
         ] call FUNC(garrisonBuildings);
     };
     case BW_TRAINING_OPERATION_ZONE_DRAW;
@@ -71,7 +74,7 @@ switch (_operationType) do {
         _marker setMarkerAlphaLocal 1;
         _marker setMarkerBrush "Border";
         _minBuildingGarrison = _minBuildingGarrison * 10;
-        _maxBuildingGarrison = _maxBuildingGarrison * 7.5;
+        _maxBuildingGarrison = _maxBuildingGarrison * 7;
         _chanceMove = linearConversion [0, 1, _chanceMove, 0, 0.6];
         private _markerSize = vectorMagnitude _zoneDims;
         private _densityMode = _settingHash getOrDefault ["density", BW_TRAINING_DENSITY_UNIFORM];
@@ -132,7 +135,6 @@ switch (_operationType) do {
                         _tempPos,
                         _radius,
                         _marker,
-                        7,
                         [_minBuildingGarrison, _maxBuildingGarrison],
                         _chanceMove,
                         true,
@@ -151,14 +153,14 @@ switch (_operationType) do {
                 };
             };
             default { // uniform is default
-                _minBuildingGarrison = _minBuildingGarrison * 0.1;
-                _maxBuildingGarrison = _maxBuildingGarrison * 0.09;
+                _minBuildingGarrison = round (_minBuildingGarrison * 0.6);
+                _maxBuildingGarrison = round (_maxBuildingGarrison * BW_AI_MAX_SPAWN / 7);
 
                 _initArray = [
                     _markerPos,
                     _markerSize,
                     _marker,
-                    [0, _maxBuildingGarrison],
+                    _minBuildingGarrison,
                     [_minBuildingGarrison, _maxBuildingGarrison],
                     _chanceMove,
                     true,
@@ -196,7 +198,7 @@ switch (_operationType) do {
         if (_vehicleIntensity > 0) then {
             private _zoneSize = round (_zoneArea / 60000);
             if (_zoneSize > 4) then {
-                _zoneSize = linearConversion [5, 20, _zoneSize, 5, 10];
+                _zoneSize = linearConversion [5, 20, _zoneSize, 5, 7];
             };
             [
                 _markerPos,
@@ -211,6 +213,19 @@ switch (_operationType) do {
         if (_reinforcementSize > 0) then {
             [_marker, 1 + round (3 * _reinforcementSize), _vehicleIntensity > 0.6, _enemySide, _initArray#1, _initArray#0] call FUNC(addSectorReinforce);
         };
+    };
+    case BW_TRAINING_OPERATION_DEFEND: {
+        deleteMarker _marker;
+        [
+            [_markerPos, 300 min (0.35 * _minBuildingGarrison), _minBuildingGarrison, _settingHash getOrDefault ["option3", -180], _settingHash getOrDefault ["option4", 180]],
+            {_this*0.75},
+            compile format ["16+%1*(count (allPlayers select {alive _x && side _x == west}))*(0.5+0.5*sin(360*CBA_missionTime/450))", _maxBuildingGarrison],
+            true,
+            CBA_missionTime + (_settingHash getOrDefault ["option2", 900]),
+            _enemySide,
+            west,
+            selectRandom (getArray (missionConfigFile >> "CfgLoadouts" >> (["potato_i", "potato_e"] select (_enemySide == east)) >> "artilleryArray"))
+        ] call FUNC(addCircleSpawner);
     };
 };
 
@@ -231,6 +246,7 @@ private _zoneName = switch (_operationType) do {
         };
         _text
     };
+    case BW_TRAINING_OPERATION_DEFEND: {"Defense"};
     default {"Unknown"};
 };
 

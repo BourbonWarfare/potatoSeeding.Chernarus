@@ -41,7 +41,8 @@ if !(local _group) exitWith {
 };
 
 private _type = switch (_patrolSize mod 6) do {
-    case 2: {selectRandom ["_msamg", "_lat"]};
+    case 1: {selectRandom ["_rifleman_02", "_rifleman_03", "_msamg"]};
+    case 2: {selectRandom ["_rifleman", "_rifleman_04", "_lat", "_msamg"]};
     case 3: {selectRandom ["_ar", "_ar", "_ar",  "_ar", "_mmgg"]};
     case 4: {selectRandom ["_sm", "_rifleman_02"]};
     case 5: {selectRandom ["_ftl", "_ftl", "_sl"]};
@@ -53,7 +54,7 @@ private _sideType = switch (_sidePatrol) do {
     case resistance: {"i"};
     default {"e"};
 };
-private _unit = _group createUnit ["potato_" + _sideType + _type, BW_UNIT_SPAWN_POS, [], 0, "NONE"];
+private _unit = _group createUnit ["potato_nolambs_" + _sideType + _type, BW_UNIT_SPAWN_POS, [], 0, "NONE"];
 
 if (_patrolSize == 5) then {
     _group selectLeader _unit;
