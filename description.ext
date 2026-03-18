@@ -1,6 +1,10 @@
 #include "script_component.hpp"
 
-onLoadName = "BW Seeding V4";
+onLoadName = "BW Seeding V6";
+
+// Disable (0) or enable (1) the automatic GRAD vehicle flag actions
+allowGRADFromFlag = 1;
+allowFunctionsRecompile = 1;
 
 // BWMF Gear
 //Credits:headswe, Pabst, Zerith
@@ -8,8 +12,12 @@ onLoadName = "BW Seeding V4";
 
 // Extended Event Handlers:
 #include "cfg\CfgEventHandlers.hpp"
+// Fortify
+#include "cfg\CfgFortify.hpp"
 // Functions
 #include "cfg\CfgFunctions.hpp"
+// GRAD
+#include "cfg\CfgGrad.hpp"
 // Menus:
 #include "cfg\CfgUI.hpp"
 // Notifications:
